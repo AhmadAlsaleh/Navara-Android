@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".OrderInformationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/orderInformationBackIV"
+                android:layout_width="@dimen/toolbar_layout"
+                android:layout_height="@dimen/toolbar_layout"
+                app:srcCompat="@drawable/ic_back_arrow_white"
+                android:padding="@dimen/padding_action_buttons" />
+
+            <TextView
+                android:id="@+id/titleLayoutTV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Order Information"
+                android:textStyle="bold"
+                android:textSize="@dimen/main_toolbar_title"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/whiteItem"
+                tools:ignore="SpUsage" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_width"
+            android:background="@color/divider_color"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingRight="@dimen/list_padding"
+                android:paddingLeft="@dimen/list_padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="@dimen/list_margin"
+                    android:layout_marginRight="@dimen/list_margin"
+                    android:padding="@dimen/point_top">
+
+                    <ImageView
+                        android:id="@+id/orderStatusIV"
+                        android:layout_width="@dimen/main_buttons"
+                        android:layout_height="@dimen/main_buttons"
+                        app:srcCompat="@drawable/ic_hourglass"
+                        android:padding="@dimen/padding_point"
+                        android:background="@drawable/ic_circle_green"/>
+
+                    <TextView
+                        android:id="@+id/orderStatusTV"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Pending"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/point_top"
+                        android:layout_marginStart="@dimen/point_top"
+                        android:textSize="@dimen/action_text"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/orderCodeTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Code: AD11111112"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/point_top"
+                        android:layout_marginStart="@dimen/point_top"
+                        android:textSize="@dimen/action_main_small"
+                        tools:ignore="SpUsage" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/list_margin"
+                    app:cardCornerRadius="@dimen/list_padding">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/selectedItemsTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorPrimary"
+                            android:text="Chosen Items"
+                            android:textStyle="bold"
+                            android:textAlignment="textStart"
+                            android:layout_margin="@dimen/point_top"
+                            android:textSize="@dimen/main_add_appointment_actions"
+                            android:gravity="start"
+                            tools:ignore="SpUsage" />
+
+                        <LinearLayout
+                            android:id="@+id/chosenItemsLL"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/orderTotalInfoTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total: 111 S.P"
+                            android:layout_gravity="center"
+                            android:textColor="@color/blackItem"
+                            android:textSize="@dimen/main_add_appointment_actions"
+                            tools:ignore="SpUsage"
+                            android:layout_margin="2dp"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    app:cardCornerRadius="@dimen/list_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/list_margin">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="@dimen/point_top">
+
+                        <TextView
+                            android:id="@+id/contactInfoTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorPrimary"
+                            android:text="Contact Information"
+                            android:textStyle="bold"
+                            android:textAlignment="textStart"
+                            android:textSize="@dimen/main_add_appointment_actions"
+                            android:gravity="start"
+                            tools:ignore="SpUsage" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/nameTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Name:  "
+                                android:textColor="@color/primary_list_item"
+                                android:textSize="@dimen/action_text"/>
+
+                            <TextView
+                                android:id="@+id/selectedNameTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="@dimen/action_text"
+                                android:text="Ahmad"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/phoneTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Phone Number:  "
+                                android:textColor="@color/primary_list_item"
+                                android:textSize="@dimen/action_text"/>
+
+                            <TextView
+                                android:id="@+id/selectedPhoneTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="@dimen/action_text"
+                                android:text="0951784957"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/remarkTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Remark:  "
+                                android:textColor="@color/primary_list_item"
+                                android:textSize="@dimen/action_text"/>
+
+                            <TextView
+                                android:id="@+id/selectedRemarkTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/action_text"
+                                android:text="Text"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    app:cardCornerRadius="@dimen/list_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/list_margin">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/selectedDateTimeTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorPrimary"
+                            android:text="Preferable Time"
+                            android:layout_margin="@dimen/point_top"
+                            android:textStyle="bold"
+                            android:textAlignment="textStart"
+                            android:textSize="@dimen/main_add_appointment_actions"
+                            android:gravity="start" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center">
+
+                            <TextView
+                                android:id="@+id/preferableTimeFromTV"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:gravity="center"
+                                android:textSize="@dimen/action_text"
+                                android:text="03:00 P.M"/>
+
+                            <ImageView
+                                android:layout_width="@dimen/padding_category"
+                                android:layout_height="@dimen/padding_category"
+                                app:srcCompat="@drawable/ic_next_arrow" />
+
+                            <TextView
+                                android:id="@+id/preferableTimeToTV"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textSize="@dimen/action_text"
+                                android:text="03:00 P.M"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    app:cardCornerRadius="@dimen/list_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/list_margin">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/locationTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorPrimary"
+                            android:text="Location"
+                            android:textStyle="bold"
+                            android:layout_margin="@dimen/point_top"
+                            android:textAlignment="textStart"
+                            android:textSize="@dimen/main_add_appointment_actions"
+                            android:gravity="start"
+                            tools:ignore="SpUsage" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.gms.maps.MapView
+                                android:id="@+id/submitMapView"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/contact_message" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/contact_message"
+                                android:clickable="true"
+                                android:focusable="true" />
+
+                            <TextView
+                                android:id="@+id/locationRemarkTV"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/action_text"
+                                android:text="Lattakia"
+                                android:layout_alignParentBottom="true"
+                                android:gravity="center"
+                                tools:ignore="SpUsage"
+                                android:maxLines="2"
+                                android:paddingLeft="@dimen/point_top"
+                                android:paddingRight="@dimen/point_top"
+                                android:ellipsize="end"
+                                android:textColor="@color/whiteItem"
+                                android:background="@drawable/gradient_background"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/orderInfoFL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

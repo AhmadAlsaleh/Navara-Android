@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/contactTitle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_layout"
+                android:text="Contact Us"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/dialogs_title"
+                tools:ignore="SpUsage" />
+
+            <ImageView
+                android:id="@+id/contactClose"
+                android:layout_width="@dimen/loaderMargin"
+                android:layout_height="@dimen/loaderMargin"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/point_top"
+                app:srcCompat="@drawable/ic_close"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_width"
+            android:background="@color/divider_color"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/fab_margin"
+                android:paddingRight="@dimen/fab_margin"
+                android:paddingBottom="@dimen/fab_margin">
+
+                <TextView
+                    android:id="@+id/contactNameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name:"
+                    android:textColor="@color/primary_list_item"
+                    android:textSize="@dimen/list_item_text"
+                    android:layout_margin="@dimen/list_padding"/>
+
+                <EditText
+                    android:id="@+id/contactNameET"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="@dimen/padding_linear"
+                    android:paddingRight="@dimen/padding_linear"
+                    android:textSize="@dimen/action_text"
+                    android:background="@drawable/edit_text_background"/>
+
+                <TextView
+                    android:id="@+id/contactEmailTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email:"
+                    android:textColor="@color/primary_list_item"
+                    android:textSize="@dimen/list_item_text"
+                    android:layout_marginLeft="@dimen/list_padding"
+                    android:layout_marginBottom="@dimen/list_padding"
+                    android:layout_marginTop="@dimen/action_main_small"
+                    android:layout_marginStart="@dimen/list_padding" />
+
+                <EditText
+                    android:id="@+id/contactEmailET"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="@dimen/padding_linear"
+                    android:paddingRight="@dimen/padding_linear"
+                    android:textSize="@dimen/action_text"
+                    android:background="@drawable/edit_text_background"
+                    tools:ignore="SpUsage,TextFields" />
+
+                <TextView
+                    android:id="@+id/contactMessageTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Message:"
+                    android:textColor="@color/primary_list_item"
+                    android:textSize="@dimen/list_item_text"
+                    android:layout_marginLeft="@dimen/list_padding"
+                    android:layout_marginBottom="@dimen/list_padding"
+                    android:layout_marginTop="@dimen/action_main_small"
+                    android:layout_marginStart="@dimen/list_padding" />
+
+                <EditText
+                    android:id="@+id/contactMessageET"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/contact_message"
+                    android:inputType="textMultiLine"
+                    android:paddingLeft="@dimen/padding_linear"
+                    android:paddingRight="@dimen/padding_linear"
+                    android:textSize="@dimen/action_text"
+                    android:gravity="top|start"
+                    android:paddingTop="@dimen/padding_action_buttons"
+                    android:background="@drawable/edit_text_background"
+                    tools:ignore="SpUsage" />
+
+                <Button
+                    android:id="@+id/contactSendBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/point_top"
+                    android:layout_marginBottom="@dimen/point_top"
+                    android:paddingLeft="@dimen/margin_fab_appoi"
+                    android:paddingRight="@dimen/margin_fab_appoi"
+                    android:text="Send"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/list_item_text"
+                    android:background="@drawable/primary_button_background"
+                    android:textColor="@color/whiteItem"
+                    android:textAllCaps="false"/>
+
+                <ProgressBar
+                    android:id="@+id/contactPB"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>

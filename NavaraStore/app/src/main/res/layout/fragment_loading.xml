@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoadingFragment"
+    android:background="@drawable/primary_background"
+    android:clickable="true"
+    android:focusable="true"
+    android:id="@+id/loadingRL">
+
+    <RelativeLayout
+        android:id="@+id/loadingLoadRL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/loadingIV"
+            android:layout_width="@dimen/luncher_logo"
+            android:layout_height="@dimen/luncher_logo"
+            android:src="@drawable/loading"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/loadingTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Loading"
+            android:textSize="@dimen/dialogs_title"
+            android:textColor="@color/blackItem"
+            tools:ignore="SpUsage" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OfferFreePreviewActivity"
+    android:background="@drawable/primary_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/offer_service_header"
+            android:padding="0dp">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/itemImagesVP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:id="@+id/itemCirclesNumberLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/point_top"
+                android:paddingRight="@dimen/padding_linear"
+                android:paddingLeft="@dimen/padding_linear"
+                android:background="@drawable/white_button_background"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:background="@drawable/gradient_background"/>
+
+            <ImageView
+                android:id="@+id/offerBackIV"
+                android:layout_width="@dimen/toolbar_layout"
+                android:layout_height="@dimen/toolbar_layout"
+                app:srcCompat="@drawable/ic_back_arrow_white"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/free_offer_preview_icon"
+                app:srcCompat="@drawable/ic_gift_red"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="18dp"
+                android:paddingLeft="18dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:paddingEnd="10dp"
+                android:paddingStart="18dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:gravity="bottom"
+                android:layout_margin="@dimen/list_padding">
+
+                <TextView
+                    android:id="@+id/offerTitleTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Offer On Color Changing"
+                    android:textColor="@color/whiteItem"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/main_buttons"
+                    tools:ignore="SpUsage" />
+
+                <ImageView
+                    android:id="@+id/addToCartIV"
+                    android:layout_width="@dimen/main_texts"
+                    android:layout_height="@dimen/main_texts"
+                    app:srcCompat="@drawable/ic_add_shopping_cart"
+                    android:background="@drawable/ic_circle_white_border"
+                    android:padding="@dimen/list_padding"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/point_top">
+
+                <TextView
+                    android:id="@+id/offerDetailsTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Details:"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/main_toolbar_title"
+                    tools:ignore="SpUsage" />
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    android:layout_margin="2dp"
+                    app:cardElevation="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/offerPreviewItemsRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="vertical" />
+
+                        <TextView
+                            android:id="@+id/getFreeTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="And Get:"
+                            android:textSize="@dimen/fab_margin"
+                            android:layout_marginLeft="@dimen/list_padding"
+                            android:textStyle="bold"
+                            android:textColor="@color/green_background"
+                            android:layout_marginStart="@dimen/list_padding"
+                            tools:ignore="SpUsage" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/offerPreviewOffersRV"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:scrollbars="vertical"
+                                android:layout_marginLeft="@dimen/padding_category"
+                                android:background="@android:color/transparent"
+                                android:layout_marginStart="@dimen/padding_category" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:id="@+id/offerDescriptionTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description:"
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:layout_marginBottom="@dimen/padding_point"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/main_toolbar_title"/>
+
+                <TextView
+                    android:id="@+id/offerDescriptionTextTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary_list_item"
+                    android:textSize="@dimen/action_text"
+                    android:text="Test Test Test Test Test Test Test Test Test Test Test "
+                    tools:ignore="SpUsage" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <include layout="@layout/fragment_loading" />
+
+    <FrameLayout
+        android:id="@+id/previewFreeFL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

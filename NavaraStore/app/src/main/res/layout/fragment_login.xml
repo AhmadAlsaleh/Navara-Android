@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginRegisterFragments.LoginFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/welcomeTitleTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Welcome Back!"
+                android:textSize="@dimen/add_buttons_xy"
+                android:visibility="gone"
+                android:textColor="@color/navaraPrimary"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/margin_fab_appoi"
+                android:layout_marginBottom="@dimen/margin_fab_appoi"
+                android:layout_marginLeft="@dimen/point_top"
+                android:layout_marginRight="@dimen/point_top"/>
+
+            <TextView
+                android:id="@+id/emailLoginTV"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email or Mobile:"
+                android:textColor="@color/primary_list_item"
+                android:textSize="@dimen/list_item_text"
+                android:layout_marginLeft="@dimen/items_margin"
+                android:layout_marginRight="@dimen/items_margin"
+                tools:ignore="SpUsage" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/items_margin"
+                android:layout_marginRight="@dimen/items_margin">
+
+                <RadioButton
+                    android:id="@+id/loginEmailRB"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/list_item_text"
+                    android:checked="true"
+                    android:text="Email"
+                    tools:ignore="SpUsage" />
+
+                <RadioButton
+                    android:id="@+id/loginPhoneRB"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/list_item_text"
+                    android:ellipsize="end"
+                    android:checked="false"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:text="Mobile"
+                    tools:ignore="SpUsage" />
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/emailOrMobileNumberET"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="textEmailAddress"
+                android:hint="user@example.com"
+                android:paddingLeft="@dimen/point_top"
+                android:paddingRight="@dimen/padding_linear"
+                android:textSize="@dimen/list_item_text"
+                android:layout_marginLeft="@dimen/items_margin"
+                android:layout_marginRight="@dimen/items_margin"
+                android:layout_marginBottom="@dimen/fab_margin"
+                android:background="@drawable/edit_text_background"
+                tools:ignore="SpUsage,TextFields"
+                android:paddingEnd="@dimen/padding_linear"
+                android:paddingStart="@dimen/point_top" />
+
+            <LinearLayout
+                android:id="@+id/loginPhoneLL"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/fab_margin"
+                android:layout_marginLeft="@dimen/items_margin"
+                android:layout_marginRight="@dimen/items_margin">
+
+                <com.rilixtech.CountryCodePicker
+                    android:id="@+id/ccpLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_action_buttons"
+                    android:layout_marginBottom="@dimen/padding_action_buttons"
+                    app:ccp_defaultNameCode="SY" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/phone_number_edt_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:inputType="phone"
+                    android:hint="9XXX-XXX-XXX"
+                    android:background="@drawable/edit_text_background"
+                    android:paddingStart="@dimen/point_top"
+                    android:paddingEnd="@dimen/padding_linear"
+                    android:paddingLeft="@dimen/point_top"
+                    android:paddingRight="@dimen/padding_linear" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/passwordLoginTV"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Password:"
+                android:textColor="@color/primary_list_item"
+                android:textSize="@dimen/list_item_text"
+                android:layout_marginLeft="@dimen/items_margin"
+                android:layout_marginRight="@dimen/items_margin"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:paddingLeft="@dimen/point_top"
+                android:paddingRight="@dimen/padding_linear"
+                android:layout_marginLeft="@dimen/items_margin"
+                android:layout_marginRight="@dimen/items_margin"
+                android:layout_marginBottom="@dimen/fab_margin"
+                android:background="@drawable/edit_text_background"
+                android:paddingStart="@dimen/point_top"
+                android:paddingEnd="@dimen/padding_linear">
+
+                <EditText
+                    android:id="@+id/passwordET"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="45dp"
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/list_item_text"
+                    android:background="@android:color/transparent"
+                    tools:ignore="SpUsage" />
+
+                <ImageView
+                    android:id="@+id/passwordEyeIV"
+                    android:layout_width="45dp"
+                    android:layout_margin="@dimen/point_top"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_eye_black"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/loginBTN"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/point_top"
+                android:text="Login"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/items_margin"
+                android:layout_marginRight="@dimen/items_margin"
+                android:textSize="@dimen/list_item_text"
+                android:background="@drawable/primary_button_background"
+                android:textColor="@color/whiteItem"
+                android:textAllCaps="false"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/point_top"
+                android:layout_marginRight="@dimen/items_margin"
+                android:layout_marginLeft="@dimen/items_margin">
+
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/facebookLoginBTN"
+                    android:visibility="gone"
+                    android:layout_width="250dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/items_margin"
+                    android:layout_marginRight="@dimen/items_margin" />
+
+                <LinearLayout
+                    android:id="@+id/facebookLoginLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:clickable="false"
+                    android:background="@drawable/button_facebook"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="@dimen/point_top"
+                        android:layout_marginLeft="@dimen/point_top"
+                        android:src="@drawable/facebook_white_logo" />
+
+                    <TextView
+                        android:id="@+id/loginFacebookTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Login with Facebook"
+                        android:background="@color/com_facebook_blue"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/list_item_text"
+                        android:textColor="@color/whiteItem"
+                        android:textAllCaps="false"/>
+
+
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_width"
+                android:layout_marginTop="@dimen/margin_fab_appoi"
+                android:layout_marginBottom="@dimen/margin_fab_appoi"
+                android:background="@color/divider_color"
+                android:layout_marginLeft="@dimen/items_margin"
+                android:layout_marginRight="@dimen/items_margin"/>
+
+            <TextView
+                android:id="@+id/forgetPasswordTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forget Password"
+                android:textSize="@dimen/list_item_text"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/point_top"/>
+
+            <TextView
+                android:id="@+id/doNotHaveAccountTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You don\'t have an account"
+                android:textSize="@dimen/list_item_text"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/margin_fab_appoi"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

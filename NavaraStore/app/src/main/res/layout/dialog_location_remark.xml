@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/fab_margin"
+        android:paddingRight="@dimen/fab_margin">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/locationRemarkTitle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_layout"
+                android:text="Location Remark"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/dialogs_title"
+                tools:ignore="SpUsage" />
+
+            <ImageView
+                android:id="@+id/locationRemarkClose"
+                android:layout_width="@dimen/loaderMargin"
+                android:layout_height="@dimen/loaderMargin"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/point_top"
+                app:srcCompat="@drawable/ic_close"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/locationRemarkTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="location"
+            android:textColor="@color/blackItem"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="@dimen/list_item_text"
+            android:layout_marginTop="@dimen/padding_point"
+            android:layout_marginBottom="@dimen/padding_point"
+            tools:ignore="SpUsage" />
+
+        <EditText
+            android:id="@+id/locationRemarkET"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:inputType="textEmailAddress"
+            android:hint="flour, near market, ..."
+            tools:ignore="SpUsage,TextFields"
+            android:paddingLeft="@dimen/padding_linear"
+            android:paddingRight="@dimen/padding_linear"
+            android:textSize="@dimen/action_text"
+            android:background="@drawable/edit_text_background"/>
+
+        <Button
+            android:id="@+id/locationRemarkBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/point_top"
+            android:layout_marginBottom="@dimen/point_top"
+            android:paddingLeft="@dimen/margin_fab_appoi"
+            android:paddingRight="@dimen/margin_fab_appoi"
+            android:text="Done"
+            android:textStyle="bold"
+            android:textSize="@dimen/list_item_text"
+            android:background="@drawable/primary_button_background"
+            android:textColor="@color/whiteItem"
+            android:textAllCaps="false"
+            tools:ignore="SpUsage" />
+
+        <ProgressBar
+            android:id="@+id/locationRemarkPB"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/point_top"
+            android:layout_marginBottom="@dimen/point_top"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

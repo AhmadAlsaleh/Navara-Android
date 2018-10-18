@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".NoInternetFragment"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="@drawable/primary_background">
+
+    <LinearLayout
+        android:id="@+id/loadingNoNetLL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true" >
+
+        <ImageView
+            android:layout_width="@dimen/luncher_logo"
+            android:layout_height="@dimen/luncher_logo"
+            app:srcCompat="@drawable/ic_no_internet"/>
+
+        <TextView
+            android:id="@+id/loadingNoNetTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Internet Connection"
+            android:layout_gravity="center"
+            android:textSize="@dimen/dialogs_title"
+            android:textColor="@color/blackItem"
+            tools:ignore="SpUsage"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

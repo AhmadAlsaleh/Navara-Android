@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="@dimen/list_padding"
+    android:layout_marginRight="@dimen/list_padding"
+    android:layout_marginTop="@dimen/padding_linear"
+    android:layout_marginBottom="@dimen/padding_linear"
+    app:cardCornerRadius="@dimen/list_margin">
+
+    <LinearLayout
+        android:id="@+id/orderLL"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginRight="@dimen/list_padding"
+            android:layout_marginLeft="@dimen/list_padding">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/orderCodeTVText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textColor="@color/blackItem"
+                    android:textSize="@dimen/fab_margin"
+                    android:text="Code: " />
+
+                <TextView
+                    android:id="@+id/orderCodeTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="@dimen/fab_margin"
+                    android:text="send date" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/orderDateTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/fab_margin"
+                android:text="send date"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/orderTotalTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Total: "
+                    android:textSize="@dimen/list_item_text"
+                    android:textColor="@color/primary_list_item"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                    android:id="@+id/orderTotalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="600$"
+                    android:textSize="@dimen/list_item_text"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/orderStatusRL"
+            android:layout_width="@dimen/main_buttons_plus"
+            android:layout_height="@dimen/main_buttons_plus"
+            android:layout_margin="@dimen/list_padding"
+            android:background="@drawable/ic_circle_green">
+
+            <ImageView
+                android:id="@+id/orderMoreIV"
+                app:srcCompat="@drawable/ic_check_white"
+                android:layout_width="@dimen/main_buttons"
+                android:layout_height="@dimen/main_buttons"
+                android:padding="@dimen/padding_point"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

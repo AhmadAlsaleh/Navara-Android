@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_margin">5dp</dimen>
+
+    <dimen name="loaderMargin">20dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="point_top">10dp</dimen>
+    <dimen name="action_main_big">5dp</dimen>
+    <dimen name="action_main_small">15dp</dimen>
+    <dimen name="padding_point">3dp</dimen>
+    <dimen name="padding_linear">4dp</dimen>
+    <dimen name="padding_action_buttons">5dp</dimen>
+    <dimen name="margin_fab_appoi">22dp</dimen>
+    <dimen name="list_padding">8dp</dimen>
+    <dimen name="add_buttons_xy">40dp</dimen>
+    <dimen name="drop_arrows">25dp</dimen>
+    <dimen name="padding_category">30dp</dimen>
+    <dimen name="main_icons_padding">25dp</dimen>
+
+    <dimen name="text_quantity_x">40dp</dimen>
+    <dimen name="items_margin">55dp</dimen>
+    <dimen name="dialogs_title">20dp</dimen>
+    <dimen name="main_texts">50dp</dimen>
+    <dimen name="main_buttons">30dp</dimen>
+    <dimen name="main_buttons_plus">40dp</dimen>
+    <dimen name="divider_width">1dp</dimen>
+    <dimen name="list_icons_width_high">65dp</dimen>
+    <dimen name="chosen_icons_width_high">45dp</dimen>
+    <dimen name="main_toolbar_title">22dp</dimen>
+    <dimen name="main_add_appointment_actions">20dp</dimen>
+
+    <dimen name="grid_category_xy">95dp</dimen>
+    <dimen name="list_item_text">18dp</dimen>
+    <dimen name="action_text">20dp</dimen>
+    <dimen name="luncher_logo">250dp</dimen>
+    <dimen name="toolbar_layout">45dp</dimen>
+    <dimen name="offer_service_header">200dp</dimen>
+    <dimen name="contact_message">125dp</dimen>
+    <dimen name="language_item_height">60dp</dimen>
+
+    <dimen name="fab_margin_bottom">90dp</dimen>
+    <dimen name="main_btn_margin">100dp</dimen>
+
+</resources>

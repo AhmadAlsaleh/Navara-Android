@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProfileCartOrderFragments.CartFragment">
+
+   <android.support.v7.widget.RecyclerView
+       android:id="@+id/cartRV"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_marginTop="@dimen/point_top"/>
+
+   <ScrollView
+       android:id="@+id/offerSV"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+      <LinearLayout
+          android:id="@+id/offersViewLL"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+
+
+
+      </LinearLayout>
+
+   </ScrollView>
+
+   <ImageView
+       android:id="@+id/orderMakeIV"
+       android:layout_width="@dimen/language_item_height"
+       android:layout_height="@dimen/language_item_height"
+       android:background="@drawable/ic_circle_white_border"
+       android:layout_alignParentBottom="true"
+       android:layout_alignParentEnd="true"
+       android:layout_margin="@dimen/margin_fab_appoi"
+       app:srcCompat="@drawable/ic_make_order"
+       android:padding="@dimen/action_main_small"
+       android:layout_alignParentRight="true" />
+
+   <ImageView
+       android:id="@+id/orderCategoryIV"
+       android:layout_width="@dimen/language_item_height"
+       android:layout_height="@dimen/language_item_height"
+       android:background="@drawable/ic_circle_white_border"
+       android:layout_alignParentBottom="true"
+       android:layout_alignParentEnd="true"
+       android:layout_marginEnd="@dimen/margin_fab_appoi"
+       app:srcCompat="@drawable/ic_view_list"
+       android:padding="@dimen/action_main_small"
+       android:layout_alignParentRight="true"
+       android:layout_marginRight="@dimen/margin_fab_appoi"
+       android:layout_marginBottom="@dimen/fab_margin_bottom"/>
+
+   <TextView
+       android:id="@+id/cartEmptyTV"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_margin="@dimen/margin_fab_appoi"
+       android:text="Your Cart is Empty"
+       android:textSize="@dimen/action_text"
+       android:layout_centerInParent="true"
+       android:textColor="@color/blackItem"
+       android:visibility="gone"
+       tools:ignore="SpUsage" />
+
+</RelativeLayout>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/changeLanguageTitle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_layout"
+                android:text="Change App Language"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/dialogs_title"
+                tools:ignore="SpUsage" />
+
+            <ImageView
+                android:id="@+id/languageClose"
+                android:layout_width="@dimen/loaderMargin"
+                android:layout_height="@dimen/loaderMargin"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/point_top"
+                app:srcCompat="@drawable/ic_close"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/englishLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/list_padding"
+            android:paddingBottom="@dimen/list_padding"
+            android:paddingLeft="@dimen/fab_margin"
+            android:paddingRight="@dimen/fab_margin">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/language_item_height"
+                android:layout_height="@dimen/language_item_height"
+                android:src="@drawable/uk_flag"
+                app:civ_fill_color="@color/whiteBack"
+                app:civ_border_color="@color/divider_color"
+                app:civ_border_width="@dimen/divider_width" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="English"
+                android:textColor="@color/blackItem"
+                android:textSize="@dimen/action_text"
+                android:layout_margin="@dimen/point_top"
+                android:layout_gravity="center_vertical"
+                tools:ignore="SpUsage" />
+
+            <RadioButton
+                android:id="@+id/englishRB"
+                android:checked="true"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_width"
+            android:background="@color/divider_color"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginRight="@dimen/fab_margin"/>
+
+        <LinearLayout
+            android:id="@+id/arabicLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/list_padding"
+            android:paddingBottom="@dimen/list_padding"
+            android:paddingLeft="@dimen/fab_margin"
+            android:paddingRight="@dimen/fab_margin">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/language_item_height"
+                android:layout_height="@dimen/language_item_height"
+                android:src="@drawable/sy_flag"
+                app:civ_fill_color="@color/whiteBack"
+                app:civ_border_color="@color/divider_color"
+                app:civ_border_width="@dimen/divider_width" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Arabic (Coming soon)"
+                android:textColor="@color/blackItem"
+                android:textSize="@dimen/action_text"
+                android:layout_margin="@dimen/point_top"
+                android:layout_gravity="center_vertical"
+                tools:ignore="SpUsage" />
+
+            <RadioButton
+                android:id="@+id/arabicRB"
+                android:checked="false"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/changeLanguageBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/point_top"
+            android:layout_marginBottom="@dimen/point_top"
+            android:paddingLeft="@dimen/margin_fab_appoi"
+            android:paddingRight="@dimen/margin_fab_appoi"
+            android:text="Change"
+            android:textStyle="bold"
+            android:textSize="@dimen/list_item_text"
+            android:background="@drawable/primary_button_background"
+            android:textColor="@color/whiteItem"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

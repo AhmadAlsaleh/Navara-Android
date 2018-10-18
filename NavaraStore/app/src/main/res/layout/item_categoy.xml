@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/categoryLL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/point_top"
+        android:gravity="center">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/categoryIV"
+            android:layout_width="@dimen/grid_category_xy"
+            android:layout_height="@dimen/grid_category_xy"
+            app:civ_border_color="@color/divider_color"
+            app:civ_border_width="@dimen/divider_width"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_add_shopping_cart"
+            app:civ_fill_color="@color/whiteItem"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:id="@+id/categoryTV"
+            android:layout_width="@dimen/grid_category_xy"
+            android:layout_height="wrap_content"
+            android:text="Arduino Board"
+            android:gravity="center"
+            android:maxLines="2"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:textColor="@color/blackItem"
+            android:textSize="@dimen/action_main_small"
+            tools:ignore="SpUsage" />
+
+    </LinearLayout>
+
+</RelativeLayout>

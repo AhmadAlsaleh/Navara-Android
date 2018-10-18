@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LocationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/locationBackIV"
+            android:layout_width="@dimen/toolbar_layout"
+            android:layout_height="@dimen/toolbar_layout"
+            app:srcCompat="@drawable/ic_back_arrow_white"
+            android:padding="@dimen/padding_action_buttons" />
+
+        <TextView
+            android:id="@+id/titleLayoutTV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Location And Contact"
+            android:textStyle="bold"
+            android:textSize="@dimen/main_toolbar_title"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/whiteItem"
+            tools:ignore="SpUsage" />
+
+    </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_width"
+            android:background="@color/divider_color"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <fragment
+                android:id="@+id/locationMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginLeft="@dimen/point_top"
+                    android:layout_marginRight="@dimen/point_top"
+                    android:layout_marginBottom="@dimen/point_top">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/white_edit_text_background"
+                        app:cardCornerRadius="@dimen/point_top">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/fab_margin"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/addressText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Address:"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/action_text"
+                                tools:ignore="SpUsage" />
+
+                            <TextView
+                                android:id="@+id/addressTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="@dimen/action_text"
+                                android:text="@string/address_line"
+                                tools:ignore="SpUsage" />
+
+                            <TextView
+                                android:id="@+id/workTimeText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Working Hours:"
+                                android:layout_marginTop="@dimen/margin_fab_appoi"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/action_text"
+                                tools:ignore="SpUsage" />
+
+                            <TextView
+                                android:id="@+id/workTimeTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="@dimen/action_text"
+                                android:text="From 09:00 AM to 05:00 PM"
+                                tools:ignore="SpUsage" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/hiddenRL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:background="@color/whiteHide"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="60dp"
+                    android:focusable="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="165dp"
+                    android:layout_marginRight="165dp"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:id="@+id/contactMailFAB">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/ic_mail"
+                        android:background="@drawable/ic_circle_green"
+                        android:padding="@dimen/action_main_small" />
+
+                    <TextView
+                        android:id="@+id/sendTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contact\nUs"
+                        android:gravity="center"
+                        android:textColor="#000"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="218dp"
+                    android:layout_marginRight="165dp"
+                    android:focusable="true"
+                    android:layout_marginEnd="165dp"
+                    android:layout_alignParentEnd="true"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:id="@+id/callContactFAB">
+
+                    <TextView
+                        android:id="@+id/callTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Make\nCall"
+                        android:gravity="center"
+                        android:textColor="#000"/>
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/ic_call"
+                        android:background="@drawable/ic_circle_green"
+                        android:padding="@dimen/action_main_small"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="158dp"
+                    android:layout_marginRight="225dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="225dp"
+                    android:id="@+id/webContactFAB"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/webTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Visit\nWebsite"
+                        android:gravity="center"
+                        android:textColor="#000"/>
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/ic_circle_green"
+                        android:padding="@dimen/action_main_small"
+                        app:srcCompat="@drawable/ic_pageview"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="160dp"
+                android:layout_marginEnd="@dimen/action_main_small"
+                android:layout_marginRight="@dimen/action_main_small">
+
+                <ImageView
+                    android:id="@+id/contactUsFAB"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:srcCompat="@drawable/ic_contact_mail"
+                    android:background="@drawable/ic_circle_primary"
+                    android:padding="@dimen/action_main_small"
+                    android:layout_marginEnd="@dimen/action_main_small"
+                    android:layout_marginRight="@dimen/action_main_small"/>
+
+                <ImageView
+                    android:id="@+id/goToFAB"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:srcCompat="@drawable/ic_replay"
+                    android:background="@drawable/ic_circle_primary"
+                    android:padding="@dimen/action_main_small"
+                    android:layout_marginEnd="@dimen/action_main_small"
+                    android:layout_marginRight="@dimen/action_main_small"/>
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/directionsFAB"
+                    app:srcCompat="@drawable/ic_directions"
+                    android:padding="@dimen/action_main_small"
+                    android:background="@drawable/ic_circle_primary"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+</LinearLayout>

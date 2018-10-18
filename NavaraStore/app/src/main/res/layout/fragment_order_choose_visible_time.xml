@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    tools:context=".OrderFragments.OrderChooseVisibleTimeFragment">
+
+    <TextView
+        android:id="@+id/chooseTimeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:text="Choose your preferable time"
+        android:textStyle="bold"
+        android:textSize="@dimen/main_add_appointment_actions"
+        android:textAlignment="textStart"
+        android:layout_margin="@dimen/list_padding"
+        android:gravity="start"
+        android:layout_gravity="start"
+        tools:ignore="SpUsage" />
+
+    <TextView
+        android:id="@+id/fromTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From"
+        android:textColor="@color/blackItem"
+        android:textSize="@dimen/action_text"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/fab_margin"
+        tools:ignore="SpUsage" />
+
+    <TextView
+        android:id="@+id/clockFromTC"
+        android:text="@string/app_name"
+        android:textColor="@color/greenDark"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="@dimen/main_texts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/list_margin"
+        tools:targetApi="jelly_bean_mr1"
+        tools:ignore="NestedWeights,SpUsage" />
+
+    <Button
+        android:id="@+id/setFromTimeBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set From Time"
+        android:background="@drawable/white_button_background"
+        android:textSize="@dimen/list_item_text"
+        android:layout_gravity="center"
+        android:paddingLeft="@dimen/margin_fab_appoi"
+        android:paddingRight="@dimen/margin_fab_appoi"
+        android:textColor="@color/navaraPrimary"
+        tools:ignore="SpUsage" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_width"
+        android:background="@color/divider_color"
+        android:layout_marginLeft="@dimen/margin_fab_appoi"
+        android:layout_marginRight="@dimen/margin_fab_appoi"
+        android:layout_marginTop="@dimen/fab_margin"/>
+
+    <TextView
+        android:id="@+id/toTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To"
+        android:textColor="@color/blackItem"
+        android:textSize="@dimen/action_text"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/fab_margin"
+        tools:ignore="SpUsage" />
+
+    <TextView
+        android:id="@+id/clockToTC"
+        android:text="@string/app_name"
+        android:textColor="@color/greenDark"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="@dimen/main_texts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:targetApi="jelly_bean_mr1"
+        android:layout_margin="@dimen/list_margin"
+        tools:ignore="NestedWeights,SpUsage" />
+
+    <Button
+        android:id="@+id/setToTimeBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set To Time"
+        android:background="@drawable/white_button_background"
+        android:textSize="@dimen/list_item_text"
+        android:layout_gravity="center"
+        android:paddingLeft="@dimen/margin_fab_appoi"
+        android:paddingRight="@dimen/margin_fab_appoi"
+        android:textColor="@color/navaraPrimary"
+        tools:ignore="SpUsage" />
+
+</LinearLayout>

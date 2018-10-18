@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainBackFragments.MainBack1">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/items_back" />
+
+    <Button
+        android:id="@+id/mainItemsBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show All Products"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="@dimen/margin_fab_appoi"
+        android:paddingRight="@dimen/margin_fab_appoi"
+        android:textColor="@color/whiteItem"
+        android:background="@drawable/main_buttons_back"
+        android:textSize="@dimen/main_buttons"
+        android:layout_marginBottom="@dimen/main_btn_margin"
+        android:textAllCaps="false"
+        tools:ignore="SpUsage" />
+
+</RelativeLayout>

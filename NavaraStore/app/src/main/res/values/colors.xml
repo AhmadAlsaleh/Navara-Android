@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e74c3c</color>
+    <color name="colorPrimaryDark">#c0392b</color>
+    <color name="colorAccent">#27ae60</color>
+
+    <color name="hide_all">#00ffffff</color>
+
+    <color name="whiteBack">#fff</color>
+    <color name="whiteItem">#fff</color>
+    <color name="whiteHide">#96ffffff</color>
+
+    <color name="lightgray">#e0e0e0</color>
+    <color name="gray">#757575</color>
+
+    <color name="blackHide">#82000000</color>
+    <color name="blackItem">#000</color>
+
+    <color name="hide_black">#c5000000</color>
+    <color name="hide_black2">#7d000000</color>
+
+    <color name="primary_list_item">#000</color>
+    <color name="divider_color">#AFAEAF</color>
+
+    <color name="navaraPrimary">@color/colorPrimary</color>
+    <color name="navaraPrimaryDark">@color/colorPrimaryDark</color>
+
+    <color name="greenDark">#008c45</color>
+    <color name="green_background">#00A652</color>
+    <color name="green_little_white">#af00a652</color>
+    <color name="green_white">#6400a652</color>
+
+    <color name="orange_background">#ff9800</color>
+    <color name="light_blue_gray">#e5f5f4</color>
+
+    <color name="red_background">#af2c29</color>
+
+</resources>

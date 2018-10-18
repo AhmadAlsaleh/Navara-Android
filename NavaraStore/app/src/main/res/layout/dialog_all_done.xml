@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/allDoneClose"
+        android:layout_width="@dimen/loaderMargin"
+        android:layout_height="@dimen/loaderMargin"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="@dimen/point_top"
+        android:layout_marginTop="@dimen/point_top"
+        app:srcCompat="@drawable/ic_close"
+        android:layout_marginRight="@dimen/point_top" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="@dimen/margin_fab_appoi"
+        android:paddingBottom="@dimen/margin_fab_appoi"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/allDoneTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="All Done Successfully"
+            android:textAlignment="center"
+            android:layout_marginLeft="@dimen/padding_category"
+            android:layout_marginRight="@dimen/padding_category"
+            android:textColor="@color/primary_list_item"
+            android:textSize="@dimen/dialogs_title"
+            tools:ignore="SpUsage" />
+
+        <TextView
+            android:id="@+id/orderCodeTVDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sdsdsd"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/allDoneMainIV"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/ic_date_green"
+            android:layout_margin="@dimen/margin_fab_appoi"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/okDoneBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/point_top"
+                android:paddingLeft="@dimen/margin_fab_appoi"
+                android:paddingRight="@dimen/margin_fab_appoi"
+                android:text="OK"
+                android:textStyle="bold"
+                android:textSize="@dimen/list_item_text"
+                android:background="@drawable/primary_button_background"
+                android:textColor="@color/whiteItem"
+                android:textAllCaps="false"
+                tools:ignore="SpUsage" />
+
+            <Button
+                android:id="@+id/returnBTN"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/point_top"
+                android:paddingLeft="@dimen/margin_fab_appoi"
+                android:paddingRight="@dimen/margin_fab_appoi"
+                android:text="Return"
+                android:textStyle="bold"
+                android:textSize="@dimen/list_item_text"
+                android:background="@drawable/white_button_background"
+                android:textColor="@color/navaraPrimary"
+                android:textAllCaps="false"
+                tools:ignore="SpUsage" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

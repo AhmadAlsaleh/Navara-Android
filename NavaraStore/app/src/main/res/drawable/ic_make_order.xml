@@ -1,0 +1,21 @@
+<vector android:autoMirrored="true" android:height="500dp"
+    android:viewportHeight="500.0" android:viewportWidth="500.0"
+    android:width="500dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M391.2,62.5h-2.9v36.1c0,21.8 -17.6,39.4 -39.4,39.4h-1.1c-21.8,0 -39.4,-17.6 -39.4,-39.4V62.5H197.5v36.1c0,21.8 -17.6,39.4 -39.4,39.4h-1.1c-21.8,0 -39.4,-17.6 -39.4,-39.4V62.5h-3.3c-45.2,0 -82.1,36.9 -82.1,82.1v268.2c0,45.2 36.9,82.1 82.1,82.1h277c45.2,0 82.1,-36.9 82.1,-82.1V144.6C473.4,99.4 436.4,62.5 391.2,62.5zM449.3,417c0,29 -24.5,52.7 -54.4,52.7H108.5c-29.9,0 -54.4,-23.7 -54.4,-52.7V169.8h395.2V417z"/>
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M182.2,95.9c0,13.6 -11,24.6 -24.6,24.6l0,0c-13.6,0 -24.6,-11 -24.6,-24.6V30.2c0,-13.6 11,-24.6 24.6,-24.6l0,0c13.6,0 24.6,11 24.6,24.6V95.9z"/>
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M373,95.9c0,13.6 -11,24.6 -24.6,24.6l0,0c-13.6,0 -24.6,-11 -24.6,-24.6V30.2c0,-13.6 11,-24.6 24.6,-24.6l0,0c13.6,0 24.6,11 24.6,24.6V95.9z"/>
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M176.7,287.3h66.2v65h-66.2z"/>
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M263.4,287.3h66.2v65h-66.2z"/>
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M176.5,195.7h66.2v65h-66.2z"/>
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M90,287.3h66.2v65h-66.2z"/>
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M263.2,195.7h66.2v65h-66.2z"/>
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M349.5,195.7h66.2v65h-66.2z"/>
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M349.7,287.3h66.2v65h-66.2z"/>
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M90,376h66.2v65h-66.2z"/>
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M176.7,376h66.2v65h-66.2z"/>
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M263,376h66.2v65h-66.2z"/>
+    <path android:fillColor="@color/navaraPrimary"
+        android:pathData="M343.3,316.5c0,50.6 -41,91.5 -91.5,91.5c-50.6,0 -91.5,-41 -91.5,-91.5c0,-50.6 41,-91.5 91.5,-91.5C302.4,224.9 343.3,265.9 343.3,316.5z"
+        android:strokeColor="#FFFFFF" android:strokeWidth="6"/>
+    <path android:fillColor="#FFFFFF" android:pathData="M241.4,279c0,-6.7 2.9,-10.4 10.4,-10.4c7.5,0 10.4,3.7 10.4,10.4v31h30.6c5.4,0 10.4,2.9 10.4,10.4c0,7.5 -5,10.4 -10.4,10.4h-30.6v30.6c0,6.7 -2.9,10.4 -10.4,10.4c-7.5,0 -10.4,-3.7 -10.4,-10.4v-30.6h-30.6c-5.4,0 -10.4,-2.9 -10.4,-10.4c0,-7.5 5,-10.4 10.4,-10.4h30.6V279z"/>
+</vector>

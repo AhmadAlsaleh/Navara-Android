@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrdersActivity"
+    android:background="@drawable/primary_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/transparent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/orderBackIV"
+                android:layout_width="@dimen/toolbar_layout"
+                android:layout_height="@dimen/toolbar_layout"
+                app:srcCompat="@drawable/ic_back_arrow_white"
+                android:padding="@dimen/padding_action_buttons"/>
+
+            <TextView
+                android:id="@+id/titleLayoutTV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Make an Order"
+                android:textStyle="bold"
+                android:textSize="@dimen/main_toolbar_title"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/whiteItem"
+                tools:ignore="SpUsage" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_width"
+            android:background="@color/divider_color"/>
+
+        <com.smartlife_solutions.android.navara_store.NonViewPage
+            android:id="@+id/addOrderVP"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <LinearLayout
+                android:id="@+id/addOrderPreviousLL"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    app:srcCompat="@drawable/ic_back_arrow"
+                    android:padding="@dimen/padding_action_buttons" />
+
+                <TextView
+                    android:id="@+id/previousTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Previous"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/dialogs_title"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/addOrderNextLL"
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+
+                <TextView
+                    android:id="@+id/nextTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Next"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/dialogs_title"
+                    android:gravity="center" />
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    app:srcCompat="@drawable/ic_next_arrow"
+                    android:padding="@dimen/padding_action_buttons" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_width"
+            android:background="@color/divider_color"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/orderIcon1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="@dimen/point_top"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_order_list"/>
+
+            <RelativeLayout
+                android:layout_width="@dimen/point_top"
+                android:layout_height="@dimen/point_top"
+                android:background="@drawable/point_gray_background"
+                android:layout_margin="@dimen/padding_point"/>
+
+            <ImageView
+                android:id="@+id/orderIcon2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="@dimen/point_top"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_loc_gray"/>
+
+            <RelativeLayout
+                android:layout_width="@dimen/point_top"
+                android:layout_height="@dimen/point_top"
+                android:background="@drawable/point_gray_background"
+                android:layout_margin="@dimen/padding_point"/>
+
+            <ImageView
+                android:id="@+id/orderIcon3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="@dimen/point_top"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_av_timer_gray"/>
+
+            <RelativeLayout
+                android:layout_width="@dimen/point_top"
+                android:layout_height="@dimen/point_top"
+                android:background="@drawable/point_gray_background"
+                android:layout_margin="@dimen/padding_point"/>
+
+            <ImageView
+                android:id="@+id/orderIcon4"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="@dimen/point_top"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_profile_gray"/>
+
+            <RelativeLayout
+                android:layout_width="@dimen/point_top"
+                android:layout_height="@dimen/point_top"
+                android:background="@drawable/point_gray_background"
+                android:layout_margin="@dimen/padding_point"/>
+
+            <ImageView
+                android:id="@+id/orderIcon5"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="@dimen/point_top"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_check_gray"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/orderLoaderFL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

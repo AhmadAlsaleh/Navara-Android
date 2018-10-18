@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:padding="@dimen/list_padding"
+    tools:context=".OrderFragments.OrderPersonalInformationFragment">
+
+
+    <TextView
+        android:id="@+id/contactTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:text="Contact info"
+        android:textStyle="bold"
+        android:textAlignment="textStart"
+        android:textSize="@dimen/main_add_appointment_actions"
+        android:gravity="start"
+        tools:ignore="SpUsage" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/nameTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name:"
+            android:textColor="@color/primary_list_item"
+            android:textSize="@dimen/list_item_text"
+            android:layout_margin="@dimen/list_padding"
+            tools:ignore="SpUsage" />
+
+        <EditText
+            android:id="@+id/addNameET"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:inputType="textPersonName"
+            android:paddingLeft="@dimen/padding_linear"
+            android:paddingRight="@dimen/padding_linear"
+            android:textSize="@dimen/list_item_text"
+            android:background="@drawable/edit_text_background"
+            tools:ignore="SpUsage" />
+
+        <TextView
+            android:id="@+id/phoneTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone Number:"
+            android:layout_marginTop="@dimen/action_main_small"
+            android:layout_marginLeft="@dimen/list_padding"
+            android:layout_marginBottom="@dimen/list_padding"
+            android:textColor="@color/primary_list_item"
+            android:textSize="@dimen/list_item_text"
+            android:layout_marginStart="@dimen/list_padding"
+            tools:ignore="SpUsage" />
+
+        <EditText
+            android:id="@+id/addPhoneET"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:inputType="phone"
+            android:paddingLeft="@dimen/padding_linear"
+            android:paddingRight="@dimen/padding_linear"
+            android:textSize="@dimen/list_item_text"
+            android:background="@drawable/edit_text_background"
+            tools:ignore="SpUsage" />
+
+        <TextView
+            android:id="@+id/remarkTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remark:"
+            android:layout_marginTop="@dimen/action_main_small"
+            android:layout_marginLeft="@dimen/list_padding"
+            android:layout_marginBottom="@dimen/list_padding"
+            android:textColor="@color/primary_list_item"
+            android:textSize="@dimen/list_item_text"
+            android:layout_marginStart="@dimen/list_padding"
+            tools:ignore="SpUsage" />
+
+        <EditText
+            android:id="@+id/remarkET"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingLeft="@dimen/padding_linear"
+            android:paddingRight="@dimen/padding_linear"
+            android:gravity="top|start"
+            android:paddingTop="@dimen/padding_action_buttons"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_background"
+            android:minHeight="45dp"
+            android:inputType="textMultiLine"
+            android:textSize="@dimen/list_item_text"
+            android:padding="@dimen/padding_linear"
+            tools:ignore="SpUsage" />
+
+    </LinearLayout>
+
+</LinearLayout>

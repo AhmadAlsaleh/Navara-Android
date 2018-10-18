@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchItemActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/searchBackIV"
+            android:layout_width="@dimen/toolbar_layout"
+            android:layout_height="@dimen/toolbar_layout"
+            app:srcCompat="@drawable/ic_back_arrow_white"
+            android:padding="@dimen/padding_action_buttons" />
+
+        <EditText
+            android:id="@+id/searchWordET"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="Searching"
+            android:singleLine="true"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:background="@color/navaraPrimary"
+            android:textColorHint="@color/whiteHide"
+            android:textSize="@dimen/main_toolbar_title"
+            android:layout_gravity="center"
+            android:textColor="@color/whiteItem"
+            android:textCursorDrawable="@null"
+            android:gravity="center_vertical"
+            android:layout_marginRight="@dimen/action_main_small"
+            android:layout_marginLeft="@dimen/action_main_small"/>
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/searchRV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/itemsOfflineTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You\'re Offline"
+        android:textColor="@color/whiteItem"
+        android:background="@color/red_background"
+        android:padding="@dimen/padding_point"
+        android:gravity="center"/>
+
+</LinearLayout>

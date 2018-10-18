@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrderFragments.OrderSelectItemsFragment"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/selectItemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="Select Items"
+            android:textStyle="bold"
+            android:textSize="@dimen/main_add_appointment_actions"
+            android:textAlignment="textStart"
+            android:layout_margin="@dimen/list_padding"
+            android:gravity="start"
+            android:layout_gravity="start"
+            tools:ignore="SpUsage" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/selectItemsRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:scrollbars="vertical"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/selectItemsLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/cartEmptyTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_fab_appoi"
+        android:text="Your Cart is Empty"
+        android:textSize="@dimen/action_text"
+        android:layout_centerInParent="true"
+        android:textColor="@color/blackItem"
+        android:visibility="gone"
+        tools:ignore="SpUsage" />
+
+</RelativeLayout>
