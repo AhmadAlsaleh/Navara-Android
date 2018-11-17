@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddItemActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/addItemBackIV"
+            android:layout_width="@dimen/toolbar_layout"
+            android:layout_height="@dimen/toolbar_layout"
+            app:srcCompat="@drawable/ic_back_arrow_white"
+            android:padding="@dimen/padding_action_buttons" />
+
+        <TextView
+            android:id="@+id/addItemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/add_used_item"
+            android:textStyle="bold"
+            android:textSize="@dimen/main_toolbar_title"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/whiteItem"
+            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/fab_margin">
+
+            <TextView
+                android:id="@+id/addImageTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/list_padding"
+                android:text="@string/main_image"
+                android:textColor="@color/primary_list_item"
+                android:textSize="@dimen/list_item_text"
+                tools:ignore="HardcodedText,SpUsage" />
+
+            <ImageView
+                android:id="@+id/addMainImageIV"
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:background="@drawable/edit_text_background"
+                android:padding="@dimen/point_top"
+                app:srcCompat="@drawable/ic_add_main_image" />
+
+            <TextView
+                android:id="@+id/addTitleTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/list_padding"
+                android:text="@string/title"
+                android:textColor="@color/primary_list_item"
+                android:textSize="@dimen/list_item_text"
+                tools:ignore="HardcodedText,SpUsage" />
+
+            <EditText
+                android:id="@+id/addTitleET"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/edit_text_background"
+                android:inputType="textPersonName"
+                android:paddingLeft="@dimen/padding_linear"
+                android:paddingRight="@dimen/padding_linear"
+                android:textSize="@dimen/action_text"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/addPriceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/list_padding"
+                android:text="@string/price"
+                android:textColor="@color/primary_list_item"
+                android:textSize="@dimen/list_item_text"
+                tools:ignore="HardcodedText,SpUsage" />
+
+            <EditText
+                android:id="@+id/addPriceET"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/edit_text_background"
+                android:inputType="number"
+                android:paddingLeft="@dimen/padding_linear"
+                android:paddingRight="@dimen/padding_linear"
+                android:textSize="@dimen/action_text"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/addQuantityTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/list_padding"
+                android:text="@string/quantity"
+                android:textColor="@color/primary_list_item"
+                android:textSize="@dimen/list_item_text"
+                tools:ignore="HardcodedText,SpUsage" />
+
+            <EditText
+                android:id="@+id/addQuantityET"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/edit_text_background"
+                android:inputType="number"
+                android:paddingLeft="@dimen/padding_linear"
+                android:paddingRight="@dimen/padding_linear"
+                android:textSize="@dimen/action_text"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/addDescriptionTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/list_padding"
+                android:text="@string/description"
+                android:textColor="@color/primary_list_item"
+                android:textSize="@dimen/list_item_text"
+                tools:ignore="HardcodedText,SpUsage" />
+
+            <EditText
+                android:id="@+id/addDescriptionET"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:background="@drawable/edit_text_background"
+                android:gravity="top|left"
+                android:inputType="textMultiLine"
+                android:paddingLeft="@dimen/padding_linear"
+                android:paddingRight="@dimen/padding_linear"
+                android:textSize="@dimen/action_text"
+                tools:ignore="RtlHardcoded,SpUsage" />
+
+            <TextView
+                android:id="@+id/addContactTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/list_padding"
+                android:gravity="left"
+                android:text="@string/contact_information"
+                android:textColor="@color/navaraPrimary"
+                android:textSize="@dimen/list_item_text"
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded,SpUsage" />
+
+            <EditText
+                android:id="@+id/addOwnerNameET"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="@dimen/list_padding"
+                android:background="@drawable/edit_text_background"
+                android:gravity="center_vertical"
+                android:hint="Owner Name"
+                android:inputType="textPersonName"
+                android:paddingLeft="@dimen/padding_linear"
+                android:paddingRight="@dimen/padding_linear"
+                android:textSize="@dimen/action_text"
+                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+            <EditText
+                android:id="@+id/addOwnerPhoneET"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="@dimen/list_padding"
+                android:background="@drawable/edit_text_background"
+                android:gravity="center_vertical"
+                android:hint="Owner Phone"
+                android:inputType="number"
+                android:paddingLeft="@dimen/padding_linear"
+                android:paddingRight="@dimen/padding_linear"
+                android:textSize="@dimen/action_text"
+                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextFields" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/addImagesRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/addMoreImagesBTN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/list_padding"
+                android:background="@drawable/primary_button_background"
+                android:gravity="center"
+                android:padding="@dimen/point_top"
+                android:text="@string/add_more_images"
+                android:textAllCaps="false"
+                android:textColor="@color/whiteItem"
+                android:textSize="@dimen/action_text"
+                tools:ignore="HardcodedText,SpUsage" />
+
+            <ProgressBar
+                android:id="@+id/addPB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/point_top"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/addBTNsLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/addAddBTN"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/point_top"
+                    android:layout_weight="1"
+                    android:background="@drawable/primary_button_background"
+                    android:text="@string/add"
+                    android:textColor="@color/whiteItem"
+                    android:textSize="@dimen/action_text"
+                    tools:ignore="HardcodedText,SpUsage" />
+
+                <Button
+                    android:id="@+id/addCancelBTN"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/point_top"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_button_background"
+                    android:text="@string/cancel"
+                    android:textColor="@color/navaraPrimary"
+                    android:textSize="@dimen/action_text"
+                    tools:ignore="HardcodedText,SpUsage" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

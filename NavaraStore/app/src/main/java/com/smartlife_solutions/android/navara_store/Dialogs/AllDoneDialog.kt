@@ -10,8 +10,11 @@ import com.smartlife_solutions.android.navara_store.ProfileCartOrders
 import com.smartlife_solutions.android.navara_store.R
 import com.smartlife_solutions.android.navara_store.StaticInformation
 import kotlinx.android.synthetic.main.dialog_all_done.*
+import org.json.JSONObject
 
-class AllDoneDialog(context: Context, private var toCart: Boolean, private var isResetPassword: Boolean = false, var message: String = ""): Dialog(context) {
+class AllDoneDialog(context: Context, private var toCart: Boolean, private var isResetPassword: Boolean = false, var message: String = "", var lang: JSONObject): Dialog(context) {
+
+    private lateinit var langDone: JSONObject
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +25,10 @@ class AllDoneDialog(context: Context, private var toCart: Boolean, private var i
         okDoneBTN.typeface = myFont
         orderCodeTVDialog.typeface = myFont
         returnBTN.typeface = myFont
+
+        langDone = lang.getJSONObject("dialogs").getJSONObject("allDone")
+
+        returnBTN.text = langDone.getString("returnBTN")
 
         allDoneClose.setOnClickListener {
             it.startAnimation(StaticInformation().clickAnim(context))
@@ -47,8 +54,8 @@ class AllDoneDialog(context: Context, private var toCart: Boolean, private var i
     @SuppressLint("SetTextI18n")
     private fun setCart() {
         returnBTN.visibility = View.VISIBLE
-        allDoneTitle.text = "Item has been added to your Cart"
-        okDoneBTN.text = "Go to Cart"
+        allDoneTitle.text = langDone.getString("addToCart")
+        okDoneBTN.text = langDone.getString("goToCart")
         allDoneMainIV.setImageResource(R.drawable.ic_cart_green)
         okDoneBTN.setOnClickListener {
             dismiss()
@@ -63,10 +70,10 @@ class AllDoneDialog(context: Context, private var toCart: Boolean, private var i
 
     @SuppressLint("SetTextI18n")
     private fun setDone() {
-        allDoneTitle.text = "Your Order has\nSent Successfully"
-        orderCodeTVDialog.text = "Order Code: $message"
+        allDoneTitle.text = langDone.getString("orderSent")
+        orderCodeTVDialog.text = "${langDone.getString("code")} $message"
         orderCodeTVDialog.visibility = View.VISIBLE
-        okDoneBTN.text = "Done"
+        okDoneBTN.text = langDone.getString("done")
         allDoneMainIV.setImageResource(R.drawable.ic_check_green)
         okDoneBTN.setOnClickListener {
             dismiss()
@@ -76,11 +83,11 @@ class AllDoneDialog(context: Context, private var toCart: Boolean, private var i
     @SuppressLint("SetTextI18n")
     private fun setResetPassword() {
         if (StaticInformation().isEmail(message)) {
-            allDoneTitle.text = "We Sent a reset password email to\n$message"
+            allDoneTitle.text = "${langDone.getString("email")}\n$message"
         } else {
-            allDoneTitle.text = "We Sent a reset password SMS to\n$message"
+            allDoneTitle.text = "${langDone.getString("sms")}\n$message"
         }
-        okDoneBTN.text = "Done"
+        okDoneBTN.text = langDone.getString("done")
         allDoneMainIV.setImageResource(R.drawable.ic_email)
         okDoneBTN.setOnClickListener {
             dismiss()
@@ -90,11 +97,11 @@ class AllDoneDialog(context: Context, private var toCart: Boolean, private var i
     @SuppressLint("SetTextI18n")
     private fun setConfirm() {
         if (StaticInformation().isEmail(message)) {
-            allDoneTitle.text = "We Sent a confirm email to\n$message"
+            allDoneTitle.text = "${langDone.getString("emailConf")}\n$message"
         } else {
-            allDoneTitle.text = "We Sent a confirm SMS to\n$message"
+            allDoneTitle.text = "${langDone.getString("smsConf")}\n$message"
         }
-        okDoneBTN.text = "Done"
+        okDoneBTN.text = langDone.getString("done")
         allDoneMainIV.setImageResource(R.drawable.ic_email)
         okDoneBTN.setOnClickListener {
             dismiss()

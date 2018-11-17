@@ -11,21 +11,4 @@
         android:scaleType="centerCrop"
         android:src="@drawable/contact" />
 
-
-    <Button
-        android:id="@+id/mainLocationBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contact Us Now"
-        android:paddingLeft="@dimen/margin_fab_appoi"
-        android:paddingRight="@dimen/margin_fab_appoi"
-        android:textColor="@color/whiteItem"
-        android:background="@drawable/main_buttons_back"
-        android:textSize="@dimen/main_buttons"
-        android:layout_marginBottom="@dimen/main_btn_margin"
-        android:layout_centerInParent="true"
-        android:layout_alignParentBottom="true"
-        android:textAllCaps="false"
-        tools:ignore="HardcodedText,SpUsage" />
-
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.smartlife_solutions.android.navara_store
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -10,7 +11,6 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
@@ -25,16 +25,17 @@ import com.android.volley.toolbox.Volley
 import com.google.android.gms.maps.model.LatLng
 import com.smartlife_solutions.android.navara_store.Adapters.MakeOrderPagerAdapter
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
-import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.DatabaseHelper
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.ItemBasicModel
 import com.smartlife_solutions.android.navara_store.Dialogs.SureToDoDialog
 import com.smartlife_solutions.android.navara_store.OrderFragments.*
-import com.smartlife_solutions.android.navara_store.OrderFragments.*
 import kotlinx.android.synthetic.main.activity_orders.*
 import org.json.JSONArray
+import org.json.JSONObject
+import java.util.*
 
 class OrdersActivity : AppCompatActivity(), View.OnClickListener {
 
+    // region variables
     private lateinit var selectItemsFragment: OrderSelectItemsFragment
     lateinit var chooseLocationFragment: OrderChooseLocationFragment
     private lateinit var chooseVisibleTimeFragment: OrderChooseVisibleTimeFragment
@@ -53,13 +54,24 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
 
     internal var latLng: LatLng? = null // location
     var locationRemarkText = "" // location remark
+    var locationText = "" // location text
 
     internal var fromTime = "09:00 AM" // from time
-    internal var toTime = "09:00 PM" // to time
+    internal var toTime = "21:00" // to time
 
     var personName = "" // name
     var personPhone = "" // phone
     var personRemark = "" // person remark
+    // endregion
+
+    private lateinit var lang: JSONObject
+    var firstOrder
+        get() = getSharedPreferences("Navara", Context.MODE_PRIVATE).getBoolean("order", true)
+        set(isFirst) {
+            val perfs = getSharedPreferences("Navara", Context.MODE_PRIVATE).edit()
+            perfs.putBoolean("order", isFirst)
+            perfs.apply()
+        }
 
     override fun onClick(v: View?) {
         v?.startAnimation(StaticInformation().clickAnim(this))
@@ -82,9 +94,20 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
 
         val ft = supportFragmentManager.beginTransaction()
         if (!StaticInformation().isConnected(this)) {
-            ft.replace(R.id.orderLoaderFL, NoInternetFragment())
+            ft.replace(R.id.orderLoaderFL, NoInternetFragment(Statics.getLanguageJSONObject(this).getString("noConnection")))
             ft.commit()
             return
+        }
+        setHint()
+
+        if (Statics.getCurrentLanguageName(this) == Statics.arabic) {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("fa"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        } else {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("en"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
         }
 
         isSelected = false
@@ -108,10 +131,14 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
         setupPager()
 
         // region font
+        lang = Statics.getLanguageJSONObject(this).getJSONObject("makeOrderActivity")
         val myFont = StaticInformation().myFont(this)
         titleLayoutTV.typeface = myFont
+        titleLayoutTV.text = lang.getString("title")
         previousTV.typeface = myFont
+        previousTV.text = lang.getString("previous")
         nextTV.typeface = myFont
+        nextTV.text = lang.getString("next")
         // endregion
 
         // region on click listeners
@@ -129,12 +156,19 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
         getUserInfo()
     }
 
-    private fun getUserInfo() {
-        val myToken= try {
-            DatabaseHelper(this).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
+    @SuppressLint("ResourceType")
+    private fun setHint() {
+        startBTN.setOnClickListener {
+            startBTN.visibility = View.GONE
+            orderHintRL.setBackgroundResource(resources.getColor(android.R.color.transparent))
+            orderHintRL.isClickable = false
+            orderHintRL.isFocusable = false
+            orderHintTV.startAnimation(StaticInformation().slideHint(this))
         }
+    }
+
+    private fun getUserInfo() {
+
         val queue = Volley.newRequestQueue(this)
         val request = object : JsonObjectRequest(Request.Method.GET, APIsURL().GET_USER_INFORMATION, null, {
             personName = it.getString("name")
@@ -148,7 +182,7 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
-                params["Authorization"] = "Bearer $myToken"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
 
@@ -171,11 +205,7 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
 
     // region cart
     private fun getCartItems() {
-        val myToken= try {
-            DatabaseHelper(this).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
+
         val queue = Volley.newRequestQueue(this)
         val jsonObjectRequest = object : JsonObjectRequest(Request.Method.GET, APIsURL().GET_CART, null, {
             setupCarts(it.getJSONArray("items"))
@@ -189,7 +219,7 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
-                params["Authorization"] = "Bearer $myToken"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
 
@@ -217,7 +247,8 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
                 val itemObject = ItemBasicModel(item.getString("itemID"), item.getString("itemName"),
                         "", "",
                         item.get("quantity") as Int, (item.get("unitNetPrice") as Double).toFloat(),
-                        item.getString("itemThumbnail"))
+                        item.getString("itemThumbnail"), item.get("cashBack").toString(),
+                        item.getString("accountID"), 0)
                 itemObject.isFree = item.getBoolean("isFree")
                 itemObject.discount = item.getInt("unitDiscount")
                 itemObject.offerID = item.getString("offerID")
@@ -232,25 +263,9 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
             Log.e("error parse", err.message)
         }
 
-//        items.clear()
-//        try {
-//            for (i in 0 until itemsJSON.length()) {
-//                val item = itemsJSON.getJSONObject(i)
-//                val itemObject = ItemBasicModel(item.getString("itemID"), item.getString("itemName"), "", "",
-//                        item.get("quantity") as Int, (item.get("unitNetPrice") as Double).toFloat(), item.getString("itemThumbnail"))
-//                itemObject.isFree = item.getBoolean("isFree")
-//                itemObject.discount = item.getInt("unitDiscount")
-//                itemObject.offerID = item.getString("offerID")!!
-//                items.add(itemObject)
-//            }
-//        } catch (err: Exception) {
-//            Log.e("error parse", err.message)
-//        }
         selectItemsFragment.setItems()
         isSelected = true
-//        if (isSelected && isLocation) {
-            hideLoader()
-//        }
+        hideLoader()
     }
     // endregion
 
@@ -329,7 +344,10 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
 
         if (!StaticInformation().isConnected(this) && orderLoaderFL.visibility == View.VISIBLE) {
             finish()
-            startActivity(Intent(this, MainActivity::class.java))
+            if (!isFromCart) {
+                startActivity(Intent(this, MainActivity::class.java)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            }
             return
         }
 
@@ -345,7 +363,8 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
             if (sureCancel.isTrue) {
                 this.finish()
                 if (!isFromCart) {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java)
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 }
             }
         }
@@ -361,6 +380,7 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    // region check fragments
     private fun checkSelected(): Boolean {
         finalSelectedItems.clear()
         for (item in items) {
@@ -382,11 +402,20 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         if (finalSelectedItems.size != 0) {
+            var total = 0
+            for (item in finalSelectedItems) {
+                total += item.quantity * item.price
+            }
+            if (total < 1000) {
+                Toast.makeText(this, lang.getString("lessPrice"), Toast.LENGTH_SHORT).show()
+                return false
+            }
+
             addOrderVP.currentItem = 1
             return true
         }
 
-        Toast.makeText(this, "Select one item at least", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, lang.getString("lessItems"), Toast.LENGTH_SHORT).show()
         return false
     }
 
@@ -396,7 +425,7 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         if (latLng == null) {
-            Toast.makeText(this, "Choose a location please", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, lang.getString("locationVal"), Toast.LENGTH_LONG).show()
             return false
         }
 
@@ -430,14 +459,15 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
                 addOrderVP.currentItem = 4
                 true
             } else {
-                Toast.makeText(this, "Invalid phone number", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, lang.getString("phoneVal"), Toast.LENGTH_LONG).show()
                 false
             }
         } else {
-            Toast.makeText(this, "Enter your name please", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, lang.getString("nameVal"), Toast.LENGTH_LONG).show()
             false
         }
     }
+    // endregion
 
     private fun setupPager() {
         val adapter = MakeOrderPagerAdapter(supportFragmentManager)

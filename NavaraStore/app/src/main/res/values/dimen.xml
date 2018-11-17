@@ -27,6 +27,7 @@
     <dimen name="list_icons_width_high">65dp</dimen>
     <dimen name="chosen_icons_width_high">45dp</dimen>
     <dimen name="main_toolbar_title">22dp</dimen>
+    <dimen name="circle_rl">73dp</dimen>
     <dimen name="main_add_appointment_actions">20dp</dimen>
 
     <dimen name="grid_category_xy">95dp</dimen>
@@ -38,6 +39,7 @@
     <dimen name="contact_message">125dp</dimen>
     <dimen name="language_item_height">60dp</dimen>
 
+    <dimen name="item_image_xy">150dp</dimen>
     <dimen name="fab_margin_bottom">90dp</dimen>
     <dimen name="main_btn_margin">100dp</dimen>
 

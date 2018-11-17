@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/navaraPrimary"
                     android:textSize="@dimen/main_buttons"
-                    android:text="Navara\nStore"
+                    android:text="@string/app_name"
                     tools:ignore="SpUsage" />
 
             </LinearLayout>
@@ -64,7 +64,7 @@
                 android:layout_weight="1"
                 android:background="@color/whiteBack"
                 android:textColor="@color/navaraPrimary"
-                android:text="Login"/>
+                android:text="@string/login"/>
 
             <Button
                 android:id="@+id/registerTabBTN"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/whiteBack"
-                android:text="Register"/>
+                android:text="@string/register"/>
 
         </LinearLayout>
 
@@ -85,8 +85,10 @@
             android:id="@+id/loginRegisterVP"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </LinearLayout>
 
-    <include layout="@layout/fragment_loading" />
+    <include layout="@layout/fragment_loading"
+        android:visibility="gone"/>
 
 </RelativeLayout>

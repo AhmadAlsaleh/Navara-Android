@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/itemImagesIV"
+        android:layout_width="@dimen/item_image_xy"
+        android:layout_height="@dimen/item_image_xy"
+        android:src="@drawable/navara_circle_logo"
+        android:scaleType="centerCrop"
+        android:padding="@dimen/point_top"/>
+
+    <RelativeLayout
+        android:id="@+id/itemImagesDivRL"
+        android:layout_width="@dimen/divider_width"
+        android:layout_height="@dimen/contact_message"
+        android:layout_toRightOf="@id/itemImagesIV"
+        android:layout_centerInParent="true"
+        android:background="@color/divider_color"
+        tools:ignore="RtlHardcoded" />
+
+    <ImageView
+        android:id="@+id/itemImageRemoveIV"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toLeftOf="@id/itemImagesDivRL"
+        android:layout_margin="@dimen/point_top"
+        app:srcCompat="@drawable/ic_remove_circle"
+        tools:ignore="RtlHardcoded"
+        android:padding="2dp"
+        android:background="@drawable/ic_circle_white"/>
+
+</RelativeLayout>

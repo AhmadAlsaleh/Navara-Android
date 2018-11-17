@@ -14,13 +14,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.smartlife_solutions.android.navara_store.*
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
-import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.DatabaseHelper
+import com.smartlife_solutions.android.navara_store.StaticInformation
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.OfferBasicModel
 import com.smartlife_solutions.android.navara_store.Dialogs.ChooseQuantityDialog
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import org.json.JSONObject
 
-class AllOffersAdapter(var context: Context, private var offersArrayList: ArrayList<OfferBasicModel>):
+class AllOffersAdapter(var context: Context, private var offersArrayList: ArrayList<OfferBasicModel>, var lang: JSONObject):
         RecyclerView.Adapter<AllOffersAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder =
@@ -57,12 +58,13 @@ class AllOffersAdapter(var context: Context, private var offersArrayList: ArrayL
         if ("free" == offersArrayList[position].offerType.toLowerCase()) {
             holder.offerPercentTV.visibility = View.GONE
             holder.offerGiftIV.visibility = View.VISIBLE
-            holder.offerDiscountTV.setTextColor(context.getColor(R.color.navaraPrimary))
-            holder.offerDiscountTV.text = "free"
+
+            holder.offerDiscountTV.setTextColor(context.resources.getColor(R.color.navaraPrimary))
+            holder.offerDiscountTV.text = lang.getJSONObject("itemsList").getString("free")
         } else {
             holder.offerPercentTV.visibility = View.VISIBLE
             holder.offerGiftIV.visibility = View.GONE
-            holder.offerDiscountTV.setTextColor(context.getColor(R.color.green_background))
+            holder.offerDiscountTV.setTextColor(context.resources.getColor(R.color.green_background))
             holder.offerDiscountTV.text = "-${offersArrayList[position].discount}%"
         }
 
@@ -70,8 +72,8 @@ class AllOffersAdapter(var context: Context, private var offersArrayList: ArrayL
             it.startAnimation(StaticInformation().clickAnim(context))
 
             try {
-                if (DatabaseHelper(context).userModelIntegerRuntimeException.queryForAll()[0].token.isNotEmpty()) {
-                    ChooseQuantityDialog(context, offersArrayList[position], true).show()
+                if (Statics.myToken.isNotEmpty()) {
+                    ChooseQuantityDialog(context, offersArrayList[position], true, lang).show()
                 } else {
                     context.startActivity(Intent(context, LoginRegisterActivity::class.java).putExtra("main", false))
                 }

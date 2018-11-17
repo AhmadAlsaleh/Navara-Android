@@ -7,8 +7,9 @@ import android.view.View
 import android.widget.TextView
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
+import org.json.JSONObject
 
-class MarkerInfoWindow(var context: Context, var title: String): GoogleMap.InfoWindowAdapter {
+class MarkerInfoWindow(var context: Context, var title: String, var lang: JSONObject): GoogleMap.InfoWindowAdapter {
 
     private lateinit var titleTV: TextView
 
@@ -18,6 +19,7 @@ class MarkerInfoWindow(var context: Context, var title: String): GoogleMap.InfoW
     private fun setWindowContent(view: View) {
         val myFont = StaticInformation().myFont(context)
         view.findViewById<TextView>(R.id.markerInfoTitle).typeface = myFont
+        view.findViewById<TextView>(R.id.markerInfoTitle).text = lang.getString("title")
         titleTV = view.findViewById(R.id.markerInfoTV)
         titleTV.typeface = myFont
         titleTV.text = title

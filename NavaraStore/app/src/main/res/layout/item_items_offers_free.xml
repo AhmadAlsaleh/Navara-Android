@@ -14,18 +14,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/itemIV"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:layout_width="@dimen/list_icons_width_high"
-            android:layout_height="@dimen/list_icons_width_high"
-            android:src="@drawable/ic_add_shopping_cart"
-            app:civ_fill_color="@color/whiteBack"
-            app:civ_border_color="@color/divider_color"
-            app:civ_border_width="@dimen/divider_width"
-            android:layout_margin="@dimen/list_padding"
-            tools:ignore="VectorDrawableCompat" />
+        <RelativeLayout
+            android:layout_width="@dimen/circle_rl"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/itemIV"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/list_icons_width_high"
+                android:layout_height="@dimen/list_icons_width_high"
+                android:src="@drawable/ic_add_shopping_cart"
+                app:civ_fill_color="@color/whiteBack"
+                app:civ_border_color="@color/divider_color"
+                app:civ_border_width="@dimen/divider_width"
+                android:layout_margin="@dimen/list_padding"
+                tools:ignore="VectorDrawableCompat" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -36,16 +42,18 @@
 
             <TextView
                 android:id="@+id/itemTV"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
+                android:gravity="center_vertical|left"
                 android:text="Item"
                 android:textSize="@dimen/list_item_text"
                 android:textColor="@color/primary_list_item"
                 android:ellipsize="end"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
             <LinearLayout
+                android:id="@+id/offerPriceLL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical">
@@ -56,8 +64,10 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:layout_marginEnd="@dimen/list_margin"
                     android:text="Price: "
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/itemPriceTV"
@@ -67,9 +77,58 @@
                     android:maxLines="1"
                     android:text="600$"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/itemPriceTVOffer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="left"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="@color/green_background"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
+
 
             </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/itemItemsCashBackLL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="top|right"
+            android:background="@drawable/background_cash_back_right"
+            tools:ignore="RtlHardcoded">
+
+            <ImageView
+                android:id="@+id/itemItemsCashBackIV"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="top|right"
+                app:srcCompat="@drawable/ic_cash_back"
+                android:padding="@dimen/list_margin"
+                android:layout_marginLeft="@dimen/padding_linear"
+                android:layout_marginRight="@dimen/padding_linear"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/itemItemsCashBackTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100 S.P"
+                android:textSize="@dimen/fab_margin"
+                android:layout_gravity="center"
+                android:textColor="@color/whiteItem"
+                android:layout_marginRight="@dimen/padding_linear"
+                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
         </LinearLayout>
 

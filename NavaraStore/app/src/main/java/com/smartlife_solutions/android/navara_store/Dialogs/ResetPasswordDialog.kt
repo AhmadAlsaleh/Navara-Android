@@ -19,6 +19,7 @@ import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
 import com.smartlife_solutions.android.navara_store.LoginRegisterActivity
 import com.smartlife_solutions.android.navara_store.R
 import com.smartlife_solutions.android.navara_store.StaticInformation
+import com.smartlife_solutions.android.navara_store.Statics
 import kotlinx.android.synthetic.main.dialog_reset_password.*
 import org.json.JSONObject
 import java.io.UnsupportedEncodingException
@@ -39,13 +40,22 @@ class ResetPasswordDialog(context: Context, var activity: LoginRegisterActivity)
         resetEmailMobileET.typeface = myFont
         resetPasswordBTN.typeface = myFont
 
+        val lang = Statics.getLanguageJSONObject(activity).getJSONObject("dialogs").getJSONObject("resetPassword")
+        resetPasswordTitle.text = lang.getString("title")
+        resetEmailMobile.text = lang.getString("emailOrMobile")
+        resetPasswordBTN.text = lang.getString("button")
+        resetEmailMobileET.hint = lang.getString("emailHint")
+
         ccp = findViewById(R.id.ccpReset)
         edtPhoneNumber = findViewById(R.id.phone_number_edt_reset)
         edtPhoneNumber.typeface = myFont
+        edtPhoneNumber.hint = lang.getString("mobileHint")
         val emailRB = findViewById<RadioButton>(R.id.resetEmailRB)
         emailRB.typeface = myFont
+        emailRB.text = lang.getString("email")
         val phoneRB = findViewById<RadioButton>(R.id.resetPhoneRB)
         phoneRB.typeface = myFont
+        phoneRB.text = lang.getString("mobile")
 
         emailRB.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -69,18 +79,20 @@ class ResetPasswordDialog(context: Context, var activity: LoginRegisterActivity)
                     jsonObject.put("UserID", resetEmailMobileET.text.toString())
                     resetPasswordRequest(jsonObject)
                 } else {
-                    Toast.makeText(context, "Incorrect email", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, lang.getString("incorrectEmail"), Toast.LENGTH_LONG).show()
                 }
             }
 
             if (phoneRB.isChecked) {
+                val s = edtPhoneNumber.text.toString().trimStart('0')
+                edtPhoneNumber.setText(s)
                 if (edtPhoneNumber.text.toString()[0] != '0') {
                     if (StaticInformation().isPhone(edtPhoneNumber.text.toString())) {
                         val jsonObject = JSONObject()
                         jsonObject.put("UserID", "+" + ccp.selectedCountryCode + edtPhoneNumber.text.toString())
                         resetPasswordRequest(jsonObject)
                     } else {
-                        Toast.makeText(context, "Incorrect phone", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, lang.getString("incorrectPhone"), Toast.LENGTH_LONG).show()
                     }
                 } else {
                     Toast.makeText(context, "Remove first 0 from your Number please", Toast.LENGTH_SHORT).show()
@@ -102,11 +114,16 @@ class ResetPasswordDialog(context: Context, var activity: LoginRegisterActivity)
         val resetRequest = object : StringRequest(Request.Method.POST, APIsURL().RESET_PASSWORD,
                 Response.Listener {
                     dismiss()
-                    activity.doneReset = AllDoneDialog(context, false, true, resetEmailMobileET.text.toString())
-                    activity.doneReset.show()
+                    if (StaticInformation().isEmail(jsonObject.getString("UserID"))) {
+                        activity.doneReset = AllDoneDialog(context, false, true, message = jsonObject.getString("UserID"), lang = Statics.getLanguageJSONObject(activity))
+                        activity.doneReset.show()
+                    } else {
+                        activity.resetCode = ResetPasswordNewDialog(context, jsonObject.getString("UserID"), Statics.getLanguageJSONObject(activity).getJSONObject("dialogs").getJSONObject("resetPassword"))
+                        activity.resetCode.show()
+                    }
                     queue.cancelAll("reset")
                 }, Response.ErrorListener {
-            Toast.makeText(context, "No Internet Connection, Please Try Again", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, Statics.getLanguageJSONObject(activity).getString("noInternet"), Toast.LENGTH_SHORT).show()
             resetPasswordBTN.visibility = View.VISIBLE
             resetPB.visibility = View.GONE
             Log.e("reset error", it.toString())

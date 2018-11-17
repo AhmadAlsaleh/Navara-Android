@@ -1,38 +1,57 @@
 package com.smartlife_solutions.android.navara_store.Dialogs
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.smartlife_solutions.android.navara_store.R
-import com.smartlife_solutions.android.navara_store.StaticInformation
+import com.smartlife_solutions.android.navara_store.*
 import kotlinx.android.synthetic.main.dialog_change_language.*
+import org.json.JSONObject
 
-class ChangeLanguageDialog(context: Context) : Dialog(context), View.OnClickListener {
+class ChangeLanguageDialog(context: Context, var current: String = Statics.english, var lang: JSONObject, var activity: Activity, var fromMain: Boolean = false) : Dialog(context), View.OnClickListener {
 
     lateinit var myFont: Typeface
+    var isDone = false
+    var newLanguage = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_change_language)
         myFont = StaticInformation().myFont(context)!!
-
+        newLanguage = current
         // region font
         changeLanguageTitle.typeface = myFont
         changeLanguageBTN.typeface = myFont
         // endregion
 
-        arabicRB.setOnCheckedChangeListener { buttonView, isChecked ->
+        changeLanguageTitle.text = lang.getString("title")
+        changeLanguageBTN.text = lang.getString("button")
+
+        // region set current language
+        if (current == Statics.arabic) {
+            arabicRB.isChecked = true
+            englishRB.isChecked = false
+        } else {
+            englishRB.isChecked = true
+            arabicRB.isChecked = false
+        }
+        // endregion
+
+        arabicRB.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 englishRB.isChecked = false
+                newLanguage = Statics.arabic
             }
         }
 
-        englishRB.setOnCheckedChangeListener { buttonView, isChecked ->
+        englishRB.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 arabicRB.isChecked = false
+                newLanguage = Statics.english
             }
         }
 
@@ -44,9 +63,25 @@ class ChangeLanguageDialog(context: Context) : Dialog(context), View.OnClickList
     }
 
     override fun onClick(v: View?) {
-        v?.startAnimation(StaticInformation().clickAnim(context))
         when (v?.id) {
-            R.id.languageClose, R.id.changeLanguageBTN -> dismiss()
+            R.id.changeLanguageBTN -> {
+                isDone = true
+                if (fromMain) {
+                    if (newLanguage == Statics.getCurrentLanguageName(activity as MainActivity)) {
+                        dismiss()
+                    } else {
+                        Statics.setCurrentLanguageName(activity as MainActivity, newLanguage)
+                        activity.finish()
+                        activity.startActivity(activity.packageManager.getLaunchIntentForPackage(activity.packageName)?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                    }
+                } else {
+                    if (newLanguage == Statics.arabic) {
+                        Statics.setCurrentLanguageName(activity as LauncherActivity, newLanguage)
+                    }
+                }
+                dismiss()
+            }
+            R.id.languageClose -> dismiss()
             R.id.arabicLL -> arabicClicked()
             R.id.englishLL -> englishClicked()
         }
@@ -58,6 +93,5 @@ class ChangeLanguageDialog(context: Context) : Dialog(context), View.OnClickList
 
     private fun arabicClicked() {
         arabicRB.isChecked = true
-        Toast.makeText(context, "Arabic Language will come soon", Toast.LENGTH_LONG).show()
     }
 }

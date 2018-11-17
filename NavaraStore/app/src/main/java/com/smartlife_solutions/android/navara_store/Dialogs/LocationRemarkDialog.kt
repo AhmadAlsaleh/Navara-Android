@@ -11,6 +11,7 @@ import com.smartlife_solutions.android.navara_store.OrderFragments.OrderSummaryF
 import com.smartlife_solutions.android.navara_store.OrdersActivity
 import com.smartlife_solutions.android.navara_store.R
 import com.smartlife_solutions.android.navara_store.StaticInformation
+import com.smartlife_solutions.android.navara_store.Statics
 import kotlinx.android.synthetic.main.dialog_location_remark.*
 
 class LocationRemarkDialog(context: Context, var title: String, var fragment: OrderChooseLocationFragment,
@@ -53,6 +54,11 @@ class LocationRemarkDialog(context: Context, var title: String, var fragment: Or
 
         locationRemarkBTN.setOnClickListener(this)
         locationRemarkClose.setOnClickListener(this)
+
+        val lang = Statics.getLanguageJSONObject(activity).getJSONObject("dialogs").getJSONObject("locationRemark")
+        locationRemarkTitle.text = lang.getString("title")
+        locationRemarkBTN.text = lang.getString("done")
+        locationRemarkET.hint = lang.getString("hint")
 
     }
 }

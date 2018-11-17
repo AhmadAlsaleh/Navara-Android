@@ -13,6 +13,7 @@ import android.widget.TextView
 import com.smartlife_solutions.android.navara_store.OrdersActivity
 import com.smartlife_solutions.android.navara_store.R
 import com.smartlife_solutions.android.navara_store.StaticInformation
+import com.smartlife_solutions.android.navara_store.Statics
 
 @SuppressLint("ValidFragment")
 class OrderPersonalInformationFragment(var activity: OrdersActivity) : Fragment() {
@@ -26,12 +27,21 @@ class OrderPersonalInformationFragment(var activity: OrdersActivity) : Fragment(
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_order_personal_information, container, false)
 
+        val lang = Statics.getLanguageJSONObject(activity).getJSONObject("makeOrderActivity").getJSONObject("informationFragment")
         // region font
         val myFont = StaticInformation().myFont(context)
-        view.findViewById<TextView>(R.id.contactTitle).typeface = myFont
-        view.findViewById<TextView>(R.id.nameTitle).typeface = myFont
-        view.findViewById<TextView>(R.id.phoneTitle).typeface = myFont
-        view.findViewById<TextView>(R.id.remarkTitle).typeface = myFont
+        val titleContact = view.findViewById<TextView>(R.id.contactTitle)
+        titleContact.typeface = myFont
+        titleContact.text = lang.getString("title")
+        val nameTV = view.findViewById<TextView>(R.id.nameTitle)
+        nameTV.typeface = myFont
+        nameTV.text = lang.getString("name")
+        val phoneTV = view.findViewById<TextView>(R.id.phoneTitle)
+        phoneTV.typeface = myFont
+        phoneTV.text = lang.getString("phone")
+        val remarkTV = view.findViewById<TextView>(R.id.remarkTitle)
+        remarkTV.typeface = myFont
+        remarkTV.text = lang.getString("remark")
         name = view.findViewById(R.id.addNameET)
         name.typeface = myFont
         phone = view.findViewById(R.id.addPhoneET)
@@ -39,7 +49,11 @@ class OrderPersonalInformationFragment(var activity: OrdersActivity) : Fragment(
         remark = view.findViewById(R.id.remarkET)
         remark.typeface = myFont
         name.setText(activity.personName)
-        phone.setText(activity.personPhone)
+        if (activity.personPhone.length < 3) {
+            phone.setText("")
+        } else {
+            phone.setText(activity.personPhone)
+        }
         // endregion
 
         return view

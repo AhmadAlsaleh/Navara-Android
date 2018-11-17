@@ -18,16 +18,20 @@ import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.smartlife_solutions.android.navara_store.Adapters.LoginRegisterPagerAdapter
 import com.smartlife_solutions.android.navara_store.Dialogs.AllDoneDialog
+import com.smartlife_solutions.android.navara_store.Dialogs.ResetPasswordNewDialog
 import com.smartlife_solutions.android.navara_store.LoginRegisterFragments.LoginFragment
 import com.smartlife_solutions.android.navara_store.LoginRegisterFragments.RegisterFragment
 import kotlinx.android.synthetic.main.activity_login_register.*
 import kotlinx.android.synthetic.main.fragment_loading.*
 import org.json.JSONObject
+import java.util.*
 
 class LoginRegisterActivity : AppCompatActivity() {
 
     lateinit var doneReset: AllDoneDialog
+    lateinit var resetCode: ResetPasswordNewDialog
     private var fromMain = true
+    private lateinit var lang: JSONObject
 
     var callbackManager: CallbackManager? = null
     var mCallback = object : FacebookCallback<LoginResult> {
@@ -37,28 +41,30 @@ class LoginRegisterActivity : AppCompatActivity() {
                 Log.e("facebook name", profile.name)
                 val userJSON = JSONObject()
                 userJSON.put("UserID", profile.id)
-                userJSON.put("Username", profile.id)
                 userJSON.put("FirstName", profile.name)
                 userJSON.put("Email", "")
                 userJSON.put("PhoneNumber", "")
-                userJSON.put("Password", profile.id + "navar@SmartLife")
+                userJSON.put("CountryCode", "")
+                userJSON.put("Password", profile.id)
                 userJSON.put("isExternalLogin", "true")
+                userJSON.put("StationType", "Mobile")
+                userJSON.put("InviterCode", "")
                 registerFragment.register(userJSON, true)
             } catch (err: Exception) {
                 Log.e("error", err.message)
             }
+
             LoginManager.getInstance().logOut()
         }
 
         override fun onCancel() {
-            Toast.makeText(this@LoginRegisterActivity, "CANCELED", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@LoginRegisterActivity, lang.getJSONObject("loginRegisterActivity").getString("canceled"), Toast.LENGTH_SHORT).show()
         }
 
         override fun onError(error: FacebookException?) {
             Log.e("facebook error", error?.message)
-            Toast.makeText(this@LoginRegisterActivity, "Try Again", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@LoginRegisterActivity, lang.getJSONObject("loginRegisterActivity").getString("try"), Toast.LENGTH_SHORT).show()
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,6 +89,19 @@ class LoginRegisterActivity : AppCompatActivity() {
         // endregion
         setContentView(R.layout.activity_login_register)
 
+        lang = Statics.getLanguageJSONObject(this)
+
+        if (Statics.getCurrentLanguageName(this) == Statics.arabic) {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("fa"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        } else {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("en"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        }
+
+
         setupViewPager()
         intent.getBooleanExtra("main", true)
 
@@ -105,9 +124,17 @@ class LoginRegisterActivity : AppCompatActivity() {
         rotateAnimation.repeatCount = Animation.INFINITE
         loadingIV.startAnimation(rotateAnimation)
         loadingTV.typeface = StaticInformation().myFont(this)
-
+        loadingTV.text = Statics.getLanguageJSONObject(this).getString("loading")
         hideLoading()
 
+        setTranslateTexts()
+
+    }
+
+    private fun setTranslateTexts() {
+        val translate = Statics.getLanguageJSONObject(this).getJSONObject("loginRegisterActivity")
+        loginTabBTN.text = translate.getString("login")
+        registerTabBTN.text = translate.getString("register")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -143,16 +170,16 @@ class LoginRegisterActivity : AppCompatActivity() {
             override fun onPageSelected(p0: Int) {
                 when(p0) {
                     0 -> {
-                        loginTabBTN.setTextColor(getColor(R.color.navaraPrimary))
+                        loginTabBTN.setTextColor(resources.getColor(R.color.navaraPrimary))
                         loginTabBTN.setTypeface(loginTabBTN.typeface, Typeface.BOLD)
-                        registerTabBTN.setTextColor(getColor(R.color.blackItem))
+                        registerTabBTN.setTextColor(resources.getColor(R.color.blackItem))
                         registerTabBTN.setTypeface(registerTabBTN.typeface, Typeface.NORMAL)
                     }
 
                     1 -> {
-                        loginTabBTN.setTextColor(getColor(R.color.blackItem))
+                        loginTabBTN.setTextColor(resources.getColor(R.color.blackItem))
                         loginTabBTN.setTypeface(loginTabBTN.typeface, Typeface.NORMAL)
-                        registerTabBTN.setTextColor(getColor(R.color.navaraPrimary))
+                        registerTabBTN.setTextColor(resources.getColor(R.color.navaraPrimary))
                         registerTabBTN.setTypeface(registerTabBTN.typeface, Typeface.BOLD)
                     }
                 }

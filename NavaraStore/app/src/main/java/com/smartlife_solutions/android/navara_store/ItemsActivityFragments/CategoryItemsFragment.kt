@@ -11,7 +11,10 @@ import android.view.ViewGroup
 import com.smartlife_solutions.android.navara_store.Adapters.PreviewFreeItemsAdapter
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.DatabaseHelper
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.ItemBasicModel
+import com.smartlife_solutions.android.navara_store.ItemsActivity
 import com.smartlife_solutions.android.navara_store.R
+import com.smartlife_solutions.android.navara_store.Statics
+import kotlin.collections.ArrayList
 
 @SuppressLint("ValidFragment")
 class CategoryItemsFragment(private var categoryID: String) : Fragment() {
@@ -21,13 +24,21 @@ class CategoryItemsFragment(private var categoryID: String) : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_category_items, container, false)
 
-        val items = DatabaseHelper(context).itemBasicModelIntegerRuntimeException.queryForEq("item_category_id", categoryID) as ArrayList<ItemBasicModel>
+        try {
+            val items = DatabaseHelper(context)
+                    .itemBasicModelIntegerRuntimeException
+                    .queryBuilder()
+                    .orderBy("name", true)
+                    .where().eq("item_category_id", categoryID).query() as ArrayList<ItemBasicModel>
 
-        val itemsRV = view.findViewById<RecyclerView>(R.id.categoryItemsRV)
-        itemsRV.setHasFixedSize(true)
-        itemsRV.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        itemsRV.adapter = PreviewFreeItemsAdapter(context = context!!, itemsArrayList = items, isAll = true)
-
+            val itemsRV = view.findViewById<RecyclerView>(R.id.categoryItemsRV)
+            itemsRV.setHasFixedSize(true)
+            itemsRV.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            itemsRV.adapter = PreviewFreeItemsAdapter(context = context!!, itemsArrayList = items, isAll = true,
+                    lang = Statics.getLanguageJSONObject(activity as ItemsActivity))
+        } catch (err: Exception) {
+            (activity as ItemsActivity).onBackPressed()
+        }
         return  view
     }
 

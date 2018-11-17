@@ -12,15 +12,14 @@
 
     <TextView
         android:id="@+id/contactTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"
         android:text="Contact info"
         android:textStyle="bold"
-        android:textAlignment="textStart"
         android:textSize="@dimen/main_add_appointment_actions"
-        android:gravity="start"
-        tools:ignore="SpUsage" />
+        android:gravity="left"
+        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -29,13 +28,14 @@
 
         <TextView
             android:id="@+id/nameTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name:"
+            android:gravity="left"
             android:textColor="@color/primary_list_item"
             android:textSize="@dimen/list_item_text"
             android:layout_margin="@dimen/list_padding"
-            tools:ignore="SpUsage" />
+            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
         <EditText
             android:id="@+id/addNameET"
@@ -45,12 +45,13 @@
             android:paddingLeft="@dimen/padding_linear"
             android:paddingRight="@dimen/padding_linear"
             android:textSize="@dimen/list_item_text"
+            android:gravity="left|center_vertical"
             android:background="@drawable/edit_text_background"
-            tools:ignore="SpUsage" />
+            tools:ignore="RtlHardcoded,SpUsage" />
 
         <TextView
             android:id="@+id/phoneTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Phone Number:"
             android:layout_marginTop="@dimen/action_main_small"
@@ -58,8 +59,9 @@
             android:layout_marginBottom="@dimen/list_padding"
             android:textColor="@color/primary_list_item"
             android:textSize="@dimen/list_item_text"
+            android:gravity="left"
             android:layout_marginStart="@dimen/list_padding"
-            tools:ignore="SpUsage" />
+            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
         <EditText
             android:id="@+id/addPhoneET"
@@ -69,12 +71,13 @@
             android:paddingLeft="@dimen/padding_linear"
             android:paddingRight="@dimen/padding_linear"
             android:textSize="@dimen/list_item_text"
+            android:gravity="left|center_vertical"
             android:background="@drawable/edit_text_background"
-            tools:ignore="SpUsage" />
+            tools:ignore="RtlHardcoded,SpUsage" />
 
         <TextView
             android:id="@+id/remarkTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Remark:"
             android:layout_marginTop="@dimen/action_main_small"
@@ -83,7 +86,8 @@
             android:textColor="@color/primary_list_item"
             android:textSize="@dimen/list_item_text"
             android:layout_marginStart="@dimen/list_padding"
-            tools:ignore="SpUsage" />
+            android:gravity="left"
+            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
         <EditText
             android:id="@+id/remarkET"
@@ -91,7 +95,7 @@
             android:layout_height="0dp"
             android:paddingLeft="@dimen/padding_linear"
             android:paddingRight="@dimen/padding_linear"
-            android:gravity="top|start"
+            android:gravity="top|left"
             android:paddingTop="@dimen/padding_action_buttons"
             android:layout_weight="1"
             android:background="@drawable/edit_text_background"
@@ -99,7 +103,7 @@
             android:inputType="textMultiLine"
             android:textSize="@dimen/list_item_text"
             android:padding="@dimen/padding_linear"
-            tools:ignore="SpUsage" />
+            tools:ignore="RtlHardcoded,SpUsage" />
 
     </LinearLayout>
 

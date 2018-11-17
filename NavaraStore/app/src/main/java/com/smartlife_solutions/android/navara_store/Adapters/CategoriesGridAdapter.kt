@@ -36,7 +36,6 @@ class CategoriesGridAdapter(private var activity: ItemsActivity,
                 .into(holder.categoryIcon)
 
         holder.categoryLayout.setOnClickListener {
-            it.startAnimation(StaticInformation().clickAnim(activity.applicationContext))
             activity.setupFragment(CategoryItemsFragment(currentCategory.id), 1, currentCategory.name)
         }
 

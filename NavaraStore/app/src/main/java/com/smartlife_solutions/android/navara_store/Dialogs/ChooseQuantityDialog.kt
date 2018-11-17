@@ -23,13 +23,14 @@ import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.ItemBas
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.OfferBasicModel
 import com.smartlife_solutions.android.navara_store.R
 import com.smartlife_solutions.android.navara_store.StaticInformation
+import com.smartlife_solutions.android.navara_store.Statics
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.dialog_choose_quantity.*
 import org.json.JSONObject
 import java.nio.charset.Charset
 
 class ChooseQuantityDialog(context: Context, private var model: Any, private var isOffer: Boolean,
-                           private var activity: Activity? = null) : Dialog(context) {
+                           var lang: JSONObject) : Dialog(context) {
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.M)
@@ -51,9 +52,9 @@ class ChooseQuantityDialog(context: Context, private var model: Any, private var
         }
 
         if (!isOffer) {
-            quantityTotalTV.text = "Total: " + StaticInformation().formatPrice((model as ItemBasicModel).price) + " " + (model as ItemBasicModel).currencyCode
+            quantityTotalTV.text = lang.getJSONObject("itemsList").getString("total") + " " + StaticInformation().formatPrice((model as ItemBasicModel).price) + " " + lang.getString("currencyCode")
         } else {
-            quantityTotalTV.text = "Total: " + StaticInformation().formatPrice((model as OfferBasicModel).unitNetPrice) + " " + (model as OfferBasicModel).currencyCode
+            quantityTotalTV.text = lang.getJSONObject("itemsList").getString("total") + " " + StaticInformation().formatPrice((model as OfferBasicModel).unitNetPrice) + " " + lang.getString("currencyCode")
         }
 
         chooseQuantityAdd.setOnClickListener {
@@ -61,9 +62,9 @@ class ChooseQuantityDialog(context: Context, private var model: Any, private var
             var quantity = chooseQuantityTV.text.toString().toInt()
             chooseQuantityTV.text = (++quantity).toString()
             if (!isOffer) {
-                quantityTotalTV.text = "Total: " + (StaticInformation().formatPrice((model as ItemBasicModel).price * quantity)).toString() + " " + (model as ItemBasicModel).currencyCode
+                quantityTotalTV.text = lang.getJSONObject("itemsList").getString("total") + " " + (StaticInformation().formatPrice((model as ItemBasicModel).price * quantity)).toString() + " " + lang.getString("currencyCode")
             } else {
-                quantityTotalTV.text = "Total: " + (StaticInformation().formatPrice((model as OfferBasicModel).unitNetPrice * quantity)).toString() + " " + (model as OfferBasicModel).currencyCode
+                quantityTotalTV.text = lang.getJSONObject("itemsList").getString("total") + " " + (StaticInformation().formatPrice((model as OfferBasicModel).unitNetPrice * quantity)).toString() + " " + lang.getString("currencyCode")
             }
         }
 
@@ -73,12 +74,12 @@ class ChooseQuantityDialog(context: Context, private var model: Any, private var
             if (quantity > 1) {
                 chooseQuantityTV.text = (--quantity).toString()
                 if (!isOffer) {
-                    quantityTotalTV.text = "Total: " + (StaticInformation().formatPrice((model as ItemBasicModel).price * quantity)).toString() + " " + (model as ItemBasicModel).currencyCode
+                    quantityTotalTV.text = lang.getJSONObject("itemsList").getString("total") + " " + (StaticInformation().formatPrice((model as ItemBasicModel).price * quantity)).toString() + " " + lang.getString("currencyCode")
                 } else {
-                    quantityTotalTV.text = "Total: " + (StaticInformation().formatPrice((model as OfferBasicModel).unitNetPrice * quantity)).toString() + " " + (model as OfferBasicModel).currencyCode
+                    quantityTotalTV.text = lang.getJSONObject("itemsList").getString("total") + " " + (StaticInformation().formatPrice((model as OfferBasicModel).unitNetPrice * quantity)).toString() + " " + lang.getString("currencyCode")
                 }
             } else {
-                Toast.makeText(context, "One at least", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, lang.getJSONObject("itemsList").getString("oneItem"), Toast.LENGTH_LONG).show()
             }
         }
 
@@ -101,11 +102,7 @@ class ChooseQuantityDialog(context: Context, private var model: Any, private var
     }
 
     private fun addRequest(url: String, jsonBody: JSONObject) {
-        val myToken= try {
-            DatabaseHelper(context).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
+
         val requestBody: String = jsonBody.toString()
         Log.e("item", requestBody)
 
@@ -115,7 +112,7 @@ class ChooseQuantityDialog(context: Context, private var model: Any, private var
                     doneAdded()
                     queue.cancelAll("add")
                 }, Response.ErrorListener {
-            Toast.makeText(context, "No Internet Connection, Please Try Again", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, lang.getString("noInternet"), Toast.LENGTH_SHORT).show()
             hideLoad()
             queue.cancelAll("add")
         }) {
@@ -123,7 +120,7 @@ class ChooseQuantityDialog(context: Context, private var model: Any, private var
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
-                params["Authorization"] = "Bearer $myToken"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
 
@@ -153,10 +150,7 @@ class ChooseQuantityDialog(context: Context, private var model: Any, private var
 
     private fun doneAdded() {
         dismiss()
-        if (activity != null) {
-//            activity!!.finish()
-        }
-        AllDoneDialog(context, true).show()
+        AllDoneDialog(context, true, lang = lang).show()
     }
 
     private fun showLoad() {
@@ -180,12 +174,20 @@ class ChooseQuantityDialog(context: Context, private var model: Any, private var
         chooseQuantityTV.typeface = myFont
         addToCartBTN.typeface = myFont
         // endregion
+
         quantityTotalTV.typeface = myFont
+
         // region item
         itemTV.typeface = myFont
         itemPriceTitle.typeface = myFont
         itemPriceTV.typeface = myFont
+        quantityDaysTV.typeface = myFont
+        quantityDaysNoteTV.typeface = myFont
         // endregion
+
+        chooseQuantityTitle.text = lang.getJSONObject("dialogs").getJSONObject("quantity").getString("title")
+        addToCartBTN.text = lang.getJSONObject("dialogs").getJSONObject("quantity").getString("addToCart")
+        quantityDaysNoteTV.text = lang.getJSONObject("dialogs").getJSONObject("quantity").getString("starNote")
     }
 
     @SuppressLint("SetTextI18n")
@@ -204,12 +206,12 @@ class ChooseQuantityDialog(context: Context, private var model: Any, private var
         if ("free" == offerModel.offerType.toLowerCase()) {
             offerPercentTV.visibility = View.GONE
             offerGiftIV.visibility = View.VISIBLE
-            offerDiscountTV.setTextColor(context.getColor(R.color.red_background))
-            offerDiscountTV.text = "free"
+            offerDiscountTV.setTextColor(context.resources.getColor(R.color.red_background))
+            offerDiscountTV.text = lang.getJSONObject("itemsList").getString("free")
         } else {
             offerPercentTV.visibility = View.VISIBLE
             offerGiftIV.visibility = View.GONE
-            offerDiscountTV.setTextColor(context.getColor(R.color.green_background))
+            offerDiscountTV.setTextColor(context.resources.getColor(R.color.green_background))
             offerDiscountTV.text = "-" + offerModel.discount + "%"
         }
     }
@@ -219,11 +221,22 @@ class ChooseQuantityDialog(context: Context, private var model: Any, private var
         offerItemLL.visibility = View.GONE
         val itemModel = model as ItemBasicModel
         itemTV.text = itemModel.name
-        itemPriceTV.text = StaticInformation().formatPrice(itemModel.price) + " " + itemModel.currencyCode
-        quantityTotalTV.text = "Total: " + StaticInformation().formatPrice(itemModel.price * itemModel.quantity) + " " + itemModel.currencyCode
+        itemPriceTV.text = StaticInformation().formatPrice(itemModel.price) + " " + lang.getString("currencyCode")
+        quantityTotalTV.text = lang.getJSONObject("itemsList").getString("total") + " " + StaticInformation().formatPrice(itemModel.price * itemModel.quantity) + " " + lang.getString("currencyCode")
         Picasso.with(context)
                 .load(APIsURL().BASE_URL + itemModel.thumbnailImagePath)
                 .placeholder(R.drawable.no_image)
                 .into(itemIV)
+        when {
+            itemModel.daysToBeAvilable == 1 -> {
+                quantityDaysLL.visibility = View.VISIBLE
+                quantityDaysTV.text = "${itemModel.daysToBeAvilable} ${lang.getJSONObject("itemsList").getString("dayTB")}"
+            }
+            itemModel.daysToBeAvilable > 1 -> {
+                quantityDaysLL.visibility = View.VISIBLE
+                quantityDaysTV.text = "${itemModel.daysToBeAvilable} ${lang.getJSONObject("itemsList").getString("daysTB")}"
+            }
+            else -> quantityDaysLL.visibility = View.GONE
+        }
     }
 }

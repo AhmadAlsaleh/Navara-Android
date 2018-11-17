@@ -1,20 +1,34 @@
 package com.smartlife_solutions.android.navara_store
 
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.v4.view.ViewPager
 import android.widget.RelativeLayout
 import com.smartlife_solutions.android.navara_store.Adapters.ItemImagesSlideAdapter
 import kotlinx.android.synthetic.main.activity_slider_images.*
+import java.util.*
 
 class SliderImagesActivity : AppCompatActivity() {
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slider_images)
 
         setupImages(intent.getStringArrayListExtra("images"))
         sliderImagesVP.currentItem = intent.getIntExtra("position", 0)
+
+        if (Statics.getCurrentLanguageName(this) == Statics.arabic) {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("fa"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        } else {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("en"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        }
 
     }
 

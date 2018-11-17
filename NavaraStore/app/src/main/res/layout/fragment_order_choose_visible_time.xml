@@ -10,17 +10,16 @@
 
     <TextView
         android:id="@+id/chooseTimeTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"
-        android:text="Choose your preferable time"
+        android:text="Select your preferable time to deliver"
         android:textStyle="bold"
         android:textSize="@dimen/main_add_appointment_actions"
-        android:textAlignment="textStart"
         android:layout_margin="@dimen/list_padding"
-        android:gravity="start"
+        android:gravity="left"
         android:layout_gravity="start"
-        tools:ignore="SpUsage" />
+        tools:ignore="RtlHardcoded,SpUsage" />
 
     <TextView
         android:id="@+id/fromTV"

@@ -1,38 +1,30 @@
 package com.smartlife_solutions.android.navara_store
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.view.ViewPager
-import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.Toast
-import com.android.volley.*
-import com.android.volley.toolbox.StringRequest
+import android.widget.RelativeLayout
 import com.smartlife_solutions.android.navara_store.Adapters.MainPagerAdapter
-import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
-import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.DatabaseHelper
-import com.smartlife_solutions.android.navara_store.Dialogs.AllDoneDialog
-import com.smartlife_solutions.android.navara_store.Dialogs.ChangeLanguageDialog
-import com.smartlife_solutions.android.navara_store.Dialogs.SureToDoDialog
+import com.smartlife_solutions.android.navara_store.Dialogs.*
 import kotlinx.android.synthetic.main.activity_main.*
 import com.smartlife_solutions.android.navara_store.MainBackFragments.MainBack2
 import com.smartlife_solutions.android.navara_store.MainBackFragments.MainBack3
 import com.smartlife_solutions.android.navara_store.MainBackFragments.MainBack4
-import com.android.volley.toolbox.Volley
-import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.UserModel
-import com.smartlife_solutions.android.navara_store.Dialogs.ConfirmAccountDialog
 import com.smartlife_solutions.android.navara_store.MainBackFragments.MainBack1
+import java.util.*
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var allDoneMain: AllDoneDialog
-    private var myToken: String = ""
     private var isActivityVisible = false
 
     override fun onResume() {
@@ -50,13 +42,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         setupViewPagerBack()
-        changeTimer()
+        // changeTimer()
+
+        if (Statics.getCurrentLanguageName(this) == Statics.arabic) {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("fa"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        } else {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("en"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        }
+
+
         mainViewPager.currentItem = 0
-        allDoneMain = AllDoneDialog(this, false)
+        allDoneMain = AllDoneDialog(this, false, lang = Statics.getLanguageJSONObject(this))
         isActivityVisible = true
         setFont()
 
-        checkLogin()
+        setHints()
 
         // region on click listeners
         settingsIV.setOnClickListener(this)
@@ -72,7 +76,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         menuChangeLanguageTV.setOnClickListener(this)
         menuTermsTV.setOnClickListener(this)
-        menuLogoutTV.setOnClickListener(this)
+        menuAboutUsTV.setOnClickListener(this)
 
         profileIV.setOnClickListener(this)
         locationIV.setOnClickListener(this)
@@ -83,20 +87,111 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         menuFacebookIV.setOnClickListener(this)
         menuInstagramIV.setOnClickListener(this)
         menuTwitterIV.setOnClickListener(this)
+        menuWhatsAppIV.setOnClickListener(this)
         // endregion
 
         try {
             if (intent.getBooleanExtra("confirm", false)) {
-                ConfirmAccountDialog(this, intent.getStringExtra("account"), true).show()
+                ConfirmAccountDialog(this, intent.getStringExtra("account"), true, lang = Statics.getLanguageJSONObject(this).getJSONObject("dialogs").getJSONObject("confirm")).show()
             }
         } catch (err: Exception) {}
-
 
         val showDone = intent.getBooleanExtra("done", false)
         if (showDone) {
             allDoneMain.message = intent.getStringExtra("code")
             allDoneMain.show()
         }
+
+//        Log.e("lang", Statics.getLanguageJSONObject(this).toString())
+        setTranslateTexts()
+
+    }
+
+    @SuppressLint("RtlHardcoded")
+    private fun setTranslateTexts() {
+        val mainTranslate = Statics.getLanguageJSONObject(this).getJSONObject("mainActivity")
+        menuProfileTV.text = mainTranslate.getString("profile")
+        menuAccountTV.text = mainTranslate.getString("account")
+        menuMyCartTV.text = mainTranslate.getString("myCart")
+        menuMyOrdersTV.text = mainTranslate.getString("myOrder")
+        menuAppSectionsTV.text = mainTranslate.getString("appSection")
+        menuOurItemsTV.text = mainTranslate.getString("ourItems")
+        menuLastOffersTV.text = mainTranslate.getString("latestOffers")
+        menuLocationsTV.text = mainTranslate.getString("locationAndContact")
+        menuOthersTV.text = mainTranslate.getString("others")
+        menuChangeLanguageTV.text = mainTranslate.getString("changeLanguage")
+        menuTermsTV.text = mainTranslate.getString("termsOfUse")
+        menuAboutUsTV.text = mainTranslate.getString("aboutUs")
+        if (Statics.getCurrentLanguageName(this) == Statics.arabic) {
+            menu1LL.gravity = Gravity.RIGHT
+            menu2LL.gravity = Gravity.RIGHT
+            menu3LL.gravity = Gravity.RIGHT
+        } else {
+            menu1LL.gravity = Gravity.LEFT
+            menu2LL.gravity = Gravity.LEFT
+            menu3LL.gravity = Gravity.LEFT
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setHints() {
+        val perf = getSharedPreferences("Navara", Context.MODE_PRIVATE)
+        val isFirstMain = perf.getBoolean("main", true)
+        if (isFirstMain) {
+            val editShared = perf.edit()
+            editShared.putBoolean("main", false)
+            editShared.apply()
+            mainHintRL.visibility = View.VISIBLE
+        } else {
+            mainHintRL.visibility = View.GONE
+        }
+
+        val font = StaticInformation().myFont(this)
+        mainHintTV.typeface = font
+        mainNextBTN.typeface = font
+
+        val hintsLang = Statics.getLanguageJSONObject(this).getJSONObject("hints").getJSONObject("mainActivity")
+
+        var currentHint = 0
+        mainNextBTN.text = hintsLang.getString("start")
+        mainNextBTN.setOnClickListener {
+            hideAllHint()
+            mainNextBTN.text = hintsLang.getString("next")
+            when (currentHint) {
+                0 -> setHint(hintsLang.getString("locationHint"), mainHintLocationIV)
+                1 -> setHint(hintsLang.getString("itemsHint"), mainHintItemsIV)
+                2 -> setHint(hintsLang.getString("offersHint"), mainHintOffersIV)
+                3 -> setHint(hintsLang.getString("profileHint"), mainHintProfileIV)
+                4 -> {
+                    mainHintTV.text = hintsLang.getString("orderHint")
+                    mainHintOrderRL.visibility = View.GONE
+                }
+                5 -> {
+                    mainNextBTN.text = hintsLang.getString("done")
+                    mainHintTV.text = hintsLang.getString("settings")
+                    mainHintMenuIV.visibility = View.VISIBLE
+                    mainHintOrderRL.visibility = View.VISIBLE
+                }
+                6 -> mainHintRL.visibility = View.GONE
+            }
+            currentHint++
+            mainHintTV.startAnimation(StaticInformation().fadeInAnim(this))
+        }
+
+    }
+
+    private fun setHint(text: String, view: View) {
+        mainHintTV.text = text
+        view.startAnimation(StaticInformation().fadeInAnim(this))
+        view.visibility = View.VISIBLE
+    }
+
+    private fun hideAllHint() {
+        mainHintLocationIV.visibility = View.GONE
+        mainHintItemsIV.visibility = View.GONE
+        mainHintOffersIV.visibility = View.GONE
+        mainHintProfileIV.visibility = View.GONE
+        mainHintMenuIV.visibility = View.GONE
     }
 
     override fun onClick(v: View?) {
@@ -108,7 +203,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         // region profile
             R.id.menuAccountTV -> {
-                if (myToken.isNotEmpty()) {
+                if (Statics.myToken.isNotEmpty()) {
                     startActivity(
                             Intent(this, ProfileCartOrders::class.java)
                                     .putExtra("currentPage", 0)
@@ -119,7 +214,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             R.id.menuMyCartTV -> {
-                if (myToken.isNotEmpty()) {
+                if (Statics.myToken.isNotEmpty()) {
                     startActivity(
                             Intent(this, ProfileCartOrders::class.java)
                                     .putExtra("currentPage", 1)
@@ -131,7 +226,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             R.id.menuMyOrdersTV -> {
-                if (myToken.isNotEmpty()) {
+                if (Statics.myToken.isNotEmpty()) {
                     startActivity(
                             Intent(this, ProfileCartOrders::class.java)
                                     .putExtra("currentPage", 2)
@@ -145,16 +240,32 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // endregion
 
         // region app sections
-            R.id.menuOurItemsTV -> startActivity(Intent(this, ItemsActivity::class.java))
-            R.id.menuLastOffersTV -> startActivity(Intent(this, OffersActivity::class.java))
-            R.id.menuLocationsTV -> startActivity(Intent(this, LocationActivity::class.java))
+            R.id.menuOurItemsTV -> {
+                finish()
+                startActivity(Intent(this, ItemsActivity::class.java))
+            }
+            R.id.menuLastOffersTV -> {
+                finish()
+                startActivity(Intent(this, OffersActivity::class.java))
+            }
+            R.id.menuLocationsTV -> {
+                finish()
+                startActivity(Intent(this, LocationActivity::class.java))
+            }
         // endregion
 
         // region others
-            R.id.menuChangeLanguageTV -> ChangeLanguageDialog(this).show()
+            R.id.menuChangeLanguageTV -> ChangeLanguageDialog(this,
+                    Statics.getCurrentLanguageName(this),
+                    Statics.getLanguageJSONObject(this).getJSONObject("dialogs").getJSONObject("changeLanguage"),
+                    this, fromMain = true).show()
+
             R.id.menuTermsTV -> startActivity(Intent(Intent.ACTION_VIEW,
                     Uri.parse(StaticInformation().termsOfUseLink())))
-            R.id.menuLogoutTV -> logout()
+            R.id.menuAboutUsTV -> {
+                onBackPressed()
+                StaticInformation().dialogXY(AboutUsDialog(this, Statics.getLanguageJSONObject(this).getJSONObject("dialogs").getJSONObject("aboutUs")))
+            }
         // endregion
 
         // region social media
@@ -164,11 +275,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     Uri.parse(StaticInformation().instagramLink())))
             R.id.menuTwitterIV -> startActivity(Intent(Intent.ACTION_VIEW,
                     Uri.parse(StaticInformation().twitterLink())))
+            R.id.menuWhatsAppIV -> StaticInformation().openWhatsApp(this)
         // endregion
 
         // region action bar
             R.id.profileIV -> {
-                if (myToken.isNotEmpty()) {
+                if (Statics.myToken.isNotEmpty()) {
                     startActivity(
                             Intent(this, ProfileCartOrders::class.java)
                                     .putExtra("currentPage", 0)
@@ -178,13 +290,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     startActivity(Intent(this, LoginRegisterActivity::class.java))
                 }
             }
-            R.id.locationIV -> startActivity(Intent(this, LocationActivity::class.java))
-            R.id.itemsIV -> startActivity(Intent(this, ItemsActivity::class.java))
-            R.id.offersIV -> startActivity(Intent(this, OffersActivity::class.java))
+            R.id.locationIV -> {
+                finish()
+                startActivity(Intent(this, LocationActivity::class.java))
+            }
+            R.id.itemsIV -> {
+                finish()
+                startActivity(Intent(this, ItemsActivity::class.java))
+            }
+            R.id.offersIV -> {
+                finish()
+                startActivity(Intent(this, OffersActivity::class.java))
+            }
             R.id.orderIV -> {
                 finish()
                 try {
-                    if (DatabaseHelper(this).userModelIntegerRuntimeException.queryForAll()[0].token.isNotEmpty()) {
+                    if (Statics.myToken.isNotEmpty()) {
                         startActivity(Intent(this, OrdersActivity::class.java).putExtra("done", true))
                     } else {
                         startActivity(Intent(this, LoginRegisterActivity::class.java))
@@ -239,7 +360,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun changeTimer() {
         Handler().postDelayed({
             if (isActivityVisible) {
-                changePager(mainViewPager.currentItem)
+                // changePager(mainViewPager.currentItem)
             }
         }, 5000)
     }
@@ -251,7 +372,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             } else {
                 mainViewPager.currentItem = currentPage + 1
             }
-            changeTimer()
+            // changeTimer()
         } catch (err: Exception) {}
     }
 
@@ -272,7 +393,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         Handler().postDelayed({
             mainFL.isClickable = false
             mainFL.isFocusable = false
-        }, 1000)
+        }, 750)
     }
 
     @SuppressLint("PrivateResource")
@@ -285,7 +406,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             mainFL.isClickable = false
             mainFL.isFocusable = false
             menuSettingsFL.setBackgroundResource(android.R.color.transparent)
-        }, 1000)
+        }, 750)
     }
 
     private fun setFont() {
@@ -304,70 +425,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         menuChangeLanguageTV.typeface = myFont
         menuTermsTV.typeface = myFont
 
-        menuLogoutTV.typeface = myFont
-    }
-
-    private fun checkLogin() {
-        myToken = try {
-            DatabaseHelper(this).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
-        if (myToken.isNotEmpty()) {
-            menuLogoutTV.visibility = View.VISIBLE
-        } else {
-            menuLogoutTV.visibility = View.GONE
-        }
-    }
-
-    private fun logout() {
-        if (!StaticInformation().isConnected(this)) {
-            Toast.makeText(this, "No Internet Connection, Please Try Again", Toast.LENGTH_SHORT).show()
-            return
-        }
-        val loading = LoadingFragment()
-        var fragmentTranslate = supportFragmentManager.beginTransaction()
-        fragmentTranslate.replace(R.id.mainLoading, loading)
-        fragmentTranslate.commit()
-
-        myToken = try {
-            DatabaseHelper(this).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
-        val queue = Volley.newRequestQueue(this)
-        val request = object : StringRequest(Request.Method.GET, APIsURL().LOGOUT_URL,
-                Response.Listener<String> {
-                    queue.cancelAll("logout")
-                    Log.e("logout", "True")
-                    DatabaseHelper(this).clearTable(UserModel::class.java)
-                    checkLogin()
-                    settingsMenuLL.visibility = View.GONE
-                    mainFL.isClickable = false
-                    mainFL.isFocusable = false
-                    menuSettingsFL.setBackgroundResource(android.R.color.transparent)
-                    fragmentTranslate = supportFragmentManager.beginTransaction()
-                    fragmentTranslate.remove(loading)
-                    fragmentTranslate.commit()
-        }, Response.ErrorListener {
-            try {
-                fragmentTranslate = supportFragmentManager.beginTransaction()
-                fragmentTranslate.remove(loading)
-                fragmentTranslate.commit()
-                queue.cancelAll("logout")
-            } catch (err: Exception) {}
-        }) {
-            @Throws(AuthFailureError::class)
-            override fun getHeaders(): Map<String, String> {
-                val params = HashMap<String, String>()
-                params["Content-Type"] = "application/json; charset=UTF-8"
-                params["token"] = myToken
-                return params
-            }
-        }
-        request.tag = "logout"
-        queue.add(request)
-
+        menuAboutUsTV.typeface = myFont
     }
 
 }

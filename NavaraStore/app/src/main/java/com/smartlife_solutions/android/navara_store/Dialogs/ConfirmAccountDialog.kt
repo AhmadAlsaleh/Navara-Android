@@ -7,6 +7,7 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
@@ -17,9 +18,12 @@ import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.DatabaseHelper
 import com.smartlife_solutions.android.navara_store.R
 import com.smartlife_solutions.android.navara_store.StaticInformation
+import com.smartlife_solutions.android.navara_store.Statics
 import kotlinx.android.synthetic.main.dialog_confirm.*
+import org.json.JSONObject
 
-class ConfirmAccountDialog(context: Context, private var account: String, private var isCount: Boolean = false): Dialog(context) {
+class ConfirmAccountDialog(context: Context, private var account: String,
+                           private var isCount: Boolean = false, private var confTV: TextView? = null, var lang:JSONObject): Dialog(context) {
 
     private var resendText = ""
 
@@ -37,15 +41,20 @@ class ConfirmAccountDialog(context: Context, private var account: String, privat
         confirmTitle.typeface = myFont
         confirmResendTV.typeface = myFont
         confirmCancelBtn.typeface = myFont
+
+        confirmTitle.text = lang.getString("title")
+        confirmSendBtn.text = lang.getString("confirmBTN")
+        confirmCancelBtn.text = lang.getString("returnBTN")
+
         StaticInformation.clickResendTimer = if (isCount) { 59 } else { 0 }
         if (StaticInformation().isEmail(account)) {
-            confirmTV.text = "Check your inbox please to confirm"
+            confirmTV.text = lang.getString("email")
             confirmSendBtn.visibility = View.GONE
             confirmET.visibility = View.GONE
-            resendText = "Resend Email"
+            resendText = lang.getString("resendEmail")
         } else {
-            resendText = "Resend Code"
-            confirmTV.text = "Enter Confirmation Code below please"
+            resendText = lang.getString("resendCode")
+            confirmTV.text = lang.getString("code")
         }
         confirmResendTV.text = resendText
 
@@ -59,9 +68,13 @@ class ConfirmAccountDialog(context: Context, private var account: String, privat
         }
 
         confirmSendBtn.setOnClickListener {
-            confirmSendBtn.visibility = View.GONE
-            confirmPB.visibility = View.VISIBLE
-            sendConfirm()
+            if (confirmET.text.toString().isNotEmpty()) {
+                confirmSendBtn.visibility = View.GONE
+                confirmPB.visibility = View.VISIBLE
+                sendConfirm()
+            } else {
+                Toast.makeText(context, lang.getString("enterCode"), Toast.LENGTH_SHORT).show()
+            }
         }
 
         confirmResendTV.setOnClickListener {
@@ -81,7 +94,7 @@ class ConfirmAccountDialog(context: Context, private var account: String, privat
             try {
                 if (StaticInformation.clickResendTimer > 0) {
                     StaticInformation.clickResendTimer--
-                    confirmResendTV.text = "$resendText 00:$StaticInformation.clickResendTimer"
+                    confirmResendTV.text = "$resendText 00:${StaticInformation.clickResendTimer}"
                     countDown()
                 } else {
                     confirmResendTV.text = resendText
@@ -91,11 +104,7 @@ class ConfirmAccountDialog(context: Context, private var account: String, privat
     }
 
     private fun resendCode() {
-        val myToken= try {
-            DatabaseHelper(context).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
+
         val queue = Volley.newRequestQueue(context)
         val request = object : StringRequest(Request.Method.GET, APIsURL().RESEND_CODE,
                 Response.Listener<String> {
@@ -109,7 +118,7 @@ class ConfirmAccountDialog(context: Context, private var account: String, privat
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
-                params["Authorization"] = "Bearer $myToken"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
 
@@ -122,27 +131,35 @@ class ConfirmAccountDialog(context: Context, private var account: String, privat
     }
 
     private fun sendConfirm() {
+
         val queue = Volley.newRequestQueue(context)
-        val request = StringRequest(Request.Method.GET,
-                APIsURL().CONFIRM + "userid=$account&token=${confirmET.text}",
+        val request = object : StringRequest(Request.Method.GET, APIsURL().CONFIRM + "Code=${confirmET.text}",
                 Response.Listener<String> {
                     dismiss()
-                    Toast.makeText(context, "Your Account has Verified Successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, lang.getString("successfully"), Toast.LENGTH_SHORT).show()
+                    confTV?.visibility = View.GONE
                     queue.cancelAll("confirm")
                 }, Response.ErrorListener {
             try {
                 if (!StaticInformation().isConnected(context as Activity)) {
-                    Toast.makeText(context, "No Internet Connection, Please Try Again", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, lang.getString("noInternet"), Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(context, "Incorrect Code try to Resend New One", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, lang.getString("incorrectCode"), Toast.LENGTH_SHORT).show()
                 }
             } catch (err: Exception) {
-                Toast.makeText(context, "Incorrect Code try to Resend New One", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, lang.getString("incorrectCode"), Toast.LENGTH_SHORT).show()
             }
             confirmPB.visibility = View.GONE
             confirmSendBtn.visibility = View.VISIBLE
             queue.cancelAll("confirm")
-        })
+        }) {
+            override fun getHeaders(): Map<String, String> {
+                val params = HashMap<String, String>()
+                params["Content-Type"] = "application/json; charset=UTF-8"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
+                return params
+            }
+        }
         request.tag = "confirm"
         queue.add(request)
     }

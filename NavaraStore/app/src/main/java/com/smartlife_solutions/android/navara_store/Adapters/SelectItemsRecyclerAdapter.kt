@@ -20,6 +20,7 @@ import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.Databas
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.ItemBasicModel
 import com.smartlife_solutions.android.navara_store.R
 import com.smartlife_solutions.android.navara_store.StaticInformation
+import com.smartlife_solutions.android.navara_store.Statics
 import com.squareup.picasso.Picasso
 import org.json.JSONObject
 import java.nio.charset.Charset
@@ -124,11 +125,7 @@ class SelectItemsRecyclerAdapter(var context: Context, var items: ArrayList<Item
         val jsonBody = JSONObject()
         jsonBody.put("ItemID", id)
         jsonBody.put("Quantity", quantity)
-        val myToken= try {
-            DatabaseHelper(context).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
+
         val requestBody: String = jsonBody.toString()
         Log.e("item", requestBody)
         val queue = Volley.newRequestQueue(context)
@@ -147,7 +144,7 @@ class SelectItemsRecyclerAdapter(var context: Context, var items: ArrayList<Item
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
-                params["Authorization"] = "Bearer $myToken"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
 

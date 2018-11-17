@@ -47,7 +47,39 @@
                 android:id="@+id/itemBackIV"
                 android:layout_width="@dimen/toolbar_layout"
                 android:layout_height="@dimen/toolbar_layout"
-                app:srcCompat="@drawable/ic_back_arrow_white"/>
+                android:layout_alignParentStart="true"
+                app:srcCompat="@drawable/ic_back_arrow_white" />
+
+            <LinearLayout
+                android:id="@+id/itemCashBackLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentEnd="true"
+                android:padding="@dimen/list_margin"
+                android:background="@drawable/background_cash_back">
+
+                <ImageView
+                    android:id="@+id/itemCashBackIV"
+                    android:layout_width="@dimen/main_buttons"
+                    android:layout_height="@dimen/main_buttons"
+                    app:srcCompat="@drawable/ic_cash_back"
+                    android:layout_marginLeft="@dimen/list_padding"
+                    android:layout_marginRight="@dimen/list_padding"
+                    tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/itemCashBackTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/list_padding"
+                    android:text="1000 S.P"
+                    android:textColor="@color/whiteItem"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/action_text"
+                    tools:ignore="HardcodedText,SpUsage" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,13 +98,16 @@
                     android:text="Arduino Arduino Arduino Arduino"
                     android:textColor="@color/whiteItem"
                     android:textStyle="bold"
+                    android:gravity="start"
                     android:textSize="@dimen/main_buttons"
-                    tools:ignore="SpUsage" />
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                 <ImageView
                     android:id="@+id/addToCartIV"
                     android:layout_width="@dimen/main_texts"
                     android:layout_height="@dimen/main_texts"
+                    android:layout_marginLeft="@dimen/list_padding"
+                    android:layout_marginRight="@dimen/list_padding"
                     app:srcCompat="@drawable/ic_add_shopping_cart"
                     android:background="@drawable/ic_circle_white_border"
                     android:padding="@dimen/list_padding"/>
@@ -93,20 +128,63 @@
                 android:paddingRight="@dimen/point_top"
                 android:paddingBottom="@dimen/point_top">
 
-                <TextView
-                    android:id="@+id/itemExistTV"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="15dp"
-                    android:text="Exist in our stock"
-                    tools:ignore="SpUsage"
-                    android:layout_marginBottom="@dimen/point_top"/>
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/itemExistTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/fab_margin"
+                        android:text="@string/exist_in_our_stock"
+                        tools:ignore="HardcodedText,SpUsage"
+                        android:gravity="start"
+                        android:layout_alignParentStart="true"
+                        android:layout_gravity="start"
+                        android:layout_marginBottom="@dimen/point_top"/>
+
+                    <LinearLayout
+                        android:id="@+id/itemDaysLL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentEnd="true"
+                        tools:ignore="RtlHardcoded">
+
+                        <TextView
+                            android:id="@+id/itemDaysNoteTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/fab_margin"
+                            android:text="@string/star_note"
+                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage"
+                            android:gravity="right"
+                            android:textColor="@color/red_background"
+                            android:textStyle="bold"
+                            android:layout_gravity="end" />
+
+                        <TextView
+                            android:id="@+id/itemDaysTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/fab_margin"
+                            android:text="6 Days to be Available"
+                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage"
+                            android:gravity="right"
+                            android:textColor="@color/primary_list_item"
+                            android:layout_gravity="left"
+                            android:layout_marginBottom="@dimen/point_top"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/itemCostTextTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Price:"
+                    android:text="@string/price"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/main_toolbar_title"/>
 
@@ -123,7 +201,7 @@
                     android:id="@+id/itemDescriptionTextTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Description:"
+                    android:text="@string/description"
                     android:layout_marginTop="@dimen/fab_margin"
                     android:layout_marginBottom="@dimen/padding_point"
                     android:textColor="@color/colorPrimary"
@@ -135,11 +213,126 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/primary_list_item"
                     android:textSize="@dimen/action_text"
-                    android:text="Test Test Test Test Test Test Test Test Test Test Test "/>
+                    android:gravity="left"
+                    android:text="Test Test Test Test Test Test Test Test Test Test Test "
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                <LinearLayout
+                    android:id="@+id/itemContactUsLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/itemContactUsTextTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contact_information"
+                        android:layout_marginTop="@dimen/fab_margin"
+                        android:layout_marginBottom="@dimen/padding_point"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/main_toolbar_title"
+                        tools:ignore="HardcodedText,SpUsage" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/itemOwnerTextTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_list_item"
+                            android:textSize="@dimen/action_text"
+                            android:gravity="start"
+                            android:text="@string/name"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText,SpUsage" />
+
+                        <TextView
+                            android:id="@+id/itemOwnerTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_list_item"
+                            android:textSize="@dimen/action_text"
+                            android:layout_marginLeft="@dimen/action_main_small"
+                            android:layout_marginRight="@dimen/action_main_small"
+                            android:gravity="start"
+                            android:text="Ahmad"
+                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/itemPhoneTextTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_list_item"
+                            android:textSize="@dimen/action_text"
+                            android:gravity="start"
+                            android:text="@string/mobile"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText,SpUsage" />
+
+                        <TextView
+                            android:id="@+id/itemPhoneTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_list_item"
+                            android:textSize="@dimen/action_text"
+                            android:gravity="start"
+                            android:layout_marginLeft="@dimen/action_main_small"
+                            android:layout_marginRight="@dimen/action_main_small"
+                            android:text="0951784957"
+                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        tools:ignore="RtlHardcoded"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/itemContactUsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green_background"
+            android:textSize="@dimen/action_main_small"
+            android:background="@drawable/white_edit_text_background"
+            android:padding="5dp"
+            android:text="@string/contact_us"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/itemContactUsFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="@dimen/point_top"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            app:fabSize="normal"
+            app:srcCompat="@mipmap/ic_whatsapp_logo"
+            android:focusable="true" />
 
     </LinearLayout>
 

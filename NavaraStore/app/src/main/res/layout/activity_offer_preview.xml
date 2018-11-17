@@ -52,16 +52,15 @@
                 android:id="@+id/offerPreviewPercent"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/offer_preview_icon"
+                android:background="@drawable/ic_circle_white_border"
                 android:text="%"
+                android:layout_margin="@dimen/list_padding"
                 android:textSize="25dp"
                 android:textStyle="bold"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
                 android:textColor="@color/green_background"
                 android:gravity="center"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true" />
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SpUsage" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,7 +75,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Offer On Arduino"
+                    android:text=""
                     android:textColor="@color/whiteItem"
                     android:textStyle="bold"
                     android:textSize="@dimen/main_buttons"
@@ -110,17 +109,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
-                    android:text="Exist in our stock"
-                    tools:ignore="SpUsage"
+                    android:text="@string/exist_in_our_stock"
+                    android:gravity="left"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage"
                     android:layout_marginBottom="@dimen/point_top"/>
 
                 <TextView
                     android:id="@+id/offerCostTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Price:"
+                    android:text="@string/price"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/main_toolbar_title"/>
+                    android:textSize="@dimen/main_toolbar_title"
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -138,7 +139,8 @@
                         android:paddingBottom="@dimen/padding_point"
                         android:paddingLeft="@dimen/point_top"
                         android:paddingRight="@dimen/point_top"
-                        android:background="@drawable/green_button_background"/>
+                        android:background="@drawable/green_button_background"
+                        tools:ignore="HardcodedText,SpUsage" />
 
                     <TextView
                         android:id="@+id/offerOldCostTV"
@@ -147,7 +149,8 @@
                         android:text="500 S.P"
                         android:layout_margin="@dimen/action_main_big"
                         android:textSize="@dimen/main_toolbar_title"
-                        android:textColor="@color/red_background"/>
+                        android:textColor="@color/red_background"
+                        tools:ignore="HardcodedText,SpUsage" />
 
                 </LinearLayout>
 
@@ -158,18 +161,19 @@
                     android:text="250 S.P"
                     android:textStyle="bold"
                     android:textColor="@color/green_background"
-                    android:textSize="@dimen/add_buttons_xy"/>
+                    android:textSize="@dimen/add_buttons_xy"
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
                     android:id="@+id/offerDescriptionTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Description:"
+                    android:text="@string/description"
                     android:layout_marginTop="@dimen/padding_point"
                     android:layout_marginBottom="@dimen/padding_point"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/main_toolbar_title"
-                    tools:ignore="SpUsage" />
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
                     android:id="@+id/offerDescriptionTextTV"
@@ -177,12 +181,47 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/primary_list_item"
                     android:textSize="@dimen/action_text"
-                    android:text="Test Test Test Test Test Test Test Test Test Test Test "
-                    tools:ignore="SpUsage" />
+                    android:gravity="left"
+                    android:text=""
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
             </LinearLayout>
 
         </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        tools:ignore="RtlHardcoded"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/offerDisContactUsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green_background"
+            android:textSize="@dimen/action_main_small"
+            android:background="@drawable/white_edit_text_background"
+            android:padding="5dp"
+            android:text="@string/contact_us"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/offerDisContactUsFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="@dimen/point_top"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            app:fabSize="normal"
+            app:srcCompat="@mipmap/ic_whatsapp_logo"
+            android:focusable="true" />
 
     </LinearLayout>
 

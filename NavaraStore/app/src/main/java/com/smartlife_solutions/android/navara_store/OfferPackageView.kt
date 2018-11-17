@@ -30,7 +30,8 @@ import java.nio.charset.Charset
 
 @SuppressLint("ViewConstructor, SetTextI18n")
 class OfferPackageView(var fragment: Fragment, context: Context, private var items: ArrayList<ItemBasicModel>, offers: ArrayList<ItemBasicModel>,
-                       var fromCart: Boolean, disOffer: Boolean = false) : View(context) {
+                       var fromCart: Boolean, disOffer: Boolean = false,
+                       var lang: JSONObject) : View(context) {
 
     val view = inflate(context, R.layout.item_offer_package, null)!!
     private val offerCV: CardView = view.findViewById(R.id.offerCV)
@@ -48,9 +49,10 @@ class OfferPackageView(var fragment: Fragment, context: Context, private var ite
 
     init {
         getFreeTV.typeface = StaticInformation().myFont(context)
+        getFreeTV.text = lang.getJSONObject("offerFreePreviewActivity").getString("andGet")
         itemSelectTotalTV.typeface = StaticInformation().myFont(context)
         itemSelectTotalTV.setOnClickListener(null)
-        itemSelectTotalTV.text = "Total: " + (StaticInformation().formatPrice(items[0].quantity * items[0].price)) + " " + items[0].currencyCode
+        itemSelectTotalTV.text = (StaticInformation().formatPrice(items[0].quantity * items[0].price)) + " " + lang.getString("currencyCode")
         itemQuantityTV.typeface = StaticInformation().myFont(context)
         itemQuantityTV.text = items[0].quantity.toString()
 
@@ -83,13 +85,13 @@ class OfferPackageView(var fragment: Fragment, context: Context, private var ite
                 jsonObject.put("Quantity", itemQuantityTV.text.toString())
                 editQuantity(itemSelectTotalTV, itemQuantityTV, false)
             } else {
-                Toast.makeText(context, "One Item at Least", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, lang.getJSONObject("itemsList").getString("oneItem"), Toast.LENGTH_SHORT).show()
             }
         }
 
         offerDeleteIV.setOnClickListener {
             it.startAnimation(StaticInformation().clickAnim(context))
-            val sureRemove = SureToDoDialog(context, "Sure to remove from Cart?")
+            val sureRemove = SureToDoDialog(context, lang.getJSONObject("dialogs").getJSONObject("sure").getString("removeFromCart"))
             sureRemove.show()
             sureRemove.setOnDismissListener {
                 if (sureRemove.isTrue) {
@@ -98,20 +100,27 @@ class OfferPackageView(var fragment: Fragment, context: Context, private var ite
             }
         }
 
+        for (i in items) {
+            i.cashBack = "0.0"
+        }
+        for (o in offers) {
+            o.cashBack = "0.0"
+        }
         itemsRV.setHasFixedSize(true)
         itemsRV.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        itemsRV.adapter = PreviewFreeItemsAdapter(context = context, itemsArrayList = items, isAll = false)
+        itemsRV.adapter = PreviewFreeItemsAdapter(context = context, itemsArrayList = items, isAll = false, lang = lang)
 
         offersRV.setHasFixedSize(true)
         offersRV.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        offersRV.adapter = PreviewFreeItemsAdapter(context = context, itemsArrayList = offers, isAll = false)
+        offersRV.adapter = PreviewFreeItemsAdapter(context = context, itemsArrayList = offers, isAll = false, lang = lang)
 
         if (disOffer) {
             getFreeTV.visibility = View.GONE
             offerGiftIV.visibility = View.GONE
             offerPercentTV.visibility = View.VISIBLE
             offerCV.setOnClickListener {
-                context.startActivity(Intent(context, OfferPreviewActivity::class.java).putExtra("id", items[0].offerID))
+                context.startActivity(Intent(context, OfferPreviewActivity::class.java)
+                        .putExtra("id", items[0].offerID))
             }
         } else {
             getFreeTV.visibility = View.VISIBLE
@@ -133,18 +142,13 @@ class OfferPackageView(var fragment: Fragment, context: Context, private var ite
 
     private fun removeFromCart(id: String) {
 
-        val myToken= try {
-            DatabaseHelper(context).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
         val jsonBody = JSONObject()
         jsonBody.put("offerID", id)
         val requestBody: String = jsonBody.toString()
         val queue = Volley.newRequestQueue(context)
         val request = object : StringRequest(Request.Method.POST, APIsURL().REMOVE_OFFER_FROM_CART,
                 Response.Listener<String> {
-                    Toast.makeText(context, "Offer has removed Successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, lang.getJSONObject("offersActivity").getString("offerRemoved"), Toast.LENGTH_SHORT).show()
                     offerCV.startAnimation(StaticInformation().fadeOutAnim(context))
                     Handler().postDelayed({
                         try {
@@ -156,7 +160,7 @@ class OfferPackageView(var fragment: Fragment, context: Context, private var ite
                     }, 500)
                     queue.cancelAll("change")
                 }, Response.ErrorListener {
-            Toast.makeText(context, "No Internet Connection, Please Try Again", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, lang.getString("noInternet"), Toast.LENGTH_SHORT).show()
             Log.e("error", it.toString())
             queue.cancelAll("change")
         }) {
@@ -164,7 +168,7 @@ class OfferPackageView(var fragment: Fragment, context: Context, private var ite
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
-                params["Authorization"] = "Bearer $myToken"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
 
@@ -201,28 +205,24 @@ class OfferPackageView(var fragment: Fragment, context: Context, private var ite
             items[0].quantity - 1
         }
         quantityTV.text = quantity.toString()
-        totalTV.text = "Total: " + StaticInformation().formatPrice(quantity * (items[0].price)) + " " + items[0].currencyCode
+        totalTV.text = StaticInformation().formatPrice(quantity * (items[0].price)) + " " + lang.getString("currencyCode")
 
         val jsonBody = JSONObject()
         jsonBody.put("OfferID", id)
         jsonBody.put("Quantity", quantity)
-        val myToken= try {
-            DatabaseHelper(context).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
+
         val requestBody: String = jsonBody.toString()
         Log.e("item", requestBody)
         val queue = Volley.newRequestQueue(context)
         val request = object : StringRequest(Request.Method.POST, APIsURL().ADD_OFFER_TO_CART,
                 Response.Listener<String> {
-                    Toast.makeText(context, "Quantity has changed Successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, lang.getJSONObject("itemsList").getString("changeQuantity"), Toast.LENGTH_SHORT).show()
                     items[0].quantity = quantity
                     queue.cancelAll("add")
                 }, Response.ErrorListener {
-            Toast.makeText(context, "No Internet Connection, Please Try Again", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, lang.getString("noInternet"), Toast.LENGTH_SHORT).show()
             quantityTV.text = items[0].quantity.toString()
-            totalTV.text = "Total: " + StaticInformation().formatPrice(items[0].quantity * (items[0].price)) + " " + items[0].currencyCode
+            totalTV.text = StaticInformation().formatPrice(items[0].quantity * (items[0].price)) + " " + lang.getString("currencyCode")
             Log.e("error", it.toString())
             queue.cancelAll("add")
         }) {
@@ -230,7 +230,7 @@ class OfferPackageView(var fragment: Fragment, context: Context, private var ite
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
-                params["Authorization"] = "Bearer $myToken"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
 

@@ -80,14 +80,15 @@
 
                 <TextView
                     android:id="@+id/offerItemTitleTV"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
+                    android:gravity="center_vertical|start"
                     android:text="offer 1"
                     android:textSize="@dimen/list_item_text"
                     android:textColor="@color/primary_list_item"
                     android:ellipsize="end"
-                    android:maxLines="1"/>
+                    android:maxLines="1"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
 
                 <TextView
@@ -96,9 +97,11 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="2"
+                    android:gravity="left"
                     android:text="Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
 
@@ -116,7 +119,7 @@
                     android:textSize="@dimen/list_item_text"
                     android:textStyle="bold"
                     android:textColor="@color/colorAccent"
-                    tools:ignore="SpUsage" />
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <ImageView
                     android:id="@+id/offerCartIV"

@@ -21,16 +21,16 @@
 
         <TextView
             android:id="@+id/titleLayoutTV"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Location And Contact"
+            android:text="@string/location_and_contact"
             android:textStyle="bold"
             android:textSize="@dimen/main_toolbar_title"
             android:ellipsize="end"
             android:maxLines="1"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|left"
             android:textColor="@color/whiteItem"
-            tools:ignore="SpUsage" />
+            tools:ignore="RtlHardcoded,SpUsage" />
 
     </LinearLayout>
 
@@ -77,7 +77,7 @@
                                 android:id="@+id/addressText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Address:"
+                                android:text="@string/address"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="@dimen/action_text"
                                 tools:ignore="SpUsage" />
@@ -96,7 +96,7 @@
                                 android:id="@+id/workTimeText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Working Hours:"
+                                android:text="@string/working_hours"
                                 android:layout_marginTop="@dimen/margin_fab_appoi"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="@dimen/action_text"
@@ -109,7 +109,7 @@
                                 android:ellipsize="end"
                                 android:maxLines="1"
                                 android:textSize="@dimen/action_text"
-                                android:text="From 09:00 AM to 05:00 PM"
+                                android:text="@string/working_hours_line"
                                 tools:ignore="SpUsage" />
 
                         </LinearLayout>
@@ -119,6 +119,47 @@
                 </RelativeLayout>
 
             </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="160dp"
+                android:layout_marginEnd="@dimen/action_main_small"
+                android:layout_marginRight="@dimen/action_main_small">
+
+                <ImageView
+                    android:id="@+id/contactUsFAB"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:srcCompat="@drawable/ic_mobile_phone"
+                    android:background="@drawable/ic_circle_primary"
+                    android:padding="@dimen/action_main_small"
+                    android:layout_marginEnd="@dimen/action_main_small"
+                    android:layout_marginRight="@dimen/action_main_small"/>
+
+                <ImageView
+                    android:id="@+id/goToFAB"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:srcCompat="@drawable/ic_replay"
+                    android:background="@drawable/ic_circle_primary"
+                    android:padding="@dimen/action_main_small"
+                    android:layout_marginEnd="@dimen/action_main_small"
+                    android:layout_marginRight="@dimen/action_main_small"/>
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/directionsFAB"
+                    app:srcCompat="@drawable/ic_directions"
+                    android:padding="@dimen/action_main_small"
+                    android:background="@drawable/ic_circle_primary"/>
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:visibility="gone"
@@ -154,7 +195,7 @@
                         android:id="@+id/sendTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contact\nUs"
+                        android:text="@string/contact__us"
                         android:gravity="center"
                         android:textColor="#000"/>
 
@@ -179,7 +220,7 @@
                         android:id="@+id/callTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Make\nCall"
+                        android:text="@string/make_call"
                         android:gravity="center"
                         android:textColor="#000"/>
 
@@ -208,7 +249,7 @@
                         android:id="@+id/webTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Visit\nWebsite"
+                        android:text="@string/visit_website"
                         android:gravity="center"
                         android:textColor="#000"/>
 
@@ -222,47 +263,6 @@
                 </LinearLayout>
 
             </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="160dp"
-                android:layout_marginEnd="@dimen/action_main_small"
-                android:layout_marginRight="@dimen/action_main_small">
-
-                <ImageView
-                    android:id="@+id/contactUsFAB"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    app:srcCompat="@drawable/ic_contact_mail"
-                    android:background="@drawable/ic_circle_primary"
-                    android:padding="@dimen/action_main_small"
-                    android:layout_marginEnd="@dimen/action_main_small"
-                    android:layout_marginRight="@dimen/action_main_small"/>
-
-                <ImageView
-                    android:id="@+id/goToFAB"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    app:srcCompat="@drawable/ic_replay"
-                    android:background="@drawable/ic_circle_primary"
-                    android:padding="@dimen/action_main_small"
-                    android:layout_marginEnd="@dimen/action_main_small"
-                    android:layout_marginRight="@dimen/action_main_small"/>
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:id="@+id/directionsFAB"
-                    app:srcCompat="@drawable/ic_directions"
-                    android:padding="@dimen/action_main_small"
-                    android:background="@drawable/ic_circle_primary"/>
-
-            </LinearLayout>
 
         </RelativeLayout>
 

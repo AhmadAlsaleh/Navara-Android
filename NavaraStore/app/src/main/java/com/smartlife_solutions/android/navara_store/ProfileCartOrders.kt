@@ -2,6 +2,7 @@ package com.smartlife_solutions.android.navara_store
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
+import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -23,6 +24,7 @@ import com.smartlife_solutions.android.navara_store.ProfileCartOrderFragments.Ca
 import com.smartlife_solutions.android.navara_store.ProfileCartOrderFragments.OrdersFragment
 import com.smartlife_solutions.android.navara_store.ProfileCartOrderFragments.ProfileFragment
 import kotlinx.android.synthetic.main.activity_profile_cart_orders.*
+import java.util.*
 
 class ProfileCartOrders : AppCompatActivity() {
 
@@ -45,36 +47,50 @@ class ProfileCartOrders : AppCompatActivity() {
             setPreLoader()
         }
 
+        if (Statics.getCurrentLanguageName(this) == Statics.arabic) {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("fa"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        } else {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("en"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        }
+
         currentPage = intent.getIntExtra("currentPage", 0)
         finishOnBack = intent.getBooleanExtra(StaticInformation().FINITSH_ON_BACK, false)
 
         getUserInfo()
 
         // region font
+        val lang = Statics.getLanguageJSONObject(this).getJSONObject("profileCartOrdersActivity")
         val myFont = StaticInformation().myFont(this)
         profileTabBTN.typeface = myFont
+        profileTabBTN.text = lang.getString("profile")
         cartTabBTN.typeface = myFont
+        cartTabBTN.text = lang.getString("myCart")
         orderTabBTN.typeface = myFont
+        orderTabBTN.text = lang.getString("myOrders")
         // endregion
 
     }
 
     private fun getUserInfo() {
-        val myToken= try {
-            DatabaseHelper(this).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
+
         val queue = Volley.newRequestQueue(this)
         val request = object : JsonObjectRequest(Request.Method.GET, APIsURL().GET_USER_INFORMATION, null, {
             Log.e("profile", "Done")
-
+            Log.e("profile", it.toString())
             profileFragment.nameString = it.getString("name")
             profileFragment.emailString = if (it.getString("email") == "null") { "" } else { it.getString("email") }
             profileFragment.phoneString = if (it.getString("mobile") == "null") { "" } else { it.getString("mobile") }
             profileFragment.myAccount = it.getString("userName")
             profileFragment.isExternal = it.getBoolean("isExternalLogin")
             profileFragment.isVerify = it.getBoolean("isVerified")
+            profileFragment.countryCode = it.getString("countryCode")
+            profileFragment.phoneNumber = it.getString("phoneNumber")
+            profileFragment.cashString = it.getString("wallet")
+            profileFragment.uniqueCode = if (it.getString("uniqueCode") == null) { "" } else { it.getString("uniqueCode") }
 
             getCartItems()
 
@@ -88,7 +104,7 @@ class ProfileCartOrders : AppCompatActivity() {
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
-                params["Authorization"] = "Bearer $myToken"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
 
@@ -102,11 +118,7 @@ class ProfileCartOrders : AppCompatActivity() {
     }
 
     private fun getCartItems() {
-        val myToken= try {
-            DatabaseHelper(this).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
+
         val queue = Volley.newRequestQueue(this)
         val jsonObjectRequest = object : JsonObjectRequest(Request.Method.GET, APIsURL().GET_CART, null, {
             Log.e("cart", it.toString())
@@ -122,7 +134,7 @@ class ProfileCartOrders : AppCompatActivity() {
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
-                params["Authorization"] = "Bearer $myToken"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
 
@@ -136,18 +148,14 @@ class ProfileCartOrders : AppCompatActivity() {
     }
 
     private fun getOrders() {
-        val myToken= try {
-            DatabaseHelper(this).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
+
         val queue = Volley.newRequestQueue(this)
         val jsonArrayRequest = object : JsonArrayRequest(Request.Method.GET, APIsURL().GET_ORDERS, null, {
             stopLoader()
             ordersFragment.orderJSONArray = it
             setupViewPager()
             setPagerPosition(currentPage)
-            Log.e("Orders", "Done")
+            Log.e("Orders Array", it.toString())
             queue.cancelAll("orders")
         }, {
             try {
@@ -159,7 +167,7 @@ class ProfileCartOrders : AppCompatActivity() {
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
-                params["Authorization"] = "Bearer $myToken"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
 
@@ -180,15 +188,15 @@ class ProfileCartOrders : AppCompatActivity() {
         setBlackTabsText()
         when (tabPosition) {
             0 -> {
-                profileTabBTN.setTextColor(getColor(R.color.navaraPrimary))
+                profileTabBTN.setTextColor(resources.getColor(R.color.navaraPrimary))
                 isInProfile = true
             }
             1 -> {
-                cartTabBTN.setTextColor(getColor(R.color.navaraPrimary))
+                cartTabBTN.setTextColor(resources.getColor(R.color.navaraPrimary))
                 isInProfile = false
             }
             2 -> {
-                orderTabBTN.setTextColor(getColor(R.color.navaraPrimary))
+                orderTabBTN.setTextColor(resources.getColor(R.color.navaraPrimary))
                 isInProfile = false
             }
         }
@@ -196,7 +204,7 @@ class ProfileCartOrders : AppCompatActivity() {
 
     private fun setNoInternet() {
         val fragmentTranslate = supportFragmentManager.beginTransaction()
-        fragmentTranslate.replace(R.id.loadProfileFL, NoInternetFragment())
+        fragmentTranslate.replace(R.id.loadProfileFL, NoInternetFragment(Statics.getLanguageJSONObject(this).getString("noConnection")))
         fragmentTranslate.commit()
     }
 
@@ -216,11 +224,21 @@ class ProfileCartOrders : AppCompatActivity() {
             sureCancel.show()
             sureCancel.setOnDismissListener {
                 if (sureCancel.isTrue) {
-                    finish()
+                    if (intent.getBooleanExtra(Statics.fromNotification, false)) {
+                        startActivity(Intent(this, MainActivity::class.java)
+                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                    } else {
+                        finish()
+                    }
                 }
             }
         } else {
-            finish()
+            if (intent.getBooleanExtra(Statics.fromNotification, false)) {
+                startActivity(Intent(this, MainActivity::class.java)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            } else {
+                finish()
+            }
         }
 
     }
@@ -269,9 +287,9 @@ class ProfileCartOrders : AppCompatActivity() {
             override fun onPageSelected(p0: Int) {
                 setBlackTabsText()
                 when (p0) {
-                    0 -> profileTabBTN.setTextColor(getColor(R.color.navaraPrimary))
-                    1 -> cartTabBTN.setTextColor(getColor(R.color.navaraPrimary))
-                    2 -> orderTabBTN.setTextColor(getColor(R.color.navaraPrimary))
+                    0 -> profileTabBTN.setTextColor(resources.getColor(R.color.navaraPrimary))
+                    1 -> cartTabBTN.setTextColor(resources.getColor(R.color.navaraPrimary))
+                    2 -> orderTabBTN.setTextColor(resources.getColor(R.color.navaraPrimary))
                 }
             }
 
@@ -293,9 +311,9 @@ class ProfileCartOrders : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     private fun setBlackTabsText() {
-        profileTabBTN.setTextColor(getColor(R.color.blackItem))
-        cartTabBTN.setTextColor(getColor(R.color.blackItem))
-        orderTabBTN.setTextColor(getColor(R.color.blackItem))
+        profileTabBTN.setTextColor(resources.getColor(R.color.blackItem))
+        cartTabBTN.setTextColor(resources.getColor(R.color.blackItem))
+        orderTabBTN.setTextColor(resources.getColor(R.color.blackItem))
     }
 
 }

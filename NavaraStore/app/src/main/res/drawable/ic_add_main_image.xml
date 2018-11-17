@@ -1,0 +1,5 @@
+<vector android:height="512dp" android:viewportHeight="128"
+    android:viewportWidth="128" android:width="512dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="@color/navaraPrimary" android:pathData="M64,13.5c-28.7,0 -52,23.3 -52,52s23.3,52 52,52s52,-23.3 52,-52S92.7,13.5 64,13.5zM64,113.5c-26.5,0 -48,-21.5 -48,-48s21.5,-48 48,-48s48,21.5 48,48S90.5,113.5 64,113.5z"/>
+    <path android:fillColor="@color/colorPrimaryHide" android:pathData="M64,36.5c3.3,0 6,2.7 6,6V60h18c3.3,0 6,2.7 6,6s-2.7,6 -6,6H70v18.5c0,3.3 -2.7,6 -6,6s-6,-2.7 -6,-6V72H40c-3.3,0 -6,-2.7 -6,-6s2.7,-6 6,-6h18V42.5C58,39.1 60.7,36.5 64,36.5M64,34.5c-4.4,0 -8,3.6 -8,8V58H40c-4.4,0 -8,3.6 -8,8s3.6,8 8,8h16v16.5c0,4.4 3.6,8 8,8s8,-3.6 8,-8V74h16c4.4,0 8,-3.6 8,-8s-3.6,-8 -8,-8H72V42.5C72,38 68.4,34.5 64,34.5L64,34.5z"/>
+</vector>

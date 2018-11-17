@@ -50,10 +50,11 @@
                     android:imeOptions="actionSearch"
                     android:background="@null"
                     android:hint="Enter Address, City or Zip Code"
-                    tools:ignore="RtlSymmetry,SpUsage"
+                    android:gravity="center_vertical|start"
                     android:paddingStart="@dimen/add_buttons_xy"
                     android:paddingRight="@dimen/point_top"
-                    android:paddingEnd="@dimen/point_top" />
+                    android:paddingEnd="@dimen/point_top"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
             </RelativeLayout>
 
@@ -62,6 +63,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/locationHintsTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/choose_location_hints"
@@ -69,7 +71,8 @@
         android:layout_alignParentBottom="true"
         android:padding="@dimen/point_top"
         android:textSize="@dimen/action_main_small"
+        android:gravity="start|center_vertical"
         android:background="@color/whiteHide"
-        tools:ignore="SpUsage" />
+        tools:ignore="RtlHardcoded,SpUsage" />
 
 </RelativeLayout>

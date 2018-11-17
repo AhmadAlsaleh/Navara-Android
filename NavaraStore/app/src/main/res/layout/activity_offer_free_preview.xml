@@ -51,16 +51,11 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/free_offer_preview_icon"
+                android:background="@drawable/ic_circle_white_border"
                 app:srcCompat="@drawable/ic_gift_red"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="18dp"
-                android:paddingLeft="18dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:paddingEnd="10dp"
-                android:paddingStart="18dp" />
+                android:padding="12dp"
+                android:layout_margin="@dimen/list_padding"
+                android:layout_alignParentEnd="true" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -75,11 +70,12 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Offer On Color Changing"
+                    android:text=""
                     android:textColor="@color/whiteItem"
                     android:textStyle="bold"
+                    android:gravity="start"
                     android:textSize="@dimen/main_buttons"
-                    tools:ignore="SpUsage" />
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <ImageView
                     android:id="@+id/addToCartIV"
@@ -107,7 +103,7 @@
                     android:id="@+id/offerDetailsTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Details:"
+                    android:text="@string/details"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/main_toolbar_title"
                     tools:ignore="SpUsage" />
@@ -134,12 +130,11 @@
                             android:id="@+id/getFreeTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="And Get:"
+                            android:text="@string/and_get"
                             android:textSize="@dimen/fab_margin"
-                            android:layout_marginLeft="@dimen/list_padding"
+                            android:layout_marginStart="@dimen/list_padding"
                             android:textStyle="bold"
                             android:textColor="@color/green_background"
-                            android:layout_marginStart="@dimen/list_padding"
                             tools:ignore="SpUsage" />
 
                         <LinearLayout
@@ -152,7 +147,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:scrollbars="vertical"
-                                android:layout_marginLeft="@dimen/padding_category"
                                 android:background="@android:color/transparent"
                                 android:layout_marginStart="@dimen/padding_category" />
 
@@ -166,11 +160,12 @@
                     android:id="@+id/offerDescriptionTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Description:"
+                    android:text="@string/description"
                     android:layout_marginTop="@dimen/fab_margin"
                     android:layout_marginBottom="@dimen/padding_point"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/main_toolbar_title"/>
+                    android:textSize="@dimen/main_toolbar_title"
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
                     android:id="@+id/offerDescriptionTextTV"
@@ -178,12 +173,46 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/primary_list_item"
                     android:textSize="@dimen/action_text"
-                    android:text="Test Test Test Test Test Test Test Test Test Test Test "
-                    tools:ignore="SpUsage" />
+                    android:gravity="start"
+                    android:text=""
+                    tools:ignore="HardcodedText,SpUsage" />
 
             </LinearLayout>
 
         </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/offerFreeContactUsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green_background"
+            android:textSize="@dimen/action_main_small"
+            android:background="@drawable/white_edit_text_background"
+            android:padding="5dp"
+            android:text="@string/contact_us"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/offerFreeContactUsFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="@dimen/point_top"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            app:fabSize="normal"
+            app:srcCompat="@mipmap/ic_whatsapp_logo"
+            android:focusable="true" />
 
     </LinearLayout>
 

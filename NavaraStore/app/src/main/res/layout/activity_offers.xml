@@ -23,16 +23,16 @@
 
         <TextView
             android:id="@+id/latestOfferTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Latest Offers"
+            android:text="@string/latest_offers"
             android:textStyle="bold"
             android:textSize="@dimen/main_toolbar_title"
             android:ellipsize="end"
             android:maxLines="1"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|left"
             android:textColor="@color/whiteItem"
-            tools:ignore="SpUsage" />
+            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
     </LinearLayout>
 
@@ -47,7 +47,7 @@
         android:id="@+id/itemsOfflineTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="You\'re Offline"
+        android:text="@string/you_re_offline"
         android:textColor="@color/whiteItem"
         android:background="@color/red_background"
         android:padding="@dimen/padding_point"

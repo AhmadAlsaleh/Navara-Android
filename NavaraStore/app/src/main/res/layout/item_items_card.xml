@@ -24,144 +24,261 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/itemIV"
-                android:layout_gravity="center"
-                android:layout_width="@dimen/list_icons_width_high"
-                android:layout_height="@dimen/list_icons_width_high"
-                android:layout_margin="@dimen/list_padding"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_add_shopping_cart"
-                app:civ_fill_color="@color/whiteItem"
-                app:civ_border_width="@dimen/divider_width"
-                app:civ_border_color="@color/divider_color"
-                tools:ignore="VectorDrawableCompat" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="@dimen/list_icons_width_high"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/itemTV"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="Item"
-                    android:textSize="@dimen/action_text"
-                    android:textColor="@color/primary_list_item"
-                    android:ellipsize="end"
-                    android:maxLines="1"/>
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/itemPriceTitle"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="Price: "
-                        android:visibility="gone"
-                        android:textStyle="bold"/>
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/itemPriceTV"
-                        android:layout_width="wrap_content"
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/itemIV"
+                            android:layout_marginLeft="@dimen/list_margin"
+                            android:layout_marginRight="@dimen/list_margin"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="@dimen/list_padding"
+                            android:layout_width="@dimen/list_icons_width_high"
+                            android:layout_height="@dimen/list_icons_width_high"
+                            android:scaleType="centerCrop"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_add_shopping_cart"
+                            app:civ_fill_color="@color/whiteItem"
+                            app:civ_border_width="@dimen/divider_width"
+                            app:civ_border_color="@color/divider_color"
+                            tools:ignore="VectorDrawableCompat" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="600$"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginRight="10dp" />
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="@dimen/padding_linear"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:id="@+id/itemTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical|left"
+                                android:text="Item"
+                                android:textSize="@dimen/action_text"
+                                android:textColor="@color/primary_list_item"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:id="@+id/itemPriceTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="Price: "
+                                    android:visibility="gone"
+                                    android:textStyle="bold"/>
+
+                                <LinearLayout
+                                    android:id="@+id/offerPriceLL"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:id="@+id/itemPriceTV"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:gravity="left"
+                                        android:maxLines="1"
+                                        android:text="600$"
+                                        android:layout_marginEnd="10dp"
+                                        android:layout_marginRight="10dp"
+                                        tools:ignore="HardcodedText,RtlHardcoded" />
+
+                                    <TextView
+                                        android:id="@+id/itemPriceTVOffer"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:gravity="left"
+                                        android:maxLines="1"
+                                        android:text=""
+                                        android:layout_marginEnd="10dp"
+                                        android:layout_marginRight="10dp"
+                                        tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/chooseQuantityLL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/list_padding"
+                            android:layout_marginLeft="@dimen/padding_action_buttons"
+                            android:layout_marginRight="@dimen/padding_action_buttons"
+                            android:layout_marginBottom="@dimen/list_padding">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/itemAddRemoveBackLL"
+                                android:background="@drawable/primary_button_background">
+
+                                <ImageView
+                                    android:id="@+id/itemRemoveIV"
+                                    android:layout_width="@dimen/main_buttons"
+                                    android:layout_height="@dimen/main_buttons"
+                                    app:srcCompat="@drawable/ic_remove"
+                                    android:padding="@dimen/list_margin"/>
+
+                                <TextView
+                                    android:id="@+id/itemQuantityTV"
+                                    android:clickable="false"
+                                    android:layout_gravity="center"
+                                    android:layout_width="33dp"
+                                    android:layout_height="@dimen/main_buttons"
+                                    android:text="22"
+                                    android:textColor="@color/blackItem"
+                                    android:gravity="center"
+                                    android:textSize="@dimen/action_main_small"
+                                    android:background="@drawable/white_squere_border"
+                                    android:paddingLeft="@dimen/list_padding"
+                                    android:paddingRight="@dimen/list_padding"
+                                    tools:ignore="SpUsage" />
+
+                                <ImageView
+                                    android:id="@+id/itemAddIV"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    app:srcCompat="@drawable/ic_add"
+                                    android:padding="@dimen/list_margin"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/itemSelectTotalTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Total: 600"
+                                android:layout_marginLeft="@dimen/list_padding"
+                                android:layout_marginRight="@dimen/list_padding"
+                                android:gravity="center_vertical"
+                                android:textSize="@dimen/action_main_small"
+                                tools:ignore="RtlHardcoded,SpUsage" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/divider_width"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/point_top"
+                        android:layout_marginBottom="@dimen/point_top"/>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_centerInParent="true">
+
+                            <ImageView
+                                android:id="@+id/itemCartIV"
+                                android:layout_gravity="center"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="@dimen/list_margin"
+                                android:layout_marginRight="@dimen/point_top"
+                                app:srcCompat="@drawable/ic_add_shopping_cart"
+                                tools:ignore="RtlHardcoded" />
+
+                            <ImageView
+                                android:id="@+id/itemPopupIV"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:visibility="gone"
+                                android:layout_marginRight="@dimen/list_margin"
+                                app:srcCompat="@drawable/ic_more_vert_menu"
+                                tools:ignore="RtlHardcoded" />
+
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/itemCB"
+                            android:layout_gravity="center"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone"
+                            android:layout_margin="@dimen/list_padding" />
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/chooseQuantityLL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
-
                 <LinearLayout
+                    android:id="@+id/itemItemsCashBackLL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/list_padding"
-                    android:layout_marginLeft="@dimen/list_padding"
-                    android:layout_marginRight="@dimen/list_padding"
-                    android:id="@+id/itemAddRemoveBackLL"
-                    android:background="@drawable/primary_button_background">
+                    android:orientation="horizontal"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    tools:ignore="RtlHardcoded"
+                    android:background="@drawable/background_cash_back_right">
 
                     <ImageView
-                        android:id="@+id/itemRemoveIV"
-                        android:layout_width="@dimen/main_buttons"
-                        android:layout_height="@dimen/main_buttons"
-                        app:srcCompat="@drawable/ic_remove"
-                        android:padding="@dimen/list_margin"/>
+                        android:id="@+id/itemItemsCashBackIV"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        app:srcCompat="@drawable/ic_cash_back"
+                        android:padding="@dimen/list_margin"
+                        android:layout_marginLeft="@dimen/padding_linear"
+                        android:layout_marginRight="@dimen/padding_linear"/>
 
                     <TextView
-                        android:id="@+id/itemQuantityTV"
-                        android:clickable="false"
+                        android:id="@+id/itemItemsCashBackTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100 S.P"
+                        android:textSize="@dimen/fab_margin"
                         android:layout_gravity="center"
-                        android:layout_width="@dimen/text_quantity_x"
-                        android:layout_height="@dimen/main_buttons"
-                        android:text="22"
-                        android:textColor="@color/blackItem"
-                        android:gravity="center"
-                        android:textSize="@dimen/action_main_small"
-                        android:background="@drawable/white_squere_border"
-                        android:paddingLeft="@dimen/list_padding"
-                        android:paddingRight="@dimen/list_padding"
-                        tools:ignore="SpUsage" />
-
-                    <ImageView
-                        android:id="@+id/itemAddIV"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        app:srcCompat="@drawable/ic_add"
-                        android:padding="@dimen/list_margin"/>
+                        android:textColor="@color/whiteItem"
+                        android:layout_marginEnd="@dimen/padding_linear"/>
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/itemSelectTotalTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Total: 600"
-                    android:textSize="@dimen/action_main_small"
-                    tools:ignore="SpUsage" />
-
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="@dimen/divider_width"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/point_top"
-                android:layout_marginBottom="@dimen/point_top"/>
-
-            <ImageView
-                android:id="@+id/itemCartIV"
-                android:layout_gravity="center"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:srcCompat="@drawable/ic_add_shopping_cart"
-                android:layout_margin="@dimen/list_padding"/>
-
-            <CheckBox
-                android:id="@+id/itemCB"
-                android:layout_gravity="center"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="gone"
-                android:layout_margin="@dimen/list_padding"/>
+            </RelativeLayout>
 
         </LinearLayout>
 

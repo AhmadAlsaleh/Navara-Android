@@ -24,7 +24,9 @@ class LoadingFragment : Fragment() {
         val viewLoad = inflater.inflate(R.layout.fragment_loading, container, false)
 
         myFont = StaticInformation().myFont(context)!!
-        viewLoad.findViewById<TextView>(R.id.loadingTV).typeface = myFont
+        val loadingTV = viewLoad.findViewById<TextView>(R.id.loadingTV)
+        loadingTV.typeface = myFont
+        loadingTV.text = Statics.getLanguageJSONObject(activity).getString("loading")
         val image: ImageView = viewLoad.findViewById(R.id.loadingIV)
 
         BackRotateAsync(image).execute(null)
@@ -35,14 +37,16 @@ class LoadingFragment : Fragment() {
     @SuppressLint("StaticFieldLeak")
     class BackRotateAsync(private var imageView: ImageView): AsyncTask<Void, Void, Void>() {
         override fun doInBackground(vararg params: Void?): Void? {
-            val rotateAnimation = RotateAnimation(0f, 360f,
-                    Animation.RELATIVE_TO_SELF, 0.5f,
-                    Animation.RELATIVE_TO_SELF, 0.5f)
+            try {
+                val rotateAnimation = RotateAnimation(0f, 360f,
+                        Animation.RELATIVE_TO_SELF, 0.5f,
+                        Animation.RELATIVE_TO_SELF, 0.5f)
 
-            rotateAnimation.interpolator = LinearInterpolator()
-            rotateAnimation.duration = 3000
-            rotateAnimation.repeatCount = Animation.INFINITE
-            imageView.startAnimation(rotateAnimation)
+                rotateAnimation.interpolator = LinearInterpolator()
+                rotateAnimation.duration = 3000
+                rotateAnimation.repeatCount = Animation.INFINITE
+                imageView.startAnimation(rotateAnimation)
+            } catch (err: Exception) {}
             return null
         }
     }

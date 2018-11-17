@@ -13,8 +13,8 @@ import java.sql.SQLException;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
-    private static final String databaseName = "navara.db";
-    private static final int databaseVersion = 1;
+    private static final String databaseName = "navara_store.db";
+    private static final int databaseVersion = 3;
     private RuntimeExceptionDao<ItemBasicModel, Integer> itemBasicModelIntegerRuntimeException = null;
     private RuntimeExceptionDao<CategoryDatabaseModel, Integer> categoryModelIntegerRuntimeException = null;
     private RuntimeExceptionDao<OfferBasicModel, Integer> offerBasicModelIntegerRuntimeException = null;

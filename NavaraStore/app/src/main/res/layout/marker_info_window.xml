@@ -20,16 +20,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Location Remark"
+                android:gravity="left"
                 android:textSize="@dimen/dialogs_title"
                 android:textColor="@color/navaraPrimary"
                 android:textStyle="bold"
-                tools:ignore="SpUsage" />
+                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
             <TextView
                 android:id="@+id/markerInfoTV"
                 android:layout_width="@dimen/luncher_logo"
                 android:layout_height="wrap_content"
                 android:text="Lattakia"
+                android:gravity="start"
                 android:textSize="@dimen/list_item_text"
                 tools:ignore="HardcodedText,SpUsage" />
 

@@ -53,7 +53,6 @@
                 android:paddingRight="@dimen/fab_margin"
                 android:paddingBottom="@dimen/fab_margin">
 
-
                 <ImageView
                     android:id="@+id/allDoneMainIV"
                     android:layout_width="150dp"
@@ -66,12 +65,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:layout_marginLeft="@dimen/padding_category"
-                    android:layout_marginRight="@dimen/padding_category"
+                    android:layout_marginLeft="@dimen/padding_linear"
+                    android:layout_marginRight="@dimen/padding_linear"
                     android:layout_marginBottom="@dimen/point_top"
                     android:textColor="@color/primary_list_item"
                     android:textSize="@dimen/dialogs_title"
                     android:text="SMS"
+                    android:gravity="center"
                     tools:ignore="SpUsage" />
 
                 <EditText

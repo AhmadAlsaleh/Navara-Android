@@ -14,6 +14,7 @@ import com.smartlife_solutions.android.navara_store.OrdersActivity
 
 import com.smartlife_solutions.android.navara_store.R
 import com.smartlife_solutions.android.navara_store.StaticInformation
+import com.smartlife_solutions.android.navara_store.Statics
 import java.util.*
 
 @SuppressLint("ValidFragment")
@@ -25,14 +26,25 @@ class OrderChooseVisibleTimeFragment(var activity: OrdersActivity) : Fragment() 
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_order_choose_visible_time, container, false)
+
+        val lang = Statics.getLanguageJSONObject(activity).getJSONObject("makeOrderActivity").getJSONObject("timeFragment")
+
         val myFont = StaticInformation().myFont(context)
-        view.findViewById<TextView>(R.id.chooseTimeTitle).typeface = myFont
-        view.findViewById<TextView>(R.id.fromTV).typeface = myFont
-        view.findViewById<TextView>(R.id.toTV).typeface = myFont
+        val titleTime = view.findViewById<TextView>(R.id.chooseTimeTitle)
+        titleTime.typeface = myFont
+        titleTime.text = lang.getString("title")
+        val fromTV = view.findViewById<TextView>(R.id.fromTV)
+        fromTV.typeface = myFont
+        fromTV.text = lang.getString("from")
+        val toTV = view.findViewById<TextView>(R.id.toTV)
+        toTV.typeface = myFont
+        toTV.text = lang.getString("to")
         val toBTN = view.findViewById<Button>(R.id.setToTimeBTN)
         toBTN.typeface = myFont
+        toBTN.text = lang.getString("setToTime")
         val fromBTN = view.findViewById<Button>(R.id.setFromTimeBTN)
         fromBTN.typeface = myFont
+        fromBTN.text = lang.getString("setFromTime")
         val timeFromTP = view.findViewById<TextView>(R.id.clockFromTC)
         timeFromTP.typeface = myFont
         val timeToTP = view.findViewById<TextView>(R.id.clockToTC)
@@ -45,7 +57,11 @@ class OrderChooseVisibleTimeFragment(var activity: OrdersActivity) : Fragment() 
         var minutesTo = activity.toTime.split(':')[1].split(' ')[0].toInt()
 
         timeFromTP.text = "${checkHourDigits(hourForm.toString())}:${checkHourDigits(minutesFrom.toString())} AM"
-        timeToTP.text = "${checkHourDigits(hourTo.toString())}:${checkHourDigits(minutesTo.toString())} PM"
+        var hourT = checkHourDigits(hourTo.toString()).toInt()
+        if (hourT > 12) {
+            hourT -= 12
+        }
+        timeToTP.text = "${checkHourDigits(hourT.toString())}:${checkHourDigits(minutesTo.toString())} PM"
 
         fromBTN.setOnClickListener {
             val fromTPD = TimePickerDialog(context,

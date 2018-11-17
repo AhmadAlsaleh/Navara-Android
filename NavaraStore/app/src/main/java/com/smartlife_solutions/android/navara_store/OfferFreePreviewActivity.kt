@@ -25,24 +25,39 @@ import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.ItemBas
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.OfferBasicModel
 import com.smartlife_solutions.android.navara_store.Dialogs.ChooseQuantityDialog
 import kotlinx.android.synthetic.main.activity_offer_free_preview.*
+import org.json.JSONObject
+import java.util.*
 
 class OfferFreePreviewActivity : AppCompatActivity() {
 
     lateinit var myFont: Typeface
     private lateinit var offer: OfferBasicModel
+    private lateinit var lang: JSONObject
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_offer_free_preview)
         myFont = StaticInformation().myFont(this)!!
+        lang = Statics.getLanguageJSONObject(this)
         offerBackIV.setOnClickListener {
             it.startAnimation(StaticInformation().clickAnim(this))
             onBackPressed()
         }
 
+        if (Statics.getCurrentLanguageName(this) == Statics.arabic) {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("fa"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        } else {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("en"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        }
+
+
         if (!StaticInformation().isConnected(this)) {
             val ft = supportFragmentManager.beginTransaction()
-            ft.replace(R.id.previewFreeFL, NoInternetFragment())
+            ft.replace(R.id.previewFreeFL, NoInternetFragment(Statics.getLanguageJSONObject(this).getString("noConnection")))
             ft.commit()
             return
         }
@@ -51,8 +66,8 @@ class OfferFreePreviewActivity : AppCompatActivity() {
             it.startAnimation(StaticInformation().clickAnim(this))
 
             try {
-                if (DatabaseHelper(this).userModelIntegerRuntimeException.queryForAll()[0].token.isNotEmpty()) {
-                    ChooseQuantityDialog(this, offer, true, this).show()
+                if (Statics.myToken.isNotEmpty()) {
+                    ChooseQuantityDialog(this, offer, true, Statics.getLanguageJSONObject(this)).show()
                 } else {
                     startActivity(Intent(this, LoginRegisterActivity::class.java).putExtra("main", false))
                 }
@@ -62,18 +77,29 @@ class OfferFreePreviewActivity : AppCompatActivity() {
 
         }
 
+        offerFreeContactUsFAB.setOnClickListener {
+            StaticInformation().openWhatsApp(this, "Free Offer ID: ${offer.id}\nTitle: ${offer.title}")
+        }
+
         // region font
+        val langC = lang.getJSONObject("offerFreePreviewActivity")
         offerTitleTV.typeface = myFont
         offerDetailsTV.typeface = myFont
+        offerDetailsTV.text = langC.getString("details")
         getFreeTV.typeface = myFont
+        getFreeTV.text = langC.getString("andGet")
         offerDescriptionTV.typeface = myFont
+        offerDescriptionTV.text = langC.getString("description")
         offerDescriptionTextTV.typeface = myFont
+        offerFreeContactUsTV.typeface = myFont
+        offerFreeContactUsTV.text = langC.getString("contactUs")
         // endregion
 
         getInfo(intent.getStringExtra("id"))
 
 
         findViewById<TextView>(R.id.loadingTV).typeface = myFont
+        findViewById<TextView>(R.id.loadingTV).text = lang.getString("loading")
         val rotateAnimation = RotateAnimation(0f, 360f,
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f)
@@ -110,18 +136,18 @@ class OfferFreePreviewActivity : AppCompatActivity() {
                     val item = itemsJSON.getJSONObject(i)
                     itemsArray.add(ItemBasicModel(item.getString("id"), item.getString("name"),
                             item.getString("itemCategory"), item.getString("itemCategoryID"),
-                            item.getInt("quantity"), item.getInt("price").toFloat(),
-                            item.getString("thumbnailImagePath")))
+                            item.getInt("quantity"), 0F, // item.getInt("price").toFloat(),
+                            item.getString("thumbnailImagePath"), "0.0", "", 0))
                 }
 
                 val itemsArrayList = ArrayList<ItemBasicModel>()
                 itemsArrayList.add(ItemBasicModel(it.getString("itemID"), it.getString("itemName"),
                         "","",1,it.getInt("unitNetPrice").toFloat(),
-                        it.getString("thumbnailImagePath")))
+                        it.getString("thumbnailImagePath"), "0.0", "", 0))
 
                 offerPreviewItemsRV.setHasFixedSize(true)
                 offerPreviewItemsRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                offerPreviewItemsRV.adapter = PreviewFreeItemsAdapter(context = this, itemsArrayList = itemsArrayList, isAll = false)
+                offerPreviewItemsRV.adapter = PreviewFreeItemsAdapter(context = this, itemsArrayList = itemsArrayList, isAll = false, lang = Statics.getLanguageJSONObject(this))
 
 
                 setupItems(itemsArray)
@@ -142,7 +168,7 @@ class OfferFreePreviewActivity : AppCompatActivity() {
     private fun setupItems(itemsArrayListFree: ArrayList<ItemBasicModel>) {
         offerPreviewOffersRV.setHasFixedSize(true)
         offerPreviewOffersRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        offerPreviewOffersRV.adapter = PreviewFreeItemsAdapter(context = this, itemsArrayList = itemsArrayListFree, isAll = false)
+        offerPreviewOffersRV.adapter = PreviewFreeItemsAdapter(context = this, itemsArrayList = itemsArrayListFree, isAll = false, lang = Statics.getLanguageJSONObject(this))
 
     }
 
@@ -180,7 +206,7 @@ class OfferFreePreviewActivity : AppCompatActivity() {
     }
 
     private fun setCurrentImage(position: Int) {
-        for (i in 0..itemCirclesNumberLL.childCount - 1) {
+        for (i in 0 until itemCirclesNumberLL.childCount) {
             itemCirclesNumberLL.getChildAt(i).setBackgroundResource(R.drawable.white_button_background)
         }
         itemCirclesNumberLL.getChildAt(position).setBackgroundResource(R.drawable.primary_button_background)

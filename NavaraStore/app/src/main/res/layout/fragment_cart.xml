@@ -23,8 +23,6 @@
           android:layout_height="wrap_content"
           android:orientation="vertical">
 
-
-
       </LinearLayout>
 
    </ScrollView>
@@ -37,7 +35,7 @@
        android:layout_alignParentBottom="true"
        android:layout_alignParentEnd="true"
        android:layout_margin="@dimen/margin_fab_appoi"
-       app:srcCompat="@drawable/ic_make_order"
+       app:srcCompat="@drawable/ic_order_primary"
        android:padding="@dimen/action_main_small"
        android:layout_alignParentRight="true" />
 
@@ -62,6 +60,7 @@
        android:layout_margin="@dimen/margin_fab_appoi"
        android:text="Your Cart is Empty"
        android:textSize="@dimen/action_text"
+       android:gravity="center"
        android:layout_centerInParent="true"
        android:textColor="@color/blackItem"
        android:visibility="gone"

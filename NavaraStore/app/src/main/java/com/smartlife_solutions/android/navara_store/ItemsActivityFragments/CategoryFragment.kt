@@ -20,12 +20,18 @@ class CategoryFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_category, container, false)
 
-        val categoriesArrayList = DatabaseHelper(context).categoryModelIntegerRuntimeException.queryForAll() as ArrayList<CategoryDatabaseModel>
+        try {
+            val categoriesArrayList = DatabaseHelper(context)
+                    .categoryModelIntegerRuntimeException.queryForAll() as ArrayList<CategoryDatabaseModel>
 
-        val categoriesGrid = view.findViewById<RecyclerView>(R.id.categoriesGridRV)
-        categoriesGrid.setHasFixedSize(true)
-        categoriesGrid.layoutManager = GridLayoutManager(context, 3)
-        categoriesGrid.adapter = CategoriesGridAdapter(activity as ItemsActivity, categoriesArrayList)
+            val categoriesGrid = view.findViewById<RecyclerView>(R.id.categoriesGridRV)
+            categoriesGrid.setHasFixedSize(true)
+            categoriesGrid.layoutManager = GridLayoutManager(context, 3)
+            categoriesGrid.adapter = CategoriesGridAdapter(activity as ItemsActivity, categoriesArrayList)
+        } catch (err: Exception) {
+            (activity as ItemsActivity).onBackPressed()
+        }
+
         return view
     }
 

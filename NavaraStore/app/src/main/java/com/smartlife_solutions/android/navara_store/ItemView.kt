@@ -3,6 +3,7 @@ package com.smartlife_solutions.android.navara_store
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Handler
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -26,9 +27,11 @@ import de.hdodenhof.circleimageview.CircleImageView
 import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 import java.nio.charset.Charset
+import java.util.*
 
 @SuppressLint("SetTextI18n", "ViewConstructor")
-class ItemView(var fragment: Fragment, context: Context, var item: ItemBasicModel, var fromCart: Boolean): View(context) {
+class ItemView(var fragment: Fragment, context: Context, var item: ItemBasicModel, var fromCart: Boolean, var lang: JSONObject)
+    : View(context) {
 
     val view = inflate(context, R.layout.item_items_card, null)!!
     init {
@@ -44,7 +47,20 @@ class ItemView(var fragment: Fragment, context: Context, var item: ItemBasicMode
         val itemSelectTotalTV = view.findViewById<TextView>(R.id.itemSelectTotalTV)
         val itemCartIV = view.findViewById<ImageView>(R.id.itemCartIV)
         val itemCB = view.findViewById<CheckBox>(R.id.itemCB)
+        val itemCashBackLL: LinearLayout = view.findViewById(R.id.itemItemsCashBackLL)
+        val itemCashBackTV: TextView = view.findViewById(R.id.itemItemsCashBackTV)
         itemCartIV.setImageResource(R.drawable.ic_close_primary)
+
+        try {
+            if (item.cashBack.toFloat().toInt() == 0) {
+                itemCashBackLL.visibility = View.GONE
+            } else {
+                itemCashBackLL.visibility = View.VISIBLE
+                itemCashBackTV.text = item.cashBack.toFloat().toInt().toString() + " ${lang.getString("currencyCode")}"
+            }
+        } catch (err: Exception) {
+            itemCashBackLL.visibility = View.GONE
+        }
 
         if (!fromCart) {
             itemCB.visibility = View.VISIBLE
@@ -58,11 +74,11 @@ class ItemView(var fragment: Fragment, context: Context, var item: ItemBasicMode
 
         itemCartIV.setOnClickListener {
             it.startAnimation(StaticInformation().clickAnim(context))
-            val sureRemove = SureToDoDialog(context, "Sure to remove from Cart?")
+            val sureRemove = SureToDoDialog(context, lang.getJSONObject("dialogs").getJSONObject("sure").getString("removeFromCart"))
             sureRemove.show()
             sureRemove.setOnDismissListener {
                 if (sureRemove.isTrue) {
-                    removeFromCart(this, item.id)
+                    removeFromCart(itemLL, item.id)
                 }
             }
         }
@@ -72,7 +88,7 @@ class ItemView(var fragment: Fragment, context: Context, var item: ItemBasicMode
             if (item.quantity > 1) {
                 editQuantity(itemSelectTotalTV, itemQuantityTV, false)
             } else {
-                Toast.makeText(context, "One item at least", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, lang.getJSONObject("itemsList").getString("oneItem"), Toast.LENGTH_LONG).show()
             }
         }
 
@@ -90,26 +106,21 @@ class ItemView(var fragment: Fragment, context: Context, var item: ItemBasicMode
         }
 
         itemTV.text = item.name
-        itemPriceTV.text = StaticInformation().formatPrice(item.price) + " " + item.currencyCode
+        itemPriceTV.text = StaticInformation().formatPrice(item.price) + " " + lang.getString("currencyCode")
         itemQuantityTV.text = item.quantity.toString()
-        itemSelectTotalTV.text = "Total: " + StaticInformation().formatPrice(item.quantity * item.price) + " " + item.currencyCode
+        itemSelectTotalTV.text = StaticInformation().formatPrice(item.quantity * item.price) + " " + lang.getString("currencyCode")
 
     }
 
     private fun removeFromCart(itemView: View, id: String) {
 
-        val myToken= try {
-            DatabaseHelper(context).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
         val jsonBody = JSONObject()
         jsonBody.put("itemID", id)
         val requestBody: String = jsonBody.toString()
         val queue = Volley.newRequestQueue(context)
         val request = object : StringRequest(Request.Method.POST, APIsURL().REMOVE_FROM_CART,
                 Response.Listener<String> {
-                    Toast.makeText(context, "Item has removed Successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, lang.getJSONObject("itemsList").getString("itemRemoved"), Toast.LENGTH_SHORT).show()
                     itemView.startAnimation(StaticInformation().fadeOutAnim(context))
                     Handler().postDelayed({
                         try {
@@ -121,14 +132,14 @@ class ItemView(var fragment: Fragment, context: Context, var item: ItemBasicMode
                     }, 500)
                     queue.cancelAll("change")
                 }, Response.ErrorListener {
-            Toast.makeText(context, "No Internet Connection, Please Try Again", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, lang.getString("noInternet"), Toast.LENGTH_SHORT).show()
             queue.cancelAll("change")
         }) {
             @Throws(AuthFailureError::class)
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
-                params["Authorization"] = "Bearer $myToken"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
 
@@ -165,28 +176,24 @@ class ItemView(var fragment: Fragment, context: Context, var item: ItemBasicMode
             item.quantity - 1
         }
         quantityTV.text = quantity.toString()
-        totalTV.text = "Total: " + StaticInformation().formatPrice(quantity * (item.price)) + " " + item.currencyCode
+        totalTV.text = StaticInformation().formatPrice(quantity * (item.price)) + " " + lang.getString("currencyCode")
 
         val jsonBody = JSONObject()
         jsonBody.put("ItemID", id)
         jsonBody.put("Quantity", quantity)
-        val myToken= try {
-            DatabaseHelper(context).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
+
         val requestBody: String = jsonBody.toString()
         Log.e("item", requestBody)
         val queue = Volley.newRequestQueue(context)
         val request = object : StringRequest(Request.Method.POST, APIsURL().ADD_ITEM_TO_CART,
                 Response.Listener<String> {
-                    Toast.makeText(context, "Quantity has changed Successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, lang.getJSONObject("itemsList").getString("changeQuantity"), Toast.LENGTH_SHORT).show()
                     item.quantity = quantity
                     queue.cancelAll("add")
                 }, Response.ErrorListener {
-            Toast.makeText(context, "No Internet Connection, Please Try Again", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, lang.getString("noInternet"), Toast.LENGTH_SHORT).show()
             quantityTV.text = item.quantity.toString()
-            totalTV.text = "Total: " + StaticInformation().formatPrice(item.quantity * (item.price)) + " " + item.currencyCode
+            totalTV.text = StaticInformation().formatPrice(item.quantity * (item.price)) + " " + lang.getString("currencyCode")
             Log.e("error", it.toString())
             queue.cancelAll("add")
         }) {
@@ -194,7 +201,7 @@ class ItemView(var fragment: Fragment, context: Context, var item: ItemBasicMode
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
-                params["Authorization"] = "Bearer $myToken"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
 

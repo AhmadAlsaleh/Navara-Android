@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MyUsedItemsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/myUsedItemsBackIV"
+            android:layout_width="@dimen/toolbar_layout"
+            android:layout_height="@dimen/toolbar_layout"
+            app:srcCompat="@drawable/ic_back_arrow_white"
+            android:padding="@dimen/padding_action_buttons" />
+
+        <TextView
+            android:id="@+id/myUsedItemsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/my_used_items"
+            android:textStyle="bold"
+            android:textSize="@dimen/main_toolbar_title"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center_vertical|left"
+            android:textColor="@color/whiteItem"
+            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/myUsedItemsRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/myUsedItemsNoItemTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_fab_appoi"
+            android:text="@string/you_don_t_have_used_items_yet"
+            android:textSize="@dimen/action_text"
+            android:layout_centerInParent="true"
+            android:textColor="@color/blackItem"
+            android:visibility="gone"
+            tools:ignore="SpUsage" />
+
+        <Button
+            android:id="@+id/myUsedItemsAddBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/fab_margin"
+            android:text="@string/add_used_item"
+            android:paddingLeft="@dimen/margin_fab_appoi"
+            android:paddingRight="@dimen/margin_fab_appoi"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="@dimen/list_item_text"
+            android:textColor="@color/whiteItem"
+            android:background="@drawable/primary_button_background"
+            android:textAllCaps="false"
+            tools:ignore="HardcodedText,SpUsage" />
+
+        <FrameLayout
+            android:id="@+id/myUsedItemsFL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -16,12 +16,9 @@ import com.android.volley.Response
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.smartlife_solutions.android.navara_store.*
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.DatabaseHelper
-import com.smartlife_solutions.android.navara_store.LoginRegisterActivity
-import com.smartlife_solutions.android.navara_store.ProfileCartOrders
-import com.smartlife_solutions.android.navara_store.R
-import com.smartlife_solutions.android.navara_store.StaticInformation
 import kotlinx.android.synthetic.main.dialog_change_password.*
 import org.json.JSONObject
 import java.io.UnsupportedEncodingException
@@ -46,6 +43,13 @@ class ChangePasswordDialog(context: Context, var activity: ProfileCartOrders): D
         renewPasswordET.typeface = myFont
         changePasswordBTN.typeface = myFont
         // endregion
+
+        val lang = Statics.getLanguageJSONObject(activity).getJSONObject("dialogs").getJSONObject("changePassword")
+        changePasswordTitle.text = lang.getString("title")
+        changePasswordOldText.text = lang.getString("old")
+        changePasswordNewText.text = lang.getString("new")
+        changePasswordReNewText.text = lang.getString("repeatNew")
+        changePasswordBTN.text = lang.getString("button")
 
         changePasswordClose.setOnClickListener(this)
         changePasswordBTN.setOnClickListener(this)
@@ -105,11 +109,6 @@ class ChangePasswordDialog(context: Context, var activity: ProfileCartOrders): D
 
         toggleLoader(true)
 
-        val myToken= try {
-            DatabaseHelper(context).userModelIntegerRuntimeException.queryForAll()[0].token
-        } catch (err: Exception) {
-            ""
-        }
         val jsonBody = JSONObject()
         jsonBody.put("OldPassword", oldPasswordET.text.toString())
         jsonBody.put("NewPassword", newPasswordET.text.toString())
@@ -134,7 +133,7 @@ class ChangePasswordDialog(context: Context, var activity: ProfileCartOrders): D
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
-                params["Authorization"] = "Bearer $myToken"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
 

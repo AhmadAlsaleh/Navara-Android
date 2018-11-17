@@ -5,6 +5,8 @@
     <color name="colorAccent">#27ae60</color>
 
     <color name="hide_all">#00ffffff</color>
+    <color name="colorPrimaryHide">#d7e74c3c</color>
+
 
     <color name="whiteBack">#fff</color>
     <color name="whiteItem">#fff</color>
@@ -21,6 +23,7 @@
 
     <color name="primary_list_item">#000</color>
     <color name="divider_color">#AFAEAF</color>
+    <color name="hide_gray">#a0000000</color>
 
     <color name="navaraPrimary">@color/colorPrimary</color>
     <color name="navaraPrimaryDark">@color/colorPrimaryDark</color>
@@ -32,7 +35,7 @@
 
     <color name="orange_background">#ff9800</color>
     <color name="light_blue_gray">#e5f5f4</color>
-
+    <color name="gold_coin">#e6ffd600</color>
     <color name="red_background">#af2c29</color>
 
 </resources>

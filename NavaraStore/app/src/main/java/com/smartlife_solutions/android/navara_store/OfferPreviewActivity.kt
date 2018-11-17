@@ -23,15 +23,32 @@ import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.Databas
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.OfferBasicModel
 import com.smartlife_solutions.android.navara_store.Dialogs.ChooseQuantityDialog
 import kotlinx.android.synthetic.main.activity_offer_preview.*
+import org.json.JSONObject
+import java.util.*
 
 class OfferPreviewActivity : AppCompatActivity() {
 
     lateinit var myFont: Typeface
     private lateinit var offer: OfferBasicModel
+    private lateinit var lang: JSONObject
+    private lateinit var langC: JSONObject
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_offer_preview)
+
+        lang = Statics.getLanguageJSONObject(this)
+        langC = lang.getJSONObject("offerDisPreviewActivity")
+
+        if (Statics.getCurrentLanguageName(this) == Statics.arabic) {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("fa"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        } else {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("en"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        }
 
         myFont = StaticInformation().myFont(this)!!
         offerBackIV.setOnClickListener {
@@ -41,7 +58,7 @@ class OfferPreviewActivity : AppCompatActivity() {
 
         if (!StaticInformation().isConnected(this)) {
             val ft = supportFragmentManager.beginTransaction()
-            ft.replace(R.id.previewDisFL, NoInternetFragment())
+            ft.replace(R.id.previewDisFL, NoInternetFragment(Statics.getLanguageJSONObject(this).getString("noConnection")))
             ft.commit()
             return
         }
@@ -49,8 +66,8 @@ class OfferPreviewActivity : AppCompatActivity() {
         addToCartIV.setOnClickListener {
 
             try {
-                if (DatabaseHelper(this).userModelIntegerRuntimeException.queryForAll()[0].token.isNotEmpty()) {
-                    ChooseQuantityDialog(this, offer, true, this).show()
+                if (Statics.myToken.isNotEmpty()) {
+                    ChooseQuantityDialog(this, offer, true, Statics.getLanguageJSONObject(this)).show()
                 } else {
                     startActivity(Intent(this, LoginRegisterActivity::class.java).putExtra("main", false))
                 }
@@ -61,20 +78,29 @@ class OfferPreviewActivity : AppCompatActivity() {
             it.startAnimation(StaticInformation().clickAnim(this))
         }
 
+        offerDisContactUsFAB.setOnClickListener {
+            StaticInformation().openWhatsApp(this, "Offer Dis ID: ${offer.id}\nTitle: ${offer.title}")
+        }
+
         // region font
         offerPreviewPercent.typeface = myFont
         offerTitleTV.typeface = myFont
         itemExistTV.typeface = myFont
         offerCostTV.typeface = myFont
+        offerCostTV.text = langC.getString("price")
         offerDiscountTV.typeface = myFont
         offerOldCostTV.typeface = myFont
         offerOldCostTV.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         offerNewCostTV.typeface = myFont
         offerDescriptionTV.typeface = myFont
+        offerDescriptionTV.text = langC.getString("description")
         offerDescriptionTextTV.typeface = myFont
+        offerDisContactUsTV.typeface = myFont
+        offerDisContactUsTV.text = langC.getString("contactUs")
         // endregion
 
         findViewById<TextView>(R.id.loadingTV).typeface = myFont
+        findViewById<TextView>(R.id.loadingTV).text = lang.getString("loading")
         val rotateAnimation = RotateAnimation(0f, 360f,
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f)
@@ -97,8 +123,8 @@ class OfferPreviewActivity : AppCompatActivity() {
 
                 offerTitleTV.text = it.getString("title")
                 offerDiscountTV.text = "-" + it.getInt("discount") + "%"
-                offerOldCostTV.text = "${StaticInformation().formatPrice(it.getInt("unitPrice"))} S.P"
-                offerNewCostTV.text = "${StaticInformation().formatPrice(it.getInt("unitNetPrice"))} S.P"
+                offerOldCostTV.text = "${StaticInformation().formatPrice(it.getInt("unitPrice"))} ${lang.getString("currencyCode")}"
+                offerNewCostTV.text = "${StaticInformation().formatPrice(it.getInt("unitNetPrice"))} ${lang.getString("currencyCode")}"
                 offerDescriptionTextTV.text = it.getString("description")
                 val images = it.getJSONArray("offerImages")
                 val imagesList = ArrayList<String>()
@@ -156,7 +182,6 @@ class OfferPreviewActivity : AppCompatActivity() {
         }
     }
 
-
     private fun setCurrentImage(position: Int) {
         for (i in 0 until itemCirclesNumberLL.childCount) {
             itemCirclesNumberLL.getChildAt(i).setBackgroundResource(R.drawable.white_button_background)
@@ -164,4 +189,11 @@ class OfferPreviewActivity : AppCompatActivity() {
         itemCirclesNumberLL.getChildAt(position).setBackgroundResource(R.drawable.primary_button_background)
     }
 
+    override fun onBackPressed() {
+        if (intent.getBooleanExtra(Statics.fromNotification, false)) {
+            startActivity(Intent(this, MainActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+        }
+        super.onBackPressed()
+    }
 }

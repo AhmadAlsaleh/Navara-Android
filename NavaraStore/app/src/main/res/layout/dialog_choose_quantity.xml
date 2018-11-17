@@ -18,7 +18,7 @@
                 android:id="@+id/chooseQuantityTitle"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_layout"
-                android:text="Choose Quantity"
+                android:text="@string/choose_quantity"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimary"
@@ -259,7 +259,9 @@
                     android:layout_height="@dimen/main_texts"
                     android:orientation="horizontal"
                     android:layout_gravity="center"
-                    android:layout_margin="@dimen/margin_fab_appoi"
+                    android:layout_marginTop="@dimen/point_top"
+                    android:layout_marginLeft="@dimen/margin_fab_appoi"
+                    android:layout_marginRight="@dimen/margin_fab_appoi"
                     android:background="@drawable/primary_button_background">
 
                     <ImageView
@@ -291,6 +293,46 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/quantityDaysLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/point_top"
+                    android:layout_marginRight="@dimen/point_top"
+                    android:layout_marginTop="@dimen/point_top">
+
+                    <TextView
+                        android:id="@+id/quantityDaysNoteTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/list_item_text"
+                        android:textColor="@color/red_background"
+                        android:textStyle="bold"
+                        android:text="* Note: "
+                        android:layout_gravity="center"
+                        tools:ignore="SpUsage" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/quantityDaysTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/list_item_text"
+                            android:textColor="@color/primary_list_item"
+                            android:text="3 Days to be Available"
+                            android:layout_gravity="center"
+                            tools:ignore="SpUsage" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/addToCartBTN"
@@ -300,6 +342,7 @@
                     android:layout_marginBottom="@dimen/fab_margin"
                     android:paddingLeft="@dimen/margin_fab_appoi"
                     android:paddingRight="@dimen/margin_fab_appoi"
+                    android:layout_marginTop="@dimen/point_top"
                     android:text="Add to Cart"
                     android:textStyle="bold"
                     android:textSize="@dimen/list_item_text"

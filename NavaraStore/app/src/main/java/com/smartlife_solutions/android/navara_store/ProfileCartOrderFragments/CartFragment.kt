@@ -36,7 +36,6 @@ class CartFragment : Fragment() {
 
     var itJSONArray = JSONArray()
 
-
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -49,11 +48,14 @@ class CartFragment : Fragment() {
 
         cartEmpty = viewCart.findViewById(R.id.cartEmptyTV)
         cartEmpty.typeface = StaticInformation().myFont(context)
+        cartEmpty.text = Statics.getLanguageJSONObject(activity as ProfileCartOrders).getJSONObject("profileCartOrdersActivity").getString("cartEmpty")
 
         categoryIV = viewCart.findViewById(R.id.orderCategoryIV)
         categoryIV.setOnClickListener {
             it.startAnimation(StaticInformation().clickAnim(context))
-            startActivity(Intent(context, ItemsActivity::class.java))
+            (activity as ProfileCartOrders).finish()
+            startActivity(Intent(context, ItemsActivity::class.java)
+                    .putExtra("fromCart", true))
         }
 
         makeOrderIV = viewCart.findViewById(R.id.orderMakeIV)
@@ -93,7 +95,8 @@ class CartFragment : Fragment() {
                 val itemObject = ItemBasicModel(item.getString("itemID"), item.getString("itemName"),
                         "", "",
                         item.get("quantity") as Int, (item.get("unitNetPrice") as Double).toFloat(),
-                        item.getString("itemThumbnail"))
+                        item.getString("itemThumbnail"), item.get("cashBack").toString(),
+                        item.getString("accountID"), 0)
                 itemObject.isFree = item.getBoolean("isFree")
                 itemObject.discount = item.getInt("unitDiscount")
                 itemObject.offerID = item.getString("offerID")
@@ -125,14 +128,14 @@ class CartFragment : Fragment() {
             }
 
             if (itemItems[0].discount != 0) {
-                offersViewLL.addView(OfferPackageView(this, context!!, itemItems, ArrayList(), true, true).view)
+                offersViewLL.addView(OfferPackageView(this, context!!, itemItems, ArrayList(), true, true, lang = Statics.getLanguageJSONObject(activity as ProfileCartOrders)).view)
             } else {
-                offersViewLL.addView(OfferPackageView(this, context!!, itemItems, itemOffers, true).view)
+                offersViewLL.addView(OfferPackageView(this, context!!, itemItems, itemOffers, true, lang = Statics.getLanguageJSONObject(activity as ProfileCartOrders)).view)
             }
         }
 
         for (item in items) {
-            offersViewLL.addView(ItemView(this, context!!, item, true).view)
+            offersViewLL.addView(ItemView(this, context!!, item, true, lang = Statics.getLanguageJSONObject(activity as ProfileCartOrders)).view)
         }
     }
 

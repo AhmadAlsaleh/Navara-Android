@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/aboutUsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_layout"
+                android:text="@string/about_us"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/dialogs_title"
+                tools:ignore="HardcodedText,SpUsage" />
+
+            <ImageView
+                android:id="@+id/aboutUsClose"
+                android:layout_width="@dimen/loaderMargin"
+                android:layout_height="@dimen/loaderMargin"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/point_top"
+                app:srcCompat="@drawable/ic_close"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_width"
+            android:background="@color/divider_color"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/fab_margin"
+                android:paddingRight="@dimen/fab_margin"
+                android:paddingBottom="@dimen/fab_margin">
+
+                <TextView
+                    android:id="@+id/aboutUsTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about_text"
+                    android:layout_margin="@dimen/point_top"
+                    android:textColor="@color/primary_list_item"
+                    android:textSize="@dimen/list_item_text"
+                    tools:ignore="SpUsage" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/divider_width"
+                    android:background="@color/divider_color"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/point_top">
+
+                    <ImageView
+                        android:id="@+id/aboutUsNavaraIV"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="@dimen/main_btn_margin"
+                        android:src="@drawable/navara_circle_logo"
+                        android:layout_marginLeft="@dimen/point_top"
+                        android:layout_marginRight="@dimen/point_top" />
+
+                    <ImageView
+                        android:id="@+id/aboutUsSmartLifeIV"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="@dimen/main_btn_margin"
+                        android:src="@drawable/smartlife_solutions_logo"
+                        android:layout_marginLeft="@dimen/point_top"
+                        android:layout_marginRight="@dimen/point_top"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/aboutUsDoneBTN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/point_top"
+                    android:layout_marginBottom="@dimen/point_top"
+                    android:paddingLeft="@dimen/margin_fab_appoi"
+                    android:paddingRight="@dimen/margin_fab_appoi"
+                    android:text="@string/done"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/list_item_text"
+                    android:background="@drawable/white_button_background"
+                    android:textColor="@color/navaraPrimary"
+                    android:textAllCaps="false"
+                    tools:ignore="SpUsage" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>

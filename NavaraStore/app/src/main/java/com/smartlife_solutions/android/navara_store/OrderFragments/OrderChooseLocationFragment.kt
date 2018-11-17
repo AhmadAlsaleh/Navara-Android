@@ -5,6 +5,8 @@ import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -12,16 +14,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.AutoCompleteTextView
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.smartlife_solutions.android.navara_store.*
 import com.smartlife_solutions.android.navara_store.Dialogs.LocationRemarkDialog
-import com.smartlife_solutions.android.navara_store.MarkerInfoWindow
-import com.smartlife_solutions.android.navara_store.OrdersActivity
-
 import com.smartlife_solutions.android.navara_store.R
-import com.smartlife_solutions.android.navara_store.StaticInformation
 
 @SuppressLint("ValidFragment")
 class OrderChooseLocationFragment(var activity: OrdersActivity) : Fragment(), OnMapReadyCallback {
@@ -36,7 +36,14 @@ class OrderChooseLocationFragment(var activity: OrdersActivity) : Fragment(), On
         val view = inflater.inflate(R.layout.fragment_order_choose_location, container, false)
 
         searchET = view.findViewById(R.id.searchET)
+        val locationHintsTV = view.findViewById<TextView>(R.id.locationHintsTV)
+        locationHintsTV.typeface = StaticInformation().myFont(context)
         searchET.typeface = StaticInformation().myFont(context)
+
+        val lang = Statics.getLanguageJSONObject(activity).getJSONObject("makeOrderActivity").getJSONObject("locationFragment")
+        searchET.hint = lang.getString("hintSearch")
+        locationHintsTV.text = lang.getString("hint")
+
         searchET.setOnEditorActionListener { _, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH
                     || actionId == EditorInfo.IME_ACTION_DONE
@@ -49,6 +56,14 @@ class OrderChooseLocationFragment(var activity: OrdersActivity) : Fragment(), On
         searchET.setOnClickListener {
             searchET.setText("")
         }
+
+        searchET.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                activity.locationText = s?.toString()!!
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
 
         if (activity.latLng != null) {
             setupMap(true)
@@ -116,7 +131,7 @@ class OrderChooseLocationFragment(var activity: OrdersActivity) : Fragment(), On
         }
         try {
             googleMap.clear()
-            googleMap.setInfoWindowAdapter(MarkerInfoWindow(context!!, (searchET.text.toString() + "\n" + activity.locationRemarkText).trim()))
+            googleMap.setInfoWindowAdapter(MarkerInfoWindow(context!!, (searchET.text.toString() + "\n" + activity.locationRemarkText).trim(), lang = Statics.getLanguageJSONObject(activity).getJSONObject("dialogs").getJSONObject("locationRemark")))
             googleMap.addMarker(MarkerOptions().position(activity.latLng!!)).showInfoWindow()
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(activity.latLng, StaticInformation().ZOOM_VAL))
         } catch (err: Exception) {}

@@ -1,15 +1,157 @@
 <resources>
 
     <string name="app_name">Navara Store</string>
+    <string name="loading">Loading</string>
+    <!-- main activity -->
+    <string name="profile">Profile</string>
+    <string name="account">Account</string>
+    <string name="my_cart">My Cart</string>
+    <string name="my_orders">My Order</string>
+    <string name="app_sections">App Sections</string>
+    <string name="our_items">Our Items</string>
+    <string name="latest_offers">Latest Offer</string>
+    <string name="location_and_contact">Location and Contact</string>
+    <string name="others">Others</string>
+    <string name="change_language">Change Language</string>
+    <string name="terms_of_use">Terms Of Use</string>
+    <string name="about_us">About Us</string>
+    <!-- main activity -->
+
+    <!-- location -->
+    <string name="address">Address:</string>
+    <string name="address_line">Syria, Lattakia, 8th March street</string>
+    <string name="working_hours">Working Hours:</string>
+    <string name="working_hours_line">From 09:00 AM to 05:00 PM</string>
+    <string name="make_call">Make\nCall</string>
+    <string name="visit_website">Visit\nWebsite</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="contact__us">Contact\nUs</string>
+    <string name="name">Name: </string>
+    <string name="email">Email: </string>
+    <string name="message">Message: </string>
+    <string name="send">Send</string>
+    <!-- location -->
+
+    <!-- items and categories -->
+    <string name="our_categories">Our Categories</string>
+    <string name="search">Search</string>
+    <string name="currency_code">S.P</string>
+    <string name="price">Price:</string>
+    <string name="description">Description:</string>
+    <string name="out_of_stock">Out of Stock</string>
+    <string name="exist_in_our_stock">Exist in Our Stock</string>
+    <string name="star_note">* Note: </string>
+    <!-- items and categories -->
+
+    <!-- offers -->
+    <string name="details">Details:</string>
+    <string name="and_get">And Get:</string>
+    <!-- offers -->
+
+    <!-- login and register -->
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email_or_mobile">Email or Mobile:</string>
+    <string name="email_example">user@example.com</string>
+    <string name="your_password">Your Password:</string>
+    <string name="login_with_facebook">Login with Facebook</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="you_do_not_have_an_account">You don\'t have an account</string>
+    <string name="your_name">Your Name:</string>
+    <string name="mobile">Mobile: </string>
+    <string name="i_have_promo_code">I have a Promo Code</string>
+    <string name="promo_code">Promo Code</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="reset">Reset</string>
+    <!-- login and register -->
+
+    <!-- profile, cart and order -->
+    <string name="save">Save</string>
+    <string name="your_wallet">Your Wallet:</string>
+    <string name="your_code">Your Code</string>
+    <string name="copy">Copy</string>
+    <string name="my_used_items">My Used Items</string>
+    <string name="logout">Logout</string>
+    <string name="your_cart_is_empty">Your Cart id Empty</string>
+    <string name="cancel">Cancel</string>
+    <!-- profile, cart and order -->
+
+    <!-- used items -->
+    <string name="add_used_item">Add Used Item</string>
+    <string name="publish">Publish</string>
+    <string name="unpublish">Unpublish</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="you_don_t_have_used_items_yet">You don\'t have Used Items yet</string>
+    <!-- used items -->
+
+    <!-- order information -->
+    <string name="order_information">Order Information</string>
+    <string name="code">Code:</string>
+    <string name="total">Total:</string>
+    <string name="chosen_items">Chosen Items</string>
+    <string name="contact_information">Contact Information</string>
+    <string name="remark">Remark: </string>
+    <string name="phone_number">Phone Number: </string>
+    <string name="preferable_time">Preferable Time</string>
+    <string name="am">AM</string>
+    <string name="pm">PM</string>
+    <string name="location">Location</string>
+    <!-- order information -->
+
+    <!-- make order -->
+    <string name="make_an_order">Make an Order</string>
+    <string name="select_items_and_offers">Select Item and Offers</string>
+    <string name="your_cart_is_empty_add_items_to_make_an_order">Your Cart id Empty\nadd items to make an order</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="location_remark">Location Remark</string>
+    <string name="choose_location_hints">* Click on Marker Title to Add more Details\n* Click on Map to Change the Delivery Location</string>
+    <string name="flour_near_market">flour, near market, …</string>
+    <string name="done">Done</string>
+    <string name="select_your_preferable_time_to_deliver">Select your preferable time to deliver</string>
+    <string name="from">From</string>
+    <string name="set_from_time">Set From Time</string>
+    <string name="to">To</string>
+    <string name="set_to_time">Set To Time</string>
+    <string name="use_your_wallet">Use Your Wallet:</string>
+    <string name="submit_your_order">Submit Your Order</string>
+    <!-- make order -->
 
     <!-- facebook app -->
     <string name="facebook_app_id">462535617591151</string>
     <string name="fb_login_protocol_scheme">fb462535617591151</string>
+    <!-- facebook app end -->
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_maps">Map</string>
-    <string name="title_activity_maps2">Map</string>
-    <string name="address_line">Syria, Lattakia, 8th March street</string>
-    <string name="choose_location_hints">* Click on Marker Title to Add more Details\n* Click on Map to Change the Delivery Location</string>
+    <string name="offers_news_notification_title_template">Offers news: %1$s</string>
+
+    <string name="newss_notification_title_template">News: %1$s</string>
+    <string name="about_text">
+        Founded in 2016, we specialize in robotics and embedded systems technology.\n
+        Moreover we offer a wide range of products and services in this sector such as Arduino, Raspberry PI, Sensors, Motors, …
+    </string>
+    <string name="main_image">Main Image:</string>
+    <string name="title">Title:</string>
+    <string name="quantity">Quantity:</string>
+    <string name="add_more_images">Add More Images</string>
+    <string name="add">Add</string>
+    <string name="you_re_offline">You\'re Offline</string>
+    <string name="searching">Searching</string>
+    <string name="developed_by_smartlife_solutions">Developed by SmartLife-Solutions</string>
+    <string name="all_done_successfully">All Done Successfully</string>
+    <string name="ok">OK</string>
+    <string name="return_text">Return</string>
+    <string name="change_app_language">Change App Language</string>
+    <string name="english">English</string>
+    <string name="arabic_coming_soon">العربية</string>
+    <string name="change">Change</string>
+    <string name="change_password">Change Password</string>
+    <string name="old_password">Old Password:</string>
+    <string name="new_password">New Password:</string>
+    <string name="repeat_new_password">Repeat New Password:</string>
+    <string name="add_image">Add Image</string>
+    <string name="take_a_photo">Take a Photo</string>
+    <string name="select_from_gallery">Select from Gallery</string>
+    <string name="choose_quantity">Choose Quantity</string>
+
 </resources>

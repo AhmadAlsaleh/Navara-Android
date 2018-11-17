@@ -24,7 +24,7 @@
                 android:layout_weight="1"
                 android:background="@color/whiteBack"
                 android:textColor="@color/navaraPrimary"
-                android:text="Profile"/>
+                android:text="@string/profile"/>
 
             <Button
                 android:id="@+id/cartTabBTN"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/whiteBack"
-                android:text="My Cart"/>
+                android:text="@string/my_cart"/>
 
             <Button
                 android:id="@+id/orderTabBTN"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/whiteBack"
-                android:text="My Orders"/>
+                android:text="@string/my_orders"/>
 
         </LinearLayout>
 

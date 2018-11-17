@@ -34,70 +34,13 @@
                         android:layout_height="wrap_content"
                         android:scrollbars="vertical" />
 
-                    <LinearLayout
-                        android:id="@+id/chooseQuantityLL"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/list_padding"
-                            android:layout_marginLeft="@dimen/list_padding"
-                            android:layout_marginRight="@dimen/list_padding"
-                            android:id="@+id/itemAddRemoveBackLL"
-                            android:background="@drawable/primary_button_background">
-
-                            <ImageView
-                                android:id="@+id/itemRemoveIV"
-                                android:layout_width="@dimen/main_buttons"
-                                android:layout_height="@dimen/main_buttons"
-                                app:srcCompat="@drawable/ic_remove"
-                                android:padding="@dimen/list_margin"/>
-
-                            <TextView
-                                android:id="@+id/itemQuantityTV"
-                                android:clickable="false"
-                                android:layout_gravity="center"
-                                android:layout_width="@dimen/text_quantity_x"
-                                android:layout_height="@dimen/main_buttons"
-                                android:text="22"
-                                android:textColor="@color/blackItem"
-                                android:gravity="center"
-                                android:textSize="@dimen/action_main_small"
-                                android:background="@drawable/white_squere_border"
-                                android:paddingLeft="@dimen/list_padding"
-                                android:paddingRight="@dimen/list_padding"
-                                tools:ignore="SpUsage" />
-
-                            <ImageView
-                                android:id="@+id/itemAddIV"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                app:srcCompat="@drawable/ic_add"
-                                android:padding="@dimen/list_margin"/>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/itemSelectTotalTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Total: 600"
-                            android:textSize="@dimen/action_main_small"
-                            tools:ignore="SpUsage" />
-
-                    </LinearLayout>
-
                     <ImageView
                         android:id="@+id/offerDeleteIV"
                         android:layout_gravity="center"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         app:srcCompat="@drawable/ic_close_primary"
-                        android:layout_margin="@dimen/list_padding" />
+                        android:layout_marginEnd="@dimen/list_padding" />
 
                     <CheckBox
                         android:id="@+id/offerCB"
@@ -113,7 +56,6 @@
                     android:visibility="gone"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
-                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     app:srcCompat="@drawable/ic_gift"
                     android:background="@drawable/red_button_background"
@@ -127,7 +69,6 @@
                     android:layout_height="22dp"
                     android:background="@drawable/green_button_background"
                     android:text="%"
-                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:textColor="@color/whiteItem"
@@ -135,29 +76,86 @@
 
             </RelativeLayout>
 
+            <LinearLayout
+                android:id="@+id/chooseQuantityLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/list_padding"
+                android:layout_marginStart="81dp"
+                android:layout_marginBottom="@dimen/list_padding">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/itemAddRemoveBackLL"
+                    android:background="@drawable/primary_button_background">
+
+                    <ImageView
+                        android:id="@+id/itemRemoveIV"
+                        android:layout_width="@dimen/main_buttons"
+                        android:layout_height="@dimen/main_buttons"
+                        app:srcCompat="@drawable/ic_remove"
+                        android:padding="@dimen/list_margin"/>
+
+                    <TextView
+                        android:id="@+id/itemQuantityTV"
+                        android:clickable="false"
+                        android:layout_gravity="center"
+                        android:layout_width="33dp"
+                        android:layout_height="@dimen/main_buttons"
+                        android:text="22"
+                        android:textColor="@color/blackItem"
+                        android:gravity="center"
+                        android:textSize="@dimen/action_main_small"
+                        android:background="@drawable/white_squere_border"
+                        android:paddingLeft="@dimen/list_padding"
+                        android:paddingRight="@dimen/list_padding"
+                        tools:ignore="SpUsage" />
+
+                    <ImageView
+                        android:id="@+id/itemAddIV"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/ic_add"
+                        android:padding="@dimen/list_margin"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/itemSelectTotalTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/list_padding"
+                    android:text="Total: 600"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/action_main_small"
+                    tools:ignore="SpUsage" />
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/getFreeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="And Get:"
                 android:textSize="@dimen/fab_margin"
-                android:layout_marginLeft="@dimen/list_padding"
                 android:textStyle="bold"
+                android:gravity="start"
                 android:textColor="@color/green_background"
                 android:layout_marginStart="@dimen/list_padding"
-                tools:ignore="SpUsage" />
+                tools:ignore="HardcodedText,SpUsage" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/offerOffersRV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scrollbars="vertical"
-                    android:layout_marginLeft="@dimen/padding_category"
                     android:background="@android:color/transparent"
                     android:layout_marginStart="@dimen/padding_category" />
 

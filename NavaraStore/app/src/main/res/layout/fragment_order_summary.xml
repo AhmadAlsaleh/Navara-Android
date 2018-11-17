@@ -33,16 +33,15 @@
 
                     <TextView
                         android:id="@+id/selectedItemsTV"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimary"
                         android:text="Chosen Items"
                         android:textStyle="bold"
-                        android:textAlignment="textStart"
                         android:layout_margin="@dimen/point_top"
                         android:textSize="@dimen/main_add_appointment_actions"
-                        android:gravity="start"
-                        tools:ignore="SpUsage" />
+                        android:gravity="left"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                     <LinearLayout
                         android:id="@+id/chosenItemsLL"
@@ -79,15 +78,14 @@
 
                     <TextView
                         android:id="@+id/contactInfoTV"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimary"
                         android:text="Contact Information"
                         android:textStyle="bold"
-                        android:textAlignment="textStart"
                         android:textSize="@dimen/main_add_appointment_actions"
-                        android:gravity="start"
-                        tools:ignore="SpUsage" />
+                        android:gravity="left"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -97,7 +95,8 @@
                             android:id="@+id/nameTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Name:  "
+                            android:text="Name:"
+                            android:layout_marginEnd="@dimen/list_margin"
                             android:textColor="@color/primary_list_item"
                             android:textSize="@dimen/action_text"/>
 
@@ -120,7 +119,8 @@
                             android:id="@+id/phoneTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Phone Number:  "
+                            android:text="Phone Number:"
+                            android:layout_marginEnd="@dimen/list_margin"
                             android:textColor="@color/primary_list_item"
                             android:textSize="@dimen/action_text"/>
 
@@ -143,7 +143,8 @@
                             android:id="@+id/remarkTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Remark:  "
+                            android:text="Remark:"
+                            android:layout_marginEnd="@dimen/list_margin"
                             android:textColor="@color/primary_list_item"
                             android:textSize="@dimen/action_text"/>
 
@@ -173,15 +174,15 @@
 
                     <TextView
                         android:id="@+id/selectedDateTimeTV"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimary"
                         android:text="Preferable Time"
                         android:layout_margin="@dimen/point_top"
                         android:textStyle="bold"
-                        android:textAlignment="textStart"
                         android:textSize="@dimen/main_add_appointment_actions"
-                        android:gravity="start" />
+                        android:gravity="left"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -235,16 +236,15 @@
 
                     <TextView
                         android:id="@+id/locationTV"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimary"
                         android:text="Location"
                         android:textStyle="bold"
                         android:layout_margin="@dimen/point_top"
-                        android:textAlignment="textStart"
                         android:textSize="@dimen/main_add_appointment_actions"
-                        android:gravity="start"
-                        tools:ignore="SpUsage" />
+                        android:gravity="left"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -282,6 +282,32 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/point_top">
+
+                <CheckBox
+                    android:id="@+id/summaryUserWalletCB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Use Your Wallet"
+                    android:textColor="@color/blackItem"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/main_add_appointment_actions"
+                    tools:ignore="HardcodedText,SpUsage" />
+
+                <ProgressBar
+                    android:id="@+id/summaryWalletPB"
+                    android:layout_width="@dimen/main_buttons"
+                    android:layout_height="@dimen/main_buttons"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/list_padding"
+                    tools:ignore="RtlHardcoded" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/submitOrderBTN"

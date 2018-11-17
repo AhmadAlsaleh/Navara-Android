@@ -8,32 +8,60 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.text.Html
+import android.util.Log
 import android.view.View
+import com.android.volley.AuthFailureError
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
 import com.smartlife_solutions.android.navara_store.Dialogs.ContactUsDialog
 import kotlinx.android.synthetic.main.activity_location.*
+import org.json.JSONObject
+import java.util.*
 
 class LocationActivity : AppCompatActivity() {
 
     private lateinit var mapFragment: SupportMapFragment
     private lateinit var googleMap: GoogleMap
 
-    private val SUPPORT_MOBILE = "0943877890"
+    private val SUPPORT_MOBILE = "+963943877890"
     private val SUPPORT_EMAIL = "contact@navarastore.com"
-    private val WEB_URL = "http://www.navarastore.com"
     private val companyPlace = LatLng(35.521665, 35.774847)
+    private var nameString = ""
+    private var emailString = ""
+
+    private lateinit var lang: JSONObject
+    private lateinit var langC: JSONObject
 
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location)
+        lang = Statics.getLanguageJSONObject(this)
+        langC = lang.getJSONObject("locationActivity")
 
-        addressTV.text = Html.fromHtml(getString(R.string.address_line))
+        if (Statics.getCurrentLanguageName(this) == Statics.arabic) {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("fa"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        } else {
+            val conf = resources.configuration
+            conf.setLayoutDirection(Locale("en"))
+            resources.updateConfiguration(conf, resources.displayMetrics)
+        }
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun onResume() {
+        super.onResume()
+        addressTV.text = langC.getString("addressLine")
 
         mapFragment = supportFragmentManager.findFragmentById(R.id.locationMapFragment) as SupportMapFragment
         mapFragment.getMapAsync {
@@ -70,7 +98,7 @@ class LocationActivity : AppCompatActivity() {
 
         webContactFAB.setOnClickListener {
             it.startAnimation(StaticInformation().clickAnim(this))
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(WEB_URL)))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(StaticInformation().navaraWebSite())))
         } // show web app
 
         callContactFAB.setOnClickListener {
@@ -81,7 +109,7 @@ class LocationActivity : AppCompatActivity() {
 
         contactMailFAB.setOnClickListener {
             it.startAnimation(StaticInformation().clickAnim(this))
-            ContactUsDialog(this).show()
+            ContactUsDialog(this, nameString, emailString, Statics.getLanguageJSONObject(this).getJSONObject("dialogs").getJSONObject("contactUS")).show()
         }
 
         goToFAB.setOnClickListener {
@@ -98,37 +126,81 @@ class LocationActivity : AppCompatActivity() {
         // region set font
         val myFont = StaticInformation().myFont(this)
         titleLayoutTV.typeface = myFont
+        titleLayoutTV.text = langC.getString("title")
         addressText.typeface = myFont
+        addressText.text = langC.getString("address")
         addressTV.typeface = myFont
         workTimeText.typeface = myFont
+        workTimeText.text = langC.getString("workingHours")
         workTimeTV.typeface = myFont
+        workTimeTV.text = langC.getString("workingHoursLine")
         sendTV.typeface = myFont
+        sendTV.text = langC.getString("contactUs")
         callTV.typeface = myFont
+        callTV.text = langC.getString("makeCall")
         webTV.typeface = myFont
+        webTV.text = langC.getString("visitWebsite")
         // endregion
+
+        getUserInfo()
+    }
+
+    private fun getUserInfo() {
+
+        val queue = Volley.newRequestQueue(this)
+        val request = object : JsonObjectRequest(Request.Method.GET, APIsURL().GET_USER_INFORMATION, null, {
+            try {
+                Log.e("profile", "Done")
+                Log.e("profile", it.toString())
+                nameString = it.getString("name")
+                emailString = if (it.getString("email") == "null") {
+                    ""
+                } else {
+                    it.getString("email")
+                }
+            } catch (err: Exception) {}
+            queue.cancelAll("info")
+        }, {
+            try {
+                Log.e("error", "error")
+            } catch (err: Exception) {}
+            queue.cancelAll("info")
+        }) {
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String> {
+                val params = HashMap<String, String>()
+                params["Content-Type"] = "application/json; charset=UTF-8"
+                params["Authorization"] = "Bearer ${Statics.myToken}"
+                return params
+            }
+
+            override fun getBodyContentType(): String {
+                return "application/json; charset=utf-8"
+            }
+
+        }
+        request.tag = "info"
+        queue.add(request)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
     private fun toggleHideMore() {
         if (hiddenRL.visibility == View.GONE) {
             hiddenRL.visibility = View.VISIBLE
-            directionsFAB.foreground = getDrawable(R.drawable.ic_circle_white_hide)
-            goToFAB.foreground = getDrawable(R.drawable.ic_circle_white_hide)
         } else {
             hiddenRL.visibility = View.GONE
-            directionsFAB.foreground = null
-            goToFAB.foreground = null
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onBackPressed() {
-        if (hiddenRL.visibility == View.VISIBLE) {
-            hiddenRL.visibility = View.GONE
-            directionsFAB.foreground = null
-            goToFAB.foreground = null
-            return
-        }
+        try {
+            if (hiddenRL.visibility == View.VISIBLE) {
+                hiddenRL.visibility = View.GONE
+                return
+            }
+            startActivity(Intent(this, MainActivity::class.java))
+        } catch (err: Exception) {}
         super.onBackPressed()
     }
 }

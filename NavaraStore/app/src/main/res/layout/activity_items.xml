@@ -1,91 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemsActivity"
-    android:orientation="vertical">
+    tools:context=".ItemsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
-
-        <ImageView
-            android:id="@+id/itemsBackIV"
-            android:layout_width="@dimen/toolbar_layout"
-            android:layout_height="@dimen/toolbar_layout"
-            app:srcCompat="@drawable/ic_back_arrow_white"
-            android:padding="@dimen/padding_action_buttons" />
-
-        <TextView
-            android:id="@+id/itemsTitleLayoutTV"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Our Categories"
-            android:textStyle="bold"
-            android:textSize="@dimen/main_toolbar_title"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:gravity="center_vertical"
-            android:textColor="@color/whiteItem"
-            tools:ignore="SpUsage" />
-
-        <RelativeLayout
-            android:layout_width="@dimen/divider_width"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/list_margin"
-            android:background="@color/whiteBack"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/searchLL"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/itemsBackIV"
+                android:layout_width="@dimen/toolbar_layout"
+                android:layout_height="@dimen/toolbar_layout"
+                app:srcCompat="@drawable/ic_back_arrow_white"
+                android:padding="@dimen/padding_action_buttons" />
 
             <TextView
-                android:id="@+id/searchTV"
-                android:layout_width="wrap_content"
+                android:id="@+id/itemsTitleLayoutTV"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:text="Search"
-                android:textSize="@dimen/action_main_small"
+                android:text="@string/our_categories"
+                android:textStyle="bold"
+                android:textSize="@dimen/main_toolbar_title"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:gravity="center_vertical"
                 android:textColor="@color/whiteItem"
                 tools:ignore="SpUsage" />
 
-            <ImageView
-                android:id="@+id/itemsSearchIV"
-                android:layout_width="@dimen/toolbar_layout"
-                android:layout_height="@dimen/toolbar_layout"
-                app:srcCompat="@drawable/ic_search"
-                android:padding="@dimen/padding_action_buttons" />
+            <RelativeLayout
+                android:layout_width="@dimen/divider_width"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/list_margin"
+                android:background="@color/whiteBack"/>
+
+            <LinearLayout
+                android:id="@+id/searchLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/searchTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/search"
+                    android:textSize="@dimen/action_main_small"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/whiteItem"
+                    tools:ignore="SpUsage" />
+
+                <ImageView
+                    android:id="@+id/itemsSearchIV"
+                    android:layout_width="@dimen/toolbar_layout"
+                    android:layout_height="@dimen/toolbar_layout"
+                    app:srcCompat="@drawable/ic_search"
+                    android:padding="@dimen/padding_action_buttons" />
+            </LinearLayout>
+
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_width"
+            android:background="@color/divider_color"/>
+
+        <FrameLayout
+            android:id="@+id/itemsFL"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/primary_background" />
+
+        <TextView
+            android:id="@+id/itemsOfflineTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/you_re_offline"
+            android:textColor="@color/whiteItem"
+            android:background="@color/red_background"
+            android:padding="@dimen/padding_point"
+            android:gravity="center"/>
 
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/itemsHintLL"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/divider_width"
-        android:background="@color/divider_color"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:background="@color/hide_gray"
+        android:focusable="true">
 
-    <FrameLayout
-        android:id="@+id/itemsFL"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@drawable/primary_background" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
 
-    <TextView
-        android:id="@+id/itemsOfflineTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="You\'re Offline"
-        android:textColor="@color/whiteItem"
-        android:background="@color/red_background"
-        android:padding="@dimen/padding_point"
-        android:gravity="center"/>
+            <ImageView
+                android:layout_width="@dimen/toolbar_layout"
+                android:layout_height="@dimen/toolbar_layout"
+                app:srcCompat="@drawable/ic_back_arrow_white"
+                android:padding="@dimen/padding_action_buttons" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/searchHintTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="Our Categories"
+                android:textStyle="bold"
+                android:textSize="@dimen/main_toolbar_title"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_gravity="start"
+                android:gravity="start|center_vertical"
+                android:textColor="@color/whiteItem"
+                tools:ignore="SpUsage" />
+
+            <RelativeLayout
+                android:layout_width="@dimen/divider_width"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/list_margin"
+                android:background="@color/whiteBack"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/searchHintTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Search"
+                    android:textSize="@dimen/action_main_small"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/whiteItem"
+                    tools:ignore="SpUsage" />
+
+                <ImageView
+                    android:layout_width="@dimen/toolbar_layout"
+                    android:layout_height="@dimen/toolbar_layout"
+                    app:srcCompat="@drawable/ic_search"
+                    android:padding="@dimen/padding_action_buttons" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/itemsAllCatsRL"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@color/hide_gray">
+
+                <TextView
+                    android:id="@+id/itemsCatHintTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="All Categories Here"
+                    android:textSize="@dimen/main_icons_padding"
+                    android:textColor="@color/primary_list_item"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:background="@drawable/white_edit_text_background"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    tools:ignore="RtlHardcoded" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/itemsHintTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Find Items Easily"
+                android:textSize="@dimen/main_icons_padding"
+                android:textColor="@color/primary_list_item"
+                android:gravity="center"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/fab_margin"
+                android:background="@drawable/white_edit_text_background"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                tools:ignore="RtlHardcoded" />
+
+            <Button
+                android:id="@+id/itemsNextBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                android:background="@drawable/primary_button_background"
+                android:text="Next"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:textAllCaps="false"
+                android:textColor="@color/whiteItem"
+                android:textSize="@dimen/margin_fab_appoi"
+                android:paddingRight="@dimen/fab_margin"
+                android:paddingLeft="@dimen/fab_margin"
+                tools:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

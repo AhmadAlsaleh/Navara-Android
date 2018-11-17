@@ -1,5 +1,6 @@
 package com.smartlife_solutions.android.navara_store
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -7,7 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-class NoInternetFragment : Fragment() {
+@SuppressLint("ValidFragment")
+class NoInternetFragment(var noNet: String) : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -16,6 +18,7 @@ class NoInternetFragment : Fragment() {
 
         val myFont = StaticInformation().myFont(context)!!
         view.findViewById<TextView>(R.id.loadingNoNetTV).typeface = myFont
+        view.findViewById<TextView>(R.id.loadingNoNetTV).text = noNet
 
         return view
     }
