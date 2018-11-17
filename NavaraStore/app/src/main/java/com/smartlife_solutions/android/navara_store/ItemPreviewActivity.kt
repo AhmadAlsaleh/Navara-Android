@@ -156,6 +156,9 @@ class ItemPreviewActivity : AppCompatActivity() {
             }
             itemCostTV.text = "${StaticInformation().formatPrice(it.getInt("price"))} ${lang.getString("currencyCode")}"
             itemDescriptionTV.text = it.getString("description")
+
+
+
             if (it.getString("cashBack") == "null" ||
                     it.getString("cashBack").toFloat().toInt() == 0) {
                 itemCashBackLL.visibility = View.GONE

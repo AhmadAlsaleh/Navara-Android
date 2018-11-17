@@ -79,13 +79,15 @@ class LauncherActivity : AppCompatActivity() {
             e.putBoolean("isFirst", false)
             e.apply()
 
-            val selectLanguage = ChangeLanguageDialog(this,
-                    lang = Statics.getLanguageJSONObject(this).getJSONObject("dialogs")
-                            .getJSONObject("changeLanguage"),
-                    activity = this, fromMain = false)
-            selectLanguage.show()
-            selectLanguage.setOnDismissListener {
-                startRun()
+            if (perfs.getBoolean("isFirst", true)) {
+                val selectLanguage = ChangeLanguageDialog(this,
+                        lang = Statics.getLanguageJSONObject(this).getJSONObject("dialogs")
+                                .getJSONObject("changeLanguage"),
+                        activity = this, fromMain = false)
+                selectLanguage.show()
+                selectLanguage.setOnDismissListener {
+                    startRun()
+                }
             }
 
             queue.cancelAll(Statics.arabic)

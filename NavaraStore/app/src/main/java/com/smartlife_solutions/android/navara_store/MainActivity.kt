@@ -323,7 +323,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             slideUpSettings()
             return
         }
-        val sureExit = SureToDoDialog(this, "Sure to exit?")
+        val sureExit = SureToDoDialog(this, Statics.getLanguageJSONObject(this).getJSONObject("dialogs").getJSONObject("sure").getString("exit"))
         sureExit.show()
         sureExit.setOnDismissListener {
             if (sureExit.isTrue) {
