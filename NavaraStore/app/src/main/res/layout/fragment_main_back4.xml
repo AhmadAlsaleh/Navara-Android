@@ -6,9 +6,10 @@
     tools:context=".MainBackFragments.MainBack4">
 
     <ImageView
+        android:id="@+id/mainIV4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/contact" />
+        android:src="@drawable/contact"
+        android:scaleType="centerCrop" />
 
 </RelativeLayout>

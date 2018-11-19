@@ -11,6 +11,7 @@ import android.graphics.Bitmap
 import android.graphics.Typeface
 import android.net.ConnectivityManager
 import android.net.Uri
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.view.animation.Animation
@@ -33,6 +34,7 @@ import android.util.Base64
 import android.view.WindowManager
 import android.widget.Toast
 import java.util.*
+import kotlin.coroutines.experimental.coroutineContext
 
 class StaticInformation {
 
@@ -57,9 +59,22 @@ class StaticInformation {
 
     fun openWhatsApp(activity: Activity, message: String = "") {
         val whatsAppNumber = "+963967926970"
-
         activity.startActivity(Intent(Intent.ACTION_VIEW,
                 Uri.parse("https://api.whatsapp.com/send?phone=$whatsAppNumber&text=$message\n")))
+
+//        try {
+//            val bytes = ByteArrayOutputStream()
+//            bm?.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+//            val imagePath = MediaStore.Images.Media.insertImage(activity.contentResolver, bm, "Title", null);
+//            val waIntent = Intent(Intent.ACTION_SEND)
+//            waIntent.type = "image/*"
+//            waIntent.setPackage("com.whatsapp")
+//            waIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(imagePath))
+//            waIntent.putExtra(Intent.EXTRA_TEXT, message)
+//            activity.startActivity(waIntent)
+//        } catch (err: Exception) {
+//            Log.e("whatsapp", err.toString())
+//        }
     }
 
     fun copyToClip(activity: Activity, label: String, text: String): Boolean {

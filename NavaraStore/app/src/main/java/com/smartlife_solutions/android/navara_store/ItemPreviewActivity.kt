@@ -18,6 +18,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.smartlife_solutions.android.navara_store.Adapters.ItemImagesSlideAdapter
@@ -35,6 +36,7 @@ class ItemPreviewActivity : AppCompatActivity() {
     private val imagesList = ArrayList<String>()
     private lateinit var lang: JSONObject
     private lateinit var langC: JSONObject
+    private lateinit var loadingRL: RelativeLayout
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,7 +89,7 @@ class ItemPreviewActivity : AppCompatActivity() {
         }
 
         itemContactUsFAB.setOnClickListener {
-            StaticInformation().openWhatsApp(this, "ItemID: ${item.id}\nTitle: ${item.name}")
+            StaticInformation().openWhatsApp(this, item.name)
         }
 
         // region font
@@ -195,7 +197,9 @@ class ItemPreviewActivity : AppCompatActivity() {
             item.cashBack = it.getString("cashBack")
             setupImages(imagesList)
 
-            findViewById<RelativeLayout>(R.id.loadingRL).visibility = View.GONE
+            loadingRL = findViewById(R.id.loadingRL)
+            loadingRL.visibility = View.GONE
+
             queue.cancelAll("item")
         }, {
             Log.e("error", "ERROR")
@@ -210,9 +214,17 @@ class ItemPreviewActivity : AppCompatActivity() {
             return
         }
         val adapter = ItemImagesSlideAdapter(supportFragmentManager)
-        for (image in imagesList) {
-            adapter.addFragment(ImageSliderFragment(imagesList, imagesList.indexOf(image), true))
+        if (Statics.getCurrentLanguageName(this) == Statics.english) {
+            for (image in imagesList) {
+                adapter.addFragment(ImageSliderFragment(imagesList, imagesList.indexOf(image), true))
+            }
+        } else {
+            itemImagesVP.rotationY = 180F
+            for (image in imagesList) {
+                adapter.addFragment(ImageSliderFragment(imagesList, imagesList.indexOf(image), true, true))
+            }
         }
+
         itemImagesVP.adapter = adapter
 
         for (i in 0 until imagesList.size) {
@@ -229,7 +241,6 @@ class ItemPreviewActivity : AppCompatActivity() {
             itemCirclesNumberLL.addView(relCirclePrimary)
         }
         itemCirclesNumberLL.getChildAt(0).setBackgroundResource(R.drawable.primary_button_background)
-
         itemImagesVP.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(p0: Int) {}
             override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {}

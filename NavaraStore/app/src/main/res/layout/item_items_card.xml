@@ -30,20 +30,20 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="85dp"
                     android:orientation="horizontal"
                     android:gravity="center">
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:paddingLeft="@dimen/list_margin"
+                        android:paddingRight="@dimen/list_margin"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="@dimen/list_padding">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/itemIV"
-                            android:layout_marginLeft="@dimen/list_margin"
-                            android:layout_marginRight="@dimen/list_margin"
-                            android:layout_marginTop="12dp"
-                            android:layout_marginBottom="@dimen/list_padding"
                             android:layout_width="@dimen/list_icons_width_high"
                             android:layout_height="@dimen/list_icons_width_high"
                             android:scaleType="centerCrop"
@@ -53,6 +53,7 @@
                             app:civ_border_width="@dimen/divider_width"
                             app:civ_border_color="@color/divider_color"
                             tools:ignore="VectorDrawableCompat" />
+
 
                     </RelativeLayout>
 

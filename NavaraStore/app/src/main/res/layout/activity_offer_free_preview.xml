@@ -226,7 +226,7 @@
 
     </LinearLayout>
 
-    <include layout="@layout/fragment_loading" />
+    <include layout="@layout/fragment_loading"/>
 
     <FrameLayout
         android:id="@+id/previewFreeFL"

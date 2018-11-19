@@ -13,8 +13,8 @@ import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
 import com.squareup.picasso.Picasso
 
 @SuppressLint("ValidFragment")
-class ImageSliderFragment(var imagesList: ArrayList<String>, var position: Int, var showFull: Boolean = false)
-    : Fragment() {
+class ImageSliderFragment(var imagesList: ArrayList<String>, var position: Int,
+                          var showFull: Boolean = false, val isRTL: Boolean = false): Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -29,12 +29,17 @@ class ImageSliderFragment(var imagesList: ArrayList<String>, var position: Int, 
         } catch (err: Exception) {
             Log.e("image slide", err.message)
         }
+
         if (showFull) {
             image.setOnClickListener {
                 startActivity(Intent(context, SliderImagesActivity::class.java)
                         .putExtra("position", position)
                         .putExtra("images", imagesList))
             }
+        }
+
+        if (isRTL) {
+            view.rotationY = 180F
         }
 
         return view

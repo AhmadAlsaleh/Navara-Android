@@ -79,7 +79,7 @@ class OfferPreviewActivity : AppCompatActivity() {
         }
 
         offerDisContactUsFAB.setOnClickListener {
-            StaticInformation().openWhatsApp(this, "Offer Dis ID: ${offer.id}\nTitle: ${offer.title}")
+            StaticInformation().openWhatsApp(this, offer.title)
         }
 
         // region font
@@ -154,8 +154,15 @@ class OfferPreviewActivity : AppCompatActivity() {
     private fun setupImages(imagesList: ArrayList<String>) {
         if (imagesList.size > 0) {
             val adapter = ItemImagesSlideAdapter(supportFragmentManager)
-            for (image in imagesList) {
-                adapter.addFragment(ImageSliderFragment(imagesList, imagesList.indexOf(image), true))
+            if (Statics.getCurrentLanguageName(this) == Statics.english) {
+                for (image in imagesList) {
+                    adapter.addFragment(ImageSliderFragment(imagesList, imagesList.indexOf(image), true))
+                }
+            } else {
+                itemImagesVP.rotationY = 180F
+                for (image in imagesList) {
+                    adapter.addFragment(ImageSliderFragment(imagesList, imagesList.indexOf(image), true, true))
+                }
             }
             itemImagesVP.adapter = adapter
 

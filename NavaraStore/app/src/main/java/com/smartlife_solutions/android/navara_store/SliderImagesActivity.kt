@@ -37,9 +37,18 @@ class SliderImagesActivity : AppCompatActivity() {
             return
         }
         val adapter = ItemImagesSlideAdapter(supportFragmentManager)
-        for (image in imagesList) {
-            adapter.addFragment(ImageSliderFragment(imagesList, imagesList.indexOf(image), false))
+
+        if (Statics.getCurrentLanguageName(this) == Statics.english) {
+            for (image in imagesList) {
+                adapter.addFragment(ImageSliderFragment(imagesList, imagesList.indexOf(image), false))
+            }
+        } else {
+            sliderImagesVP.rotationY = 180F
+            for (image in imagesList) {
+                adapter.addFragment(ImageSliderFragment(imagesList, imagesList.indexOf(image), false, true))
+            }
         }
+
         sliderImagesVP.adapter = adapter
 
         for (i in 0 until imagesList.size) {

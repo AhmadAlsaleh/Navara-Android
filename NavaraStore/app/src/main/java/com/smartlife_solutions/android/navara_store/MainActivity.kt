@@ -11,7 +11,6 @@ import android.support.v4.view.ViewPager
 import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.RelativeLayout
 import com.smartlife_solutions.android.navara_store.Adapters.MainPagerAdapter
 import com.smartlife_solutions.android.navara_store.Dialogs.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -55,7 +54,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
 
-        mainViewPager.currentItem = 0
         allDoneMain = AllDoneDialog(this, false, lang = Statics.getLanguageJSONObject(this))
         isActivityVisible = true
         setFont()
@@ -334,10 +332,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setupViewPagerBack() {
         val adapter = MainPagerAdapter(supportFragmentManager)
-        adapter.addFragment(MainBack1(), "One")
-        adapter.addFragment(MainBack2(), "Tow")
-        adapter.addFragment(MainBack3(), "Three")
-        adapter.addFragment(MainBack4(), "Four")
+        if (Statics.getCurrentLanguageName(this) == Statics.english) {
+            adapter.addFragment(MainBack1(), "One")
+            adapter.addFragment(MainBack2(), "Tow")
+            adapter.addFragment(MainBack3(), "Three")
+            adapter.addFragment(MainBack4(), "Four")
+        } else {
+            mainViewPager.rotationY = 180F
+            adapter.addFragment(MainBack1(true), "One")
+            adapter.addFragment(MainBack2(true), "Tow")
+            adapter.addFragment(MainBack3(true), "Three")
+            adapter.addFragment(MainBack4(true), "Four")
+        }
+
         mainViewPager.adapter = adapter
         mainViewPager?.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
 
