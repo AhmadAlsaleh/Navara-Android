@@ -91,6 +91,7 @@ class OfferFreePreviewActivity : AppCompatActivity() {
         offerDescriptionTV.typeface = myFont
         offerDescriptionTV.text = langC.getString("description")
         offerDescriptionTextTV.typeface = myFont
+        offerDescriptionTextTV2.typeface = myFont
         offerFreeContactUsTV.typeface = myFont
         offerFreeContactUsTV.text = langC.getString("contactUs")
         // endregion
@@ -119,6 +120,7 @@ class OfferFreePreviewActivity : AppCompatActivity() {
 
                 offerTitleTV.text = it.getString("title")
                 offerDescriptionTextTV.text = it.getString("description")
+                offerDescriptionTextTV2.text = it.getString("description2")
                 val images = it.getJSONArray("offerImages")
                 val imagesList = ArrayList<String>()
                 for (i in 0 until images.length()) {
@@ -134,16 +136,21 @@ class OfferFreePreviewActivity : AppCompatActivity() {
                 val itemsArray = ArrayList<ItemBasicModel>()
                 for (i in 0 until itemsJSON.length()) {
                     val item = itemsJSON.getJSONObject(i)
-                    itemsArray.add(ItemBasicModel(item.getString("id"), item.getString("name"),
+
+                    val offerItem = ItemBasicModel(item.getString("id"), item.getString("name"),
                             item.getString("itemCategory"), item.getString("itemCategoryID"),
                             item.getInt("quantity"), 0F, // item.getInt("price").toFloat(),
-                            item.getString("thumbnailImagePath"), "0.0", "", 0))
+                            item.getString("thumbnailImagePath"), "0.0", "", 0)
+                    offerItem.name2 = item.getString("name2")
+                    itemsArray.add(offerItem)
                 }
 
                 val itemsArrayList = ArrayList<ItemBasicModel>()
-                itemsArrayList.add(ItemBasicModel(it.getString("itemID"), it.getString("itemName"),
-                        "","",1,it.getInt("unitNetPrice").toFloat(),
-                        it.getString("thumbnailImagePath"), "0.0", "", 0))
+                val offerItem = ItemBasicModel(it.getString("itemID"), it.getString("itemName"),
+                "","",1,it.getInt("unitNetPrice").toFloat(),
+                it.getString("thumbnailImagePath"), "0.0", "", 0)
+                offerItem.name2 = it.getString("itemName2")
+                itemsArrayList.add(offerItem)
 
                 offerPreviewItemsRV.setHasFixedSize(true)
                 offerPreviewItemsRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

@@ -2,6 +2,7 @@ package com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.smartlife_solutions.android.navara_store.Statics;
 
 @DatabaseTable(tableName = "items")
 public class ItemBasicModel {
@@ -36,6 +37,9 @@ public class ItemBasicModel {
     @DatabaseField(columnName = "days_to_be_available")
     private Integer daysToBeAvilable = 0;
 
+    @DatabaseField(columnName = "name2")
+    private String name2;
+
     private String currencyCode = "S.P";
 
     private boolean isFree = false;
@@ -57,6 +61,14 @@ public class ItemBasicModel {
             return 0;
         }
         return daysToBeAvilable;
+    }
+
+    public String getName2() {
+        return name2;
+    }
+
+    public void setName2(String name2) {
+        this.name2 = name2;
     }
 
     public void setDaysToBeAvilable(Integer daysToBeAvilable) {
@@ -188,7 +200,13 @@ public class ItemBasicModel {
     }
 
     public String getName() {
-        return name;
+        if (Statics.getCurrentLanguageName(null).equals(Statics.english)) {
+            return name;
+        }
+        if (getName2().length() == 0) {
+            return name;
+        }
+        return getName2();
     }
 
     public void setName(String name) {

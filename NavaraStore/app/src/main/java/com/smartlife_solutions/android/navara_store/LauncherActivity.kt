@@ -75,9 +75,6 @@ class LauncherActivity : AppCompatActivity() {
         val arabicRequest = JsonObjectRequest(Request.Method.GET, APIsURL().ARABIC_FILE, null, {
             Log.e(Statics.arabic, it.toString())
             saveFile(Statics.arabic, it.toString())
-            val e = perfs.edit()
-            e.putBoolean("isFirst", false)
-            e.apply()
 
             if (perfs.getBoolean("isFirst", true)) {
                 val selectLanguage = ChangeLanguageDialog(this,
@@ -88,6 +85,11 @@ class LauncherActivity : AppCompatActivity() {
                 selectLanguage.setOnDismissListener {
                     startRun()
                 }
+                val e = perfs.edit()
+                e.putBoolean("isFirst", false)
+                e.apply()
+            } else {
+                startRun()
             }
 
             queue.cancelAll(Statics.arabic)

@@ -97,6 +97,7 @@ class CartFragment : Fragment() {
                         item.get("quantity") as Int, (item.get("unitNetPrice") as Double).toFloat(),
                         item.getString("itemThumbnail"), item.get("cashBack").toString(),
                         item.getString("accountID"), 0)
+//                itemObject.name2 = item.getString("itemName2")
                 itemObject.isFree = item.getBoolean("isFree")
                 itemObject.discount = item.getInt("unitDiscount")
                 itemObject.offerID = item.getString("offerID")

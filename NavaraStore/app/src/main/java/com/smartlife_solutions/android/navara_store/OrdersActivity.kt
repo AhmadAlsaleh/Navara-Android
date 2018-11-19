@@ -357,7 +357,7 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener {
             return
         }
 
-        val sureCancel = SureToDoDialog(this, "Sure to cancel?")
+        val sureCancel = SureToDoDialog(this, Statics.getLanguageJSONObject(this).getJSONObject("dialogs").getJSONObject("sure").getString("cancelOrder"))
         sureCancel.show()
         sureCancel.setOnDismissListener {
             if (sureCancel.isTrue) {

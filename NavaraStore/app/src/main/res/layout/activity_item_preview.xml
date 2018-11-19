@@ -217,6 +217,16 @@
                     android:text="Test Test Test Test Test Test Test Test Test Test Test "
                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
+                <TextView
+                    android:id="@+id/itemDescriptionTV2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary_list_item"
+                    android:textSize="@dimen/action_text"
+                    android:gravity="right"
+                    android:text="Test Test Test Test Test Test Test Test Test Test Test "
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
                 <LinearLayout
                     android:id="@+id/itemContactUsLL"
                     android:layout_width="match_parent"

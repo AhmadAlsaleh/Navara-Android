@@ -27,6 +27,7 @@ public class Statics {
     public static final String language = "language";
     public static final String arabic = "arabic.json";
     public static final String english = "english.json";
+    public static String currentLanguage = english;
 
     public static JSONObject getLanguageJSONObject(Activity activity) throws JSONException {
         SharedPreferences preferences = activity.getSharedPreferences("Navara", Context.MODE_PRIVATE);
@@ -35,6 +36,9 @@ public class Statics {
     }
 
     public static String getCurrentLanguageName(Activity activity) {
+        if (activity == null) {
+            return currentLanguage;
+        }
         SharedPreferences sharedPreferences = activity.getSharedPreferences("Navara", Context.MODE_PRIVATE);
         return sharedPreferences.getString(language, english);
     }
@@ -43,6 +47,7 @@ public class Statics {
         SharedPreferences.Editor editor = activity.getSharedPreferences("Navara", Context.MODE_PRIVATE).edit();
         editor.putString(language, name);
         editor.apply();
+        currentLanguage = name;
     }
 
     public static String getMyToken() {

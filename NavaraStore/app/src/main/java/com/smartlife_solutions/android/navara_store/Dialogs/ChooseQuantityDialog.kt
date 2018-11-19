@@ -185,9 +185,9 @@ class ChooseQuantityDialog(context: Context, private var model: Any, private var
         quantityDaysNoteTV.typeface = myFont
         // endregion
 
-        chooseQuantityTitle.text = lang.getJSONObject("dialogs").getJSONObject("quantity").getString("title")
-        addToCartBTN.text = lang.getJSONObject("dialogs").getJSONObject("quantity").getString("addToCart")
-        quantityDaysNoteTV.text = lang.getJSONObject("dialogs").getJSONObject("quantity").getString("starNote")
+        chooseQuantityTitle.text = lang.getJSONObject("dialogs").getJSONObject("chooseQuantity").getString("title")
+        addToCartBTN.text = lang.getJSONObject("dialogs").getJSONObject("chooseQuantity").getString("button")
+        quantityDaysNoteTV.text = lang.getJSONObject("itemPreviewActivity").getString("starNote")
     }
 
     @SuppressLint("SetTextI18n")

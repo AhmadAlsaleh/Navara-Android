@@ -95,6 +95,7 @@ class OfferPreviewActivity : AppCompatActivity() {
         offerDescriptionTV.typeface = myFont
         offerDescriptionTV.text = langC.getString("description")
         offerDescriptionTextTV.typeface = myFont
+        offerDescriptionTextTV2.typeface = myFont
         offerDisContactUsTV.typeface = myFont
         offerDisContactUsTV.text = langC.getString("contactUs")
         // endregion
@@ -126,6 +127,7 @@ class OfferPreviewActivity : AppCompatActivity() {
                 offerOldCostTV.text = "${StaticInformation().formatPrice(it.getInt("unitPrice"))} ${lang.getString("currencyCode")}"
                 offerNewCostTV.text = "${StaticInformation().formatPrice(it.getInt("unitNetPrice"))} ${lang.getString("currencyCode")}"
                 offerDescriptionTextTV.text = it.getString("description")
+                offerDescriptionTextTV2.text = it.getString("description2")
                 val images = it.getJSONArray("offerImages")
                 val imagesList = ArrayList<String>()
                 for (i in 0 until images.length()) {

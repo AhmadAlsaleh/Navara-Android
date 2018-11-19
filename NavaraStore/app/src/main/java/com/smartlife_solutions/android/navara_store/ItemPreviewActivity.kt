@@ -101,6 +101,7 @@ class ItemPreviewActivity : AppCompatActivity() {
         itemCostTextTV.typeface = myFont
         itemCostTextTV.text = langC.getString("price")
         itemDescriptionTV.typeface = myFont
+        itemDescriptionTV2.typeface = myFont
         itemDescriptionTextTV.typeface = myFont
         itemDescriptionTextTV.text = langC.getString("description")
         itemCashBackTV.typeface = myFont
@@ -156,7 +157,7 @@ class ItemPreviewActivity : AppCompatActivity() {
             }
             itemCostTV.text = "${StaticInformation().formatPrice(it.getInt("price"))} ${lang.getString("currencyCode")}"
             itemDescriptionTV.text = it.getString("description")
-
+            itemDescriptionTV2.text = it.getString("description2")
 
 
             if (it.getString("cashBack") == "null" ||

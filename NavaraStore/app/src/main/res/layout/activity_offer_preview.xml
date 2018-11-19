@@ -185,6 +185,16 @@
                     android:text=""
                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
+                <TextView
+                    android:id="@+id/offerDescriptionTextTV2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary_list_item"
+                    android:textSize="@dimen/action_text"
+                    android:gravity="right"
+                    android:text=""
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
             </LinearLayout>
 
         </ScrollView>

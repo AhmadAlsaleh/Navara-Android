@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Build
 import android.support.annotation.RequiresApi
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -78,6 +79,7 @@ class AllOffersAdapter(var context: Context, private var offersArrayList: ArrayL
                     context.startActivity(Intent(context, LoginRegisterActivity::class.java).putExtra("main", false))
                 }
             } catch (err: Exception) {
+                Log.e("login offers" , err.toString())
                 context.startActivity(Intent(context, LoginRegisterActivity::class.java).putExtra("main", false))
             }
 
