@@ -76,8 +76,8 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="600$"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="@dimen/point_top"
+                    android:layout_marginRight="@dimen/point_top"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -90,8 +90,8 @@
                     android:text=""
                     android:textColor="@color/green_background"
                     android:textStyle="bold"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="@dimen/point_top"
+                    android:layout_marginRight="@dimen/point_top"
                     tools:ignore="HardcodedText,RtlHardcoded" />
 
 
@@ -110,8 +110,8 @@
 
             <ImageView
                 android:id="@+id/itemItemsCashBackIV"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="@dimen/drop_arrows"
+                android:layout_height="@dimen/drop_arrows"
                 android:layout_gravity="top|right"
                 app:srcCompat="@drawable/ic_cash_back"
                 android:padding="@dimen/list_margin"

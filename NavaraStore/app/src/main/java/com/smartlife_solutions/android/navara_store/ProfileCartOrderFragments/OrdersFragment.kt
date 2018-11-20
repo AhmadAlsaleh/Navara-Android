@@ -26,6 +26,8 @@ import org.json.JSONArray
 
 class OrdersFragment : Fragment() {
 
+    var isRTL = false
+
     private var orders = ArrayList<OrderModal>()
     private lateinit var noOrders: TextView
     private lateinit var ordersRV: RecyclerView
@@ -36,6 +38,10 @@ class OrdersFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_orders, container, false)
+
+        if (isRTL) {
+            view.rotationY = 180F
+        }
 
         val myFont = StaticInformation().myFont(context)
         ordersRV = view.findViewById(R.id.ordersRV)

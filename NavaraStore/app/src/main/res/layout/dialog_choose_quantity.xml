@@ -88,27 +88,27 @@
 
                             <TextView
                                 android:id="@+id/offerPercentTV"
-                                android:layout_width="22dp"
-                                android:layout_height="22dp"
+                                android:layout_width="@dimen/margin_fab_appoi"
+                                android:layout_height="@dimen/margin_fab_appoi"
                                 android:background="@drawable/green_button_background"
                                 android:text="%"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="@dimen/list_margin"
+                                android:layout_marginTop="@dimen/list_margin"
                                 android:gravity="center"
                                 android:textColor="@color/whiteItem"
-                                android:layout_marginStart="5dp" />
+                                android:layout_marginStart="@dimen/list_margin" />
 
                             <ImageView
                                 android:id="@+id/offerGiftIV"
                                 android:visibility="gone"
-                                android:layout_width="22dp"
-                                android:layout_height="22dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="5dp"
+                                android:layout_width="@dimen/margin_fab_appoi"
+                                android:layout_height="@dimen/margin_fab_appoi"
+                                android:layout_marginLeft="@dimen/list_margin"
+                                android:layout_marginTop="@dimen/list_margin"
                                 app:srcCompat="@drawable/ic_gift"
                                 android:background="@drawable/red_button_background"
                                 android:padding="@dimen/padding_linear"
-                                android:layout_marginStart="5dp" />
+                                android:layout_marginStart="@dimen/list_margin" />
 
                         </RelativeLayout>
 
@@ -143,8 +143,8 @@
                                     android:ellipsize="end"
                                     android:maxLines="1"
                                     android:text="Test"
-                                    android:layout_marginEnd="10dp"
-                                    android:layout_marginRight="10dp" />
+                                    android:layout_marginEnd="@dimen/point_top"
+                                    android:layout_marginRight="@dimen/point_top" />
 
                             </LinearLayout>
 
@@ -231,8 +231,8 @@
                                     android:ellipsize="end"
                                     android:maxLines="1"
                                     android:text="600$"
-                                    android:layout_marginEnd="10dp"
-                                    android:layout_marginRight="10dp" />
+                                    android:layout_marginEnd="@dimen/point_top"
+                                    android:layout_marginRight="@dimen/point_top" />
 
                             </LinearLayout>
 
@@ -255,7 +255,7 @@
                     tools:ignore="SpUsage" />
 
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="@dimen/offer_service_header"
                     android:layout_height="@dimen/main_texts"
                     android:orientation="horizontal"
                     android:layout_gravity="center"

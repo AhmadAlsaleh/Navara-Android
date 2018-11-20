@@ -54,7 +54,7 @@
         <EditText
             android:id="@+id/locationRemarkET"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="@dimen/toolbar_layout"
             android:inputType="textEmailAddress"
             android:hint="flour, near market, ..."
             tools:ignore="SpUsage,TextFields"

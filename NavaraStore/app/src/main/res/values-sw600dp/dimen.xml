@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_margin">10dp</dimen>
+
+    <dimen name="loaderMargin">40dp</dimen>
+    <dimen name="fab_margin">32dp</dimen>
+    <dimen name="point_top">20dp</dimen>
+    <dimen name="action_main_big">10dp</dimen>
+    <dimen name="action_main_small">30dp</dimen>
+    <dimen name="padding_point">6dp</dimen>
+    <dimen name="padding_linear">8dp</dimen>
+    <dimen name="padding_action_buttons">10dp</dimen>
+    <dimen name="margin_fab_appoi">44dp</dimen>
+    <dimen name="list_padding">16dp</dimen>
+    <dimen name="add_buttons_xy">80dp</dimen>
+    <dimen name="drop_arrows">50dp</dimen>
+    <dimen name="padding_category">60dp</dimen>
+    <dimen name="main_icons_padding">50dp</dimen>
+
+    <dimen name="text_quantity_x">80dp</dimen>
+    <dimen name="items_margin">110dp</dimen>
+    <dimen name="dialogs_title">40dp</dimen>
+    <dimen name="main_texts">100dp</dimen>
+    <dimen name="main_buttons">60dp</dimen>
+    <dimen name="main_buttons_plus">80dp</dimen>
+    <dimen name="divider_width">2dp</dimen>
+    <dimen name="list_icons_width_high">130dp</dimen>
+    <dimen name="chosen_icons_width_high">90dp</dimen>
+    <dimen name="main_toolbar_title">44dp</dimen>
+    <dimen name="circle_rl">146dp</dimen>
+    <dimen name="main_add_appointment_actions">40dp</dimen>
+
+    <dimen name="grid_category_xy">190dp</dimen>
+    <dimen name="list_item_text">36dp</dimen>
+    <dimen name="action_text">40dp</dimen>
+    <dimen name="luncher_logo">500dp</dimen>
+    <dimen name="toolbar_layout">90dp</dimen>
+    <dimen name="offer_service_header">400dp</dimen>
+    <dimen name="contact_message">250dp</dimen>
+    <dimen name="language_item_height">120dp</dimen>
+
+    <dimen name="item_image_xy">300dp</dimen>
+    <dimen name="fab_margin_bottom">180dp</dimen>
+    <dimen name="main_btn_margin">200dp</dimen>
+
+    <dimen name="add_main_image_y">350dp</dimen>
+    <dimen name="location_box">360dp</dimen>
+    <dimen name="fab_location_margin">330dp</dimen>
+    <dimen name="location_margin_bottom">436dp</dimen>
+    <dimen name="location_end_web">316dp</dimen>
+    <dimen name="location_end_text">450dp</dimen>
+
+    <dimen name="main_xy">150dp</dimen>
+    <dimen name="padding6">12dp</dimen>
+    <dimen name="padding2">4dp</dimen>
+    <dimen name="tool2">108dp</dimen>
+    <dimen name="card_x">170dp</dimen>
+    <dimen name="card_padding">24dp</dimen>
+    <dimen name="card_quantity">66dp</dimen>
+    <dimen name="quantity_margin">162dp</dimen>
+
+</resources>

@@ -13,7 +13,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="175dp">
+            android:layout_height="@dimen/add_main_image_y">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -34,8 +34,8 @@
                 android:background="@android:color/transparent">
 
                 <ImageView
-                    android:layout_width="125dp"
-                    android:layout_height="125dp"
+                    android:layout_width="@dimen/contact_message"
+                    android:layout_height="@dimen/contact_message"
                     android:src="@drawable/navara_circle_logo"
                     android:layout_margin="@dimen/main_toolbar_title"/>
 

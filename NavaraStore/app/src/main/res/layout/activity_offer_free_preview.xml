@@ -49,12 +49,15 @@
                 app:srcCompat="@drawable/ic_back_arrow_white"/>
 
             <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/ic_circle_white_border"
+                android:id="@+id/freeLogoIV"
+                android:layout_width="@dimen/language_item_height"
+                android:layout_height="@dimen/language_item_height"
+                android:background="@drawable/free_offer_preview_icon"
                 app:srcCompat="@drawable/ic_gift_red"
-                android:padding="12dp"
-                android:layout_margin="@dimen/list_padding"
+                android:paddingStart="@dimen/fab_margin"
+                android:paddingBottom="@dimen/fab_margin"
+                android:paddingTop="@dimen/point_top"
+                android:paddingEnd="@dimen/padding6"
                 android:layout_alignParentEnd="true" />
 
             <LinearLayout
@@ -111,9 +114,9 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="10dp"
-                    android:layout_margin="2dp"
-                    app:cardElevation="3dp">
+                    app:cardCornerRadius="@dimen/point_top"
+                    android:layout_margin="@dimen/padding2"
+                    app:cardElevation="@dimen/padding_point">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -208,7 +211,7 @@
             android:textColor="@color/green_background"
             android:textSize="@dimen/action_main_small"
             android:background="@drawable/white_edit_text_background"
-            android:padding="5dp"
+            android:padding="@dimen/list_margin"
             android:text="@string/contact_us"/>
 
         <android.support.design.widget.FloatingActionButton
@@ -226,7 +229,7 @@
 
     </LinearLayout>
 
-    <include layout="@layout/fragment_loading"/>
+    <include layout="@layout/fragment_loading" />
 
     <FrameLayout
         android:id="@+id/previewFreeFL"

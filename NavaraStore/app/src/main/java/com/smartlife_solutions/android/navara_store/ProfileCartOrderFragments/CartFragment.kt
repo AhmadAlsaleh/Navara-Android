@@ -24,6 +24,8 @@ import org.json.JSONArray
 
 class CartFragment : Fragment() {
 
+    var isRTL = false
+
     private var items = ArrayList<ItemBasicModel>()
     private lateinit var categoryIV: ImageView
     private lateinit var makeOrderIV: ImageView
@@ -41,6 +43,10 @@ class CartFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         viewCart =  inflater.inflate(R.layout.fragment_cart, container, false)
+
+        if (isRTL) {
+            viewCart.rotationY = 180F
+        }
 
         cartRV = viewCart.findViewById(R.id.cartRV)
         cartRV.setHasFixedSize(true)

@@ -9,7 +9,6 @@
     android:padding="@dimen/list_padding"
     tools:context=".OrderFragments.OrderPersonalInformationFragment">
 
-
     <TextView
         android:id="@+id/contactTitle"
         android:layout_width="wrap_content"
@@ -40,7 +39,7 @@
         <EditText
             android:id="@+id/addNameET"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="@dimen/toolbar_layout"
             android:inputType="textPersonName"
             android:paddingLeft="@dimen/padding_linear"
             android:paddingRight="@dimen/padding_linear"
@@ -66,7 +65,7 @@
         <EditText
             android:id="@+id/addPhoneET"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="@dimen/toolbar_layout"
             android:inputType="phone"
             android:paddingLeft="@dimen/padding_linear"
             android:paddingRight="@dimen/padding_linear"
@@ -99,7 +98,7 @@
             android:paddingTop="@dimen/padding_action_buttons"
             android:layout_weight="1"
             android:background="@drawable/edit_text_background"
-            android:minHeight="45dp"
+            android:minHeight="@dimen/toolbar_layout"
             android:inputType="textMultiLine"
             android:textSize="@dimen/list_item_text"
             android:padding="@dimen/padding_linear"

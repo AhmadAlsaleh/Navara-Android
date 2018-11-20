@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/list_margin"
-        app:cardElevation="3dp"
+        app:cardElevation="@dimen/padding_point"
         android:layout_marginLeft="@dimen/list_padding"
         android:layout_marginRight="@dimen/list_padding"
         android:layout_marginTop="@dimen/padding_linear"
@@ -30,16 +30,16 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="85dp"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center">
 
                     <RelativeLayout
-                        android:layout_width="85dp"
-                        android:layout_height="85dp"
+                        android:layout_width="@dimen/card_x"
+                        android:layout_height="@dimen/card_x"
                         android:paddingLeft="@dimen/list_margin"
                         android:paddingRight="@dimen/list_margin"
-                        android:paddingTop="12dp"
+                        android:paddingTop="@dimen/card_padding"
                         android:paddingBottom="@dimen/list_padding">
 
                         <de.hdodenhof.circleimageview.CircleImageView
@@ -112,8 +112,8 @@
                                         android:gravity="left"
                                         android:maxLines="1"
                                         android:text="600$"
-                                        android:layout_marginEnd="10dp"
-                                        android:layout_marginRight="10dp"
+                                        android:layout_marginEnd="@dimen/point_top"
+                                        android:layout_marginRight="@dimen/point_top"
                                         tools:ignore="HardcodedText,RtlHardcoded" />
 
                                     <TextView
@@ -124,8 +124,8 @@
                                         android:gravity="left"
                                         android:maxLines="1"
                                         android:text=""
-                                        android:layout_marginEnd="10dp"
-                                        android:layout_marginRight="10dp"
+                                        android:layout_marginEnd="@dimen/point_top"
+                                        android:layout_marginRight="@dimen/point_top"
                                         tools:ignore="HardcodedText,RtlHardcoded" />
 
 
@@ -163,7 +163,7 @@
                                     android:id="@+id/itemQuantityTV"
                                     android:clickable="false"
                                     android:layout_gravity="center"
-                                    android:layout_width="33dp"
+                                    android:layout_width="@dimen/card_quantity"
                                     android:layout_height="@dimen/main_buttons"
                                     android:text="22"
                                     android:textColor="@color/blackItem"
@@ -176,8 +176,8 @@
 
                                 <ImageView
                                     android:id="@+id/itemAddIV"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
+                                    android:layout_width="@dimen/padding_category"
+                                    android:layout_height="@dimen/padding_category"
                                     app:srcCompat="@drawable/ic_add"
                                     android:padding="@dimen/list_margin"/>
 
@@ -217,8 +217,8 @@
                             <ImageView
                                 android:id="@+id/itemCartIV"
                                 android:layout_gravity="center"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="@dimen/padding_category"
+                                android:layout_height="@dimen/padding_category"
                                 android:layout_marginLeft="@dimen/list_margin"
                                 android:layout_marginRight="@dimen/point_top"
                                 app:srcCompat="@drawable/ic_add_shopping_cart"
@@ -226,8 +226,8 @@
 
                             <ImageView
                                 android:id="@+id/itemPopupIV"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="@dimen/padding_category"
+                                android:layout_height="@dimen/padding_category"
                                 android:visibility="gone"
                                 android:layout_marginRight="@dimen/list_margin"
                                 app:srcCompat="@drawable/ic_more_vert_menu"
@@ -238,8 +238,8 @@
                         <CheckBox
                             android:id="@+id/itemCB"
                             android:layout_gravity="center"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="@dimen/padding_category"
+                            android:layout_height="@dimen/padding_category"
                             android:layout_centerInParent="true"
                             android:visibility="gone"
                             android:layout_margin="@dimen/list_padding" />
@@ -260,8 +260,8 @@
 
                     <ImageView
                         android:id="@+id/itemItemsCashBackIV"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="@dimen/drop_arrows"
+                        android:layout_height="@dimen/drop_arrows"
                         app:srcCompat="@drawable/ic_cash_back"
                         android:padding="@dimen/list_margin"
                         android:layout_marginLeft="@dimen/padding_linear"

@@ -43,4 +43,20 @@
     <dimen name="fab_margin_bottom">90dp</dimen>
     <dimen name="main_btn_margin">100dp</dimen>
 
+    <dimen name="add_main_image_y">175dp</dimen>
+    <dimen name="location_box">180dp</dimen>
+    <dimen name="fab_location_margin">165dp</dimen>
+    <dimen name="location_margin_bottom">218dp</dimen>
+    <dimen name="location_end_web">158dp</dimen>
+    <dimen name="location_end_text">225dp</dimen>
+
+    <dimen name="main_xy">75dp</dimen>
+    <dimen name="padding6">6dp</dimen>
+    <dimen name="padding2">2dp</dimen>
+    <dimen name="tool2">54dp</dimen>
+    <dimen name="card_x">85dp</dimen>
+    <dimen name="card_padding">12dp</dimen>
+    <dimen name="card_quantity">33dp</dimen>
+    <dimen name="quantity_margin">81dp</dimen>
+
 </resources>

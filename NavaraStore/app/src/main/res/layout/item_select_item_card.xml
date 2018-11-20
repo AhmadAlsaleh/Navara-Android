@@ -73,8 +73,8 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="600$"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="@dimen/point_top"
+                    android:layout_marginRight="@dimen/point_top"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -104,7 +104,7 @@
                         android:id="@+id/itemQuantityTV"
                         android:layout_gravity="center"
                         android:clickable="false"
-                        android:layout_width="33dp"
+                        android:layout_width="@dimen/card_quantity"
                         android:layout_height="@dimen/main_buttons"
                         android:text="22"
                         android:textColor="@color/blackItem"
@@ -117,8 +117,8 @@
 
                     <ImageView
                         android:id="@+id/itemAddIV"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/main_buttons"
+                        android:layout_height="@dimen/main_buttons"
                         app:srcCompat="@drawable/ic_add"
                         android:padding="@dimen/list_margin"/>
 

@@ -24,8 +24,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginTop="@dimen/padding2"
+            android:layout_marginBottom="@dimen/padding2"
             android:layout_marginRight="@dimen/list_padding"
             android:layout_marginLeft="@dimen/list_padding">
 
@@ -118,8 +118,8 @@
                     android:maxLines="1"
                     android:text="600$"
                     android:textSize="@dimen/list_item_text"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginEnd="@dimen/point_top"
+                    android:layout_marginRight="@dimen/point_top" />
 
             </LinearLayout>
 
@@ -144,8 +144,8 @@
 
         <ImageView
             android:id="@+id/orderMenuIV"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/main_buttons"
+            android:layout_height="@dimen/main_buttons"
             app:srcCompat="@drawable/ic_more_vert_menu"
             android:layout_margin="@dimen/list_padding" />
 

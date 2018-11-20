@@ -203,10 +203,16 @@ public class ItemBasicModel {
         if (Statics.getCurrentLanguageName(null).equals(Statics.english)) {
             return name;
         }
-        if (getName2().length() == 0) {
+        try {
+            if (getName2().length() == 0) {
+                return name;
+            }
+            return getName2();
+        } catch (NullPointerException eNP) {
+            return name;
+        } catch (Exception e) {
             return name;
         }
-        return getName2();
     }
 
     public void setName(String name) {

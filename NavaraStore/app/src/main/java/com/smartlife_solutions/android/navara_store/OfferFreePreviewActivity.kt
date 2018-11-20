@@ -48,6 +48,9 @@ class OfferFreePreviewActivity : AppCompatActivity() {
             val conf = resources.configuration
             conf.setLayoutDirection(Locale("fa"))
             resources.updateConfiguration(conf, resources.displayMetrics)
+
+            freeLogoIV.setBackgroundResource(R.drawable.free_offer_preview_icon_rtl)
+
         } else {
             val conf = resources.configuration
             conf.setLayoutDirection(Locale("en"))

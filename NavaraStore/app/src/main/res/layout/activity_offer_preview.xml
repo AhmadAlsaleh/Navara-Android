@@ -50,17 +50,16 @@
 
             <TextView
                 android:id="@+id/offerPreviewPercent"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/ic_circle_white_border"
+                android:layout_width="@dimen/language_item_height"
+                android:layout_height="@dimen/language_item_height"
+                android:background="@drawable/offer_preview_icon"
                 android:text="%"
-                android:layout_margin="@dimen/list_padding"
-                android:textSize="25dp"
+                android:textSize="@dimen/drop_arrows"
                 android:textStyle="bold"
                 android:textColor="@color/green_background"
                 android:gravity="center"
                 android:layout_alignParentEnd="true"
-                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SpUsage" />
+                tools:ignore="HardcodedText,RtlSymmetry,SpUsage" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -108,7 +107,7 @@
                     android:id="@+id/itemExistTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/action_main_small"
                     android:text="@string/exist_in_our_stock"
                     android:gravity="left"
                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage"
@@ -217,7 +216,7 @@
             android:textColor="@color/green_background"
             android:textSize="@dimen/action_main_small"
             android:background="@drawable/white_edit_text_background"
-            android:padding="5dp"
+            android:padding="@dimen/list_margin"
             android:text="@string/contact_us"/>
 
         <android.support.design.widget.FloatingActionButton

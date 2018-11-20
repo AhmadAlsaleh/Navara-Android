@@ -20,11 +20,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Location Remark"
-                android:gravity="left"
+                android:gravity="start"
                 android:textSize="@dimen/dialogs_title"
                 android:textColor="@color/navaraPrimary"
                 android:textStyle="bold"
-                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+                tools:ignore="HardcodedText,SpUsage" />
 
             <TextView
                 android:id="@+id/markerInfoTV"

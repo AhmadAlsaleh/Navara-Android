@@ -44,6 +44,9 @@ class OfferPreviewActivity : AppCompatActivity() {
             val conf = resources.configuration
             conf.setLayoutDirection(Locale("fa"))
             resources.updateConfiguration(conf, resources.displayMetrics)
+
+            offerPreviewPercent.setBackgroundResource(R.drawable.offer_preview_icon_rtl)
+
         } else {
             val conf = resources.configuration
             conf.setLayoutDirection(Locale("en"))

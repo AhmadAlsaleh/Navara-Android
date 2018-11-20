@@ -39,27 +39,27 @@
 
             <TextView
                 android:id="@+id/offerPercentTV"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="@dimen/margin_fab_appoi"
+                android:layout_height="@dimen/margin_fab_appoi"
                 android:background="@drawable/green_button_background"
                 android:text="%"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="@dimen/list_margin"
+                android:layout_marginTop="@dimen/list_margin"
                 android:gravity="center"
                 android:textColor="@color/whiteItem"
-                android:layout_marginStart="5dp" />
+                android:layout_marginStart="@dimen/list_margin" />
 
             <ImageView
                 android:id="@+id/offerGiftIV"
                 android:visibility="gone"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_width="@dimen/margin_fab_appoi"
+                android:layout_height="@dimen/margin_fab_appoi"
+                android:layout_marginLeft="@dimen/list_margin"
+                android:layout_marginTop="@dimen/list_margin"
                 app:srcCompat="@drawable/ic_gift"
                 android:background="@drawable/red_button_background"
                 android:padding="@dimen/padding_linear"
-                android:layout_marginStart="5dp" />
+                android:layout_marginStart="@dimen/list_margin" />
 
         </RelativeLayout>
 
@@ -99,8 +99,8 @@
                     android:maxLines="2"
                     android:gravity="left"
                     android:text="Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="@dimen/point_top"
+                    android:layout_marginRight="@dimen/point_top"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -123,7 +123,7 @@
 
                 <ImageView
                     android:id="@+id/offerCartIV"
-                    android:layout_width="30dp"
+                    android:layout_width="@dimen/main_buttons"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:layout_gravity="end|center_vertical"

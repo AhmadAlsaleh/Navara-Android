@@ -55,8 +55,8 @@
 
                 <ImageView
                     android:id="@+id/allDoneMainIV"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="@dimen/item_image_xy"
+                    android:layout_height="@dimen/item_image_xy"
                     android:layout_gravity="center"
                     app:srcCompat="@drawable/ic_email" />
 
@@ -77,7 +77,7 @@
                 <EditText
                     android:id="@+id/confirmET"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="@dimen/toolbar_layout"
                     android:inputType="number"
                     android:paddingLeft="@dimen/padding_linear"
                     android:paddingRight="@dimen/padding_linear"

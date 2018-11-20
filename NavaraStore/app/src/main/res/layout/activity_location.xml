@@ -56,7 +56,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
+                    android:layout_height="@dimen/location_box"
                     android:layout_marginLeft="@dimen/point_top"
                     android:layout_marginRight="@dimen/point_top"
                     android:layout_marginBottom="@dimen/point_top">
@@ -127,14 +127,14 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="160dp"
+                android:layout_marginBottom="@dimen/location_end_web"
                 android:layout_marginEnd="@dimen/action_main_small"
                 android:layout_marginRight="@dimen/action_main_small">
 
                 <ImageView
                     android:id="@+id/contactUsFAB"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="@dimen/language_item_height"
+                    android:layout_height="@dimen/language_item_height"
                     app:srcCompat="@drawable/ic_mobile_phone"
                     android:background="@drawable/ic_circle_primary"
                     android:padding="@dimen/action_main_small"
@@ -143,8 +143,8 @@
 
                 <ImageView
                     android:id="@+id/goToFAB"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="@dimen/language_item_height"
+                    android:layout_height="@dimen/language_item_height"
                     app:srcCompat="@drawable/ic_replay"
                     android:background="@drawable/ic_circle_primary"
                     android:padding="@dimen/action_main_small"
@@ -152,8 +152,8 @@
                     android:layout_marginRight="@dimen/action_main_small"/>
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="@dimen/language_item_height"
+                    android:layout_height="@dimen/language_item_height"
                     android:id="@+id/directionsFAB"
                     app:srcCompat="@drawable/ic_directions"
                     android:padding="@dimen/action_main_small"
@@ -175,18 +175,18 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="60dp"
+                    android:layout_marginBottom="@dimen/language_item_height"
                     android:focusable="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="165dp"
-                    android:layout_marginRight="165dp"
+                    android:layout_marginEnd="@dimen/fab_location_margin"
+                    android:layout_marginRight="@dimen/fab_location_margin"
                     android:orientation="vertical"
                     android:clickable="true"
                     android:id="@+id/contactMailFAB">
 
                     <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="@dimen/language_item_height"
+                        android:layout_height="@dimen/language_item_height"
                         app:srcCompat="@drawable/ic_mail"
                         android:background="@drawable/ic_circle_green"
                         android:padding="@dimen/action_main_small" />
@@ -207,10 +207,10 @@
                     android:orientation="vertical"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="218dp"
-                    android:layout_marginRight="165dp"
+                    android:layout_marginBottom="@dimen/location_margin_bottom"
+                    android:layout_marginRight="@dimen/fab_location_margin"
                     android:focusable="true"
-                    android:layout_marginEnd="165dp"
+                    android:layout_marginEnd="@dimen/fab_location_margin"
                     android:layout_alignParentEnd="true"
                     android:clickable="true"
                     android:gravity="center"
@@ -225,8 +225,8 @@
                         android:textColor="#000"/>
 
                     <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="@dimen/language_item_height"
+                        android:layout_height="@dimen/language_item_height"
                         app:srcCompat="@drawable/ic_call"
                         android:background="@drawable/ic_circle_green"
                         android:padding="@dimen/action_main_small"/>
@@ -238,10 +238,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="158dp"
-                    android:layout_marginRight="225dp"
+                    android:layout_marginBottom="@dimen/location_end_web"
+                    android:layout_marginRight="@dimen/location_end_text"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="225dp"
+                    android:layout_marginEnd="@dimen/location_end_text"
                     android:id="@+id/webContactFAB"
                     android:gravity="center">
 
@@ -254,8 +254,8 @@
                         android:textColor="#000"/>
 
                     <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="@dimen/language_item_height"
+                        android:layout_height="@dimen/language_item_height"
                         android:background="@drawable/ic_circle_green"
                         android:padding="@dimen/action_main_small"
                         app:srcCompat="@drawable/ic_pageview"/>

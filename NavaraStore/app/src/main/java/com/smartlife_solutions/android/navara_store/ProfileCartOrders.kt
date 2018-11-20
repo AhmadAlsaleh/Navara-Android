@@ -51,6 +51,12 @@ class ProfileCartOrders : AppCompatActivity() {
             val conf = resources.configuration
             conf.setLayoutDirection(Locale("fa"))
             resources.updateConfiguration(conf, resources.displayMetrics)
+
+            profileCartOrderVP.rotationY = 180F
+            profileFragment.isRTL = true
+            cartFragment.isRTL = true
+            ordersFragment.isRTL = true
+
         } else {
             val conf = resources.configuration
             conf.setLayoutDirection(Locale("en"))

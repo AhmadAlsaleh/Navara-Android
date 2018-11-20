@@ -20,7 +20,7 @@
         <android.support.v7.widget.CardView
             android:id="@+id/cardSearchCV"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/main_texts"
             android:layout_marginTop="@dimen/point_top"
             android:layout_marginRight="@dimen/point_top"
             android:layout_marginLeft="@dimen/point_top"

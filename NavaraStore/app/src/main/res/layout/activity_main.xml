@@ -141,8 +141,8 @@
 
     <ImageView
         android:id="@+id/orderIV"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="@dimen/main_xy"
+        android:layout_height="@dimen/main_xy"
         android:background="@drawable/ic_circle_white_border"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
@@ -467,8 +467,8 @@
                             android:layout_marginRight="@dimen/margin_fab_appoi"/>
 
                         <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="@dimen/drop_arrows"
+                            android:layout_height="@dimen/drop_arrows"
                             android:layout_gravity="center"
                             app:srcCompat="@drawable/ic_keyboard_arrow_up"/>
 
@@ -533,10 +533,10 @@
                     android:layout_marginLeft="@dimen/point_top"
                     android:layout_marginRight="@dimen/point_top"
                     android:background="@drawable/white_edit_text_background"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
+                    android:paddingTop="@dimen/action_main_big"
+                    android:paddingBottom="@dimen/action_main_big"
+                    android:paddingLeft="@dimen/point_top"
+                    android:paddingRight="@dimen/point_top"
                     android:layout_marginBottom="@dimen/main_icons_padding"/>
 
                 <Button
@@ -738,16 +738,16 @@
             android:layout_margin="@dimen/margin_fab_appoi">
 
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="@dimen/main_xy"
+                android:layout_height="@dimen/main_xy"
                 android:background="@drawable/ic_circle_white_border"
                 app:srcCompat="@drawable/ic_order_primary"
                 android:padding="@dimen/list_item_text"/>
 
             <RelativeLayout
                 android:id="@+id/mainHintOrderRL"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="@dimen/main_xy"
+                android:layout_height="match_parent"
                 android:background="@drawable/ic_circle_white_border_hide"/>
 
         </RelativeLayout>

@@ -18,6 +18,8 @@ import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
 import com.smartlife_solutions.android.navara_store.StaticInformation
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.OfferBasicModel
 import com.smartlife_solutions.android.navara_store.Dialogs.ChooseQuantityDialog
+import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import org.json.JSONObject

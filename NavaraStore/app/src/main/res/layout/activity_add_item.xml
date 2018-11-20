@@ -58,7 +58,7 @@
             <ImageView
                 android:id="@+id/addMainImageIV"
                 android:layout_width="match_parent"
-                android:layout_height="175dp"
+                android:layout_height="@dimen/add_main_image_y"
                 android:background="@drawable/edit_text_background"
                 android:padding="@dimen/point_top"
                 app:srcCompat="@drawable/ic_add_main_image" />
@@ -76,7 +76,7 @@
             <EditText
                 android:id="@+id/addTitleET"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/toolbar_layout"
                 android:background="@drawable/edit_text_background"
                 android:inputType="textPersonName"
                 android:paddingLeft="@dimen/padding_linear"
@@ -97,7 +97,7 @@
             <EditText
                 android:id="@+id/addPriceET"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/toolbar_layout"
                 android:background="@drawable/edit_text_background"
                 android:inputType="number"
                 android:paddingLeft="@dimen/padding_linear"
@@ -118,7 +118,7 @@
             <EditText
                 android:id="@+id/addQuantityET"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/toolbar_layout"
                 android:background="@drawable/edit_text_background"
                 android:inputType="number"
                 android:paddingLeft="@dimen/padding_linear"
@@ -139,7 +139,7 @@
             <EditText
                 android:id="@+id/addDescriptionET"
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
+                android:layout_height="@dimen/fab_margin_bottom"
                 android:background="@drawable/edit_text_background"
                 android:gravity="top|left"
                 android:inputType="textMultiLine"
@@ -163,7 +163,7 @@
             <EditText
                 android:id="@+id/addOwnerNameET"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/toolbar_layout"
                 android:layout_marginBottom="@dimen/list_padding"
                 android:background="@drawable/edit_text_background"
                 android:gravity="center_vertical"
@@ -177,7 +177,7 @@
             <EditText
                 android:id="@+id/addOwnerPhoneET"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/toolbar_layout"
                 android:layout_marginBottom="@dimen/list_padding"
                 android:background="@drawable/edit_text_background"
                 android:gravity="center_vertical"

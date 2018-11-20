@@ -65,7 +65,7 @@
                 <EditText
                     android:id="@+id/contactNameET"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="@dimen/toolbar_layout"
                     android:inputType="textPersonName"
                     android:paddingLeft="@dimen/padding_linear"
                     android:paddingRight="@dimen/padding_linear"
@@ -87,7 +87,7 @@
                 <EditText
                     android:id="@+id/contactEmailET"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="@dimen/toolbar_layout"
                     android:inputType="textEmailAddress"
                     android:paddingLeft="@dimen/padding_linear"
                     android:paddingRight="@dimen/padding_linear"

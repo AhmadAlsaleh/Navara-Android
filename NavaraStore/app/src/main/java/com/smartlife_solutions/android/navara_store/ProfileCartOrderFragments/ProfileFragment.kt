@@ -36,6 +36,8 @@ import java.nio.charset.Charset
 @SuppressLint("ValidFragment")
 class ProfileFragment (var activity: ProfileCartOrders) : Fragment() {
 
+    var isRTL = false
+
     var isChange: Boolean = false
     private lateinit var name: EditText
     private lateinit var email: EditText
@@ -68,6 +70,10 @@ class ProfileFragment (var activity: ProfileCartOrders) : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        if (isRTL) {
+            view.rotationY = 180F
+        }
 
         ccpProfile = view.findViewById(R.id.ccpProfile)
         confirmRL = view.findViewById(R.id.profileConfirmRL)

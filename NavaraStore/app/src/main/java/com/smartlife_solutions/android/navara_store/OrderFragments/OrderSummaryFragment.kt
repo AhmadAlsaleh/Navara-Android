@@ -170,6 +170,8 @@ class OrderSummaryFragment(var activity: OrdersActivity) : Fragment(), OnMapRead
         orderObject.put("Name", activity.personName)
         orderObject.put("UseWallet", useWalletCB.isChecked)
 
+        Log.e("order information", orderObject.toString())
+
         activity.showLoader()
 
         val queue = Volley.newRequestQueue(context)

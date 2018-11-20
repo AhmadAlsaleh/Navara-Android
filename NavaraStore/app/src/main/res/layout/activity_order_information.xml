@@ -150,7 +150,7 @@
                             android:textColor="@color/blackItem"
                             android:textSize="@dimen/main_add_appointment_actions"
                             tools:ignore="SpUsage"
-                            android:layout_marginTop="2dp"/>
+                            android:layout_marginTop="@dimen/padding2"/>
 
                         <TextView
                             android:id="@+id/orderUseWalletTV"
@@ -160,7 +160,7 @@
                             android:layout_gravity="center"
                             android:textSize="@dimen/action_main_small"
                             tools:ignore="SpUsage"
-                            android:layout_marginBottom="2dp"/>
+                            android:layout_marginBottom="@dimen/padding2"/>
 
                     </LinearLayout>
 

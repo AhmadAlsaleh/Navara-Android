@@ -78,7 +78,7 @@
             <EditText
                 android:id="@+id/emailOrMobileNumberET"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/toolbar_layout"
                 android:inputType="textEmailAddress"
                 android:hint="user@example.com"
                 android:paddingLeft="@dimen/point_top"
@@ -113,7 +113,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/phone_number_edt_login"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="@dimen/toolbar_layout"
                     android:inputType="phone"
                     android:hint="9XXX-XXX-XXX"
                     android:background="@drawable/edit_text_background"
@@ -137,7 +137,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/toolbar_layout"
                 android:paddingLeft="@dimen/point_top"
                 android:paddingRight="@dimen/padding_linear"
                 android:layout_marginLeft="@dimen/items_margin"
@@ -159,7 +159,7 @@
 
                 <ImageView
                     android:id="@+id/passwordEyeIV"
-                    android:layout_width="45dp"
+                    android:layout_width="@dimen/toolbar_layout"
                     android:layout_margin="@dimen/point_top"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/ic_eye_black"/>
@@ -169,7 +169,7 @@
             <Button
                 android:id="@+id/loginBTN"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/toolbar_layout"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/point_top"
                 android:text="Login"
@@ -183,7 +183,7 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/toolbar_layout"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/point_top"
                 android:layout_marginRight="@dimen/items_margin"
@@ -208,8 +208,8 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/main_buttons"
+                        android:layout_height="@dimen/main_buttons"
                         android:layout_marginRight="@dimen/point_top"
                         android:layout_marginLeft="@dimen/point_top"
                         android:src="@drawable/facebook_white_logo" />

@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/list_margin"
-        android:layout_margin="8dp"
-        app:cardElevation="3dp">
+        android:layout_margin="@dimen/list_padding"
+        app:cardElevation="@dimen/padding_point">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,8 +37,8 @@
                     <ImageView
                         android:id="@+id/offerDeleteIV"
                         android:layout_gravity="center"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/main_buttons"
+                        android:layout_height="@dimen/main_buttons"
                         app:srcCompat="@drawable/ic_close_primary"
                         android:layout_marginEnd="@dimen/list_padding" />
 
@@ -54,25 +54,25 @@
                 <ImageView
                     android:id="@+id/offerGiftIV"
                     android:visibility="gone"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_width="@dimen/margin_fab_appoi"
+                    android:layout_height="@dimen/margin_fab_appoi"
+                    android:layout_marginTop="@dimen/list_margin"
                     app:srcCompat="@drawable/ic_gift"
                     android:background="@drawable/red_button_background"
                     android:padding="@dimen/padding_linear"
-                    android:layout_marginStart="5dp" />
+                    android:layout_marginStart="@dimen/list_margin" />
 
                 <TextView
                     android:id="@+id/offerPercentTV"
                     android:visibility="gone"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="@dimen/margin_fab_appoi"
+                    android:layout_height="@dimen/margin_fab_appoi"
                     android:background="@drawable/green_button_background"
                     android:text="%"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/list_margin"
                     android:gravity="center"
                     android:textColor="@color/whiteItem"
-                    android:layout_marginStart="5dp" />
+                    android:layout_marginStart="@dimen/list_margin" />
 
             </RelativeLayout>
 
@@ -83,7 +83,7 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/list_padding"
-                android:layout_marginStart="81dp"
+                android:layout_marginStart="@dimen/quantity_margin"
                 android:layout_marginBottom="@dimen/list_padding">
 
                 <LinearLayout
@@ -103,7 +103,7 @@
                         android:id="@+id/itemQuantityTV"
                         android:clickable="false"
                         android:layout_gravity="center"
-                        android:layout_width="33dp"
+                        android:layout_width="@dimen/card_quantity"
                         android:layout_height="@dimen/main_buttons"
                         android:text="22"
                         android:textColor="@color/blackItem"
@@ -116,8 +116,8 @@
 
                     <ImageView
                         android:id="@+id/itemAddIV"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/main_buttons"
+                        android:layout_height="@dimen/main_buttons"
                         app:srcCompat="@drawable/ic_add"
                         android:padding="@dimen/list_margin"/>
 
