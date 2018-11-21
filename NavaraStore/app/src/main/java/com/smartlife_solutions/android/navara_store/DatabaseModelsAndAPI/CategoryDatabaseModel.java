@@ -33,6 +33,14 @@ public class CategoryDatabaseModel {
         this.imagePath = imagePath;
     }
 
+    public String getName2() {
+        return name2;
+    }
+
+    public void setName2(String name2) {
+        this.name2 = name2;
+    }
+
     public String getId() {
         return id;
     }
@@ -43,8 +51,8 @@ public class CategoryDatabaseModel {
 
     public String getName() {
         try {
-            if (Statics.getCurrentLanguageName(null).equals(Statics.arabic) && name2.length() > 0) {
-                return name2;
+            if (Statics.getCurrentLanguageName(null).equals(Statics.arabic) && getName2().length() > 0) {
+                return getName2();
             }
             return name;
         } catch (Exception e) {
