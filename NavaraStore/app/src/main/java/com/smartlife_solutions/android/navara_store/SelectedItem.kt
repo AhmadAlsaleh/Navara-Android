@@ -52,6 +52,9 @@ class SelectedItem(context: Context, itemModel: ItemBasicModel, isLast: Boolean 
                 itemCashLL.visibility = View.GONE
             } else {
                 itemCashLL.visibility = View.VISIBLE
+                if (Statics.getCurrentLanguageName(null) == Statics.arabic) {
+                    itemCashLL.setBackgroundResource(R.drawable.background_cash_back_right_rtl)
+                }
                 itemCashTV.text = itemModel.cashBack.toFloat().toInt().toString() + " " + lang.getString("currencyCode")
             }
         } catch (err: Exception) {

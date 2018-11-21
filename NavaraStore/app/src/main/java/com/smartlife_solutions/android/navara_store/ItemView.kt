@@ -56,6 +56,9 @@ class ItemView(var fragment: Fragment, context: Context, var item: ItemBasicMode
                 itemCashBackLL.visibility = View.GONE
             } else {
                 itemCashBackLL.visibility = View.VISIBLE
+                if (Statics.getCurrentLanguageName(null) == Statics.arabic) {
+                    itemCashBackLL.setBackgroundResource(R.drawable.background_cash_back_right_rtl)
+                }
                 itemCashBackTV.text = item.cashBack.toFloat().toInt().toString() + " ${lang.getString("currencyCode")}"
             }
         } catch (err: Exception) {
