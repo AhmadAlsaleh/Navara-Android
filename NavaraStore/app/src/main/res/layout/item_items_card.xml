@@ -39,13 +39,13 @@
                         android:layout_height="@dimen/card_x"
                         android:paddingLeft="@dimen/list_margin"
                         android:paddingRight="@dimen/list_margin"
-                        android:paddingTop="@dimen/card_padding"
+                        android:paddingTop="@dimen/list_padding"
                         android:paddingBottom="@dimen/list_padding">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/itemIV"
-                            android:layout_width="@dimen/list_icons_width_high"
-                            android:layout_height="@dimen/list_icons_width_high"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:scaleType="centerCrop"
                             android:layout_centerInParent="true"
                             android:src="@drawable/ic_add_shopping_cart"
@@ -53,7 +53,6 @@
                             app:civ_border_width="@dimen/divider_width"
                             app:civ_border_color="@color/divider_color"
                             tools:ignore="VectorDrawableCompat" />
-
 
                     </RelativeLayout>
 

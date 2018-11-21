@@ -1,6 +1,7 @@
 package com.smartlife_solutions.android.navara_store.ItemsActivityFragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -36,10 +37,26 @@ class CategoryItemsFragment(private var categoryID: String) : Fragment() {
             itemsRV.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             itemsRV.adapter = PreviewFreeItemsAdapter(context = context!!, itemsArrayList = items, isAll = true,
                     lang = Statics.getLanguageJSONObject(activity as ItemsActivity))
+
+            setHints()
+
         } catch (err: Exception) {
             (activity as ItemsActivity).onBackPressed()
         }
         return  view
+    }
+
+    private fun setHints() {
+        val itemsActivity = (activity as ItemsActivity)
+        val perfs = itemsActivity.getSharedPreferences("Navara", Context.MODE_PRIVATE)
+        if (!perfs.getBoolean("itemHint", true)) {
+            return
+        }
+        val editPerfs = perfs.edit()
+        editPerfs.putBoolean("itemHint", false)
+        editPerfs.apply()
+
+        itemsActivity.showItemHints()
     }
 
 }

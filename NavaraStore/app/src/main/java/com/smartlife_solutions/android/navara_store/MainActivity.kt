@@ -152,6 +152,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         var currentHint = 0
         mainNextBTN.text = hintsLang.getString("start")
+        mainHintTV.text = hintsLang.getString("welcome")
         mainNextBTN.setOnClickListener {
             hideAllHint()
             mainNextBTN.text = hintsLang.getString("next")

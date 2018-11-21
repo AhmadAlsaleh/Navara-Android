@@ -76,6 +76,9 @@ class PreviewFreeItemsAdapter(var fragment: CartFragment? = null, var context: C
             } else {
                 holder.itemCashBackTV.text = itemsArrayList[position].cashBack.toFloat().toInt().toString() + " " + lang.getString("currencyCode")
                 holder.itemCashBackLL.visibility = View.VISIBLE
+                if (Statics.getCurrentLanguageName(null) == Statics.arabic) {
+                    holder.itemCashBackLL.setBackgroundResource(R.drawable.background_cash_back_right_rtl)
+                }
             }
         } catch (err: Exception) {}
 

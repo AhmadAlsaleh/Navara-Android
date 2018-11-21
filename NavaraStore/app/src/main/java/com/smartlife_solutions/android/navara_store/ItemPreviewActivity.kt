@@ -1,6 +1,7 @@
 package com.smartlife_solutions.android.navara_store
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
@@ -50,6 +51,9 @@ class ItemPreviewActivity : AppCompatActivity() {
             val conf = resources.configuration
             conf.setLayoutDirection(Locale("fa"))
             resources.updateConfiguration(conf, resources.displayMetrics)
+
+            itemCashBackLL.setBackgroundResource(R.drawable.background_cash_back_rtl)
+
         } else {
             val conf = resources.configuration
             conf.setLayoutDirection(Locale("en"))

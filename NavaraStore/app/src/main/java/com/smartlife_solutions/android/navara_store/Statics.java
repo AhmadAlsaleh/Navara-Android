@@ -40,7 +40,8 @@ public class Statics {
             return currentLanguage;
         }
         SharedPreferences sharedPreferences = activity.getSharedPreferences("Navara", Context.MODE_PRIVATE);
-        return sharedPreferences.getString(language, english);
+        currentLanguage = sharedPreferences.getString(language, english);
+        return currentLanguage;
     }
 
     public static void setCurrentLanguageName(Activity activity, String name) {

@@ -747,7 +747,7 @@
             <RelativeLayout
                 android:id="@+id/mainHintOrderRL"
                 android:layout_width="@dimen/main_xy"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/main_xy"
                 android:background="@drawable/ic_circle_white_border_hide"/>
 
         </RelativeLayout>

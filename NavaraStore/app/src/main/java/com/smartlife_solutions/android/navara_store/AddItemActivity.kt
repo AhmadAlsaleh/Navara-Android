@@ -3,15 +3,19 @@ package com.smartlife_solutions.android.navara_store
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.support.annotation.RequiresApi
+import android.support.v4.content.FileProvider
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
@@ -30,6 +34,7 @@ import com.smartlife_solutions.android.navara_store.Dialogs.SureToDoDialog
 import kotlinx.android.synthetic.main.activity_add_item.*
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.File
 import java.io.IOException
 import java.io.UnsupportedEncodingException
 import java.nio.charset.Charset
@@ -125,6 +130,9 @@ class AddItemActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onBackPressed() {
+        if (addPB.visibility == View.VISIBLE) {
+            return
+        }
         val sureCancel = SureToDoDialog(this, lang.getString("sure"))
         sureCancel.show()
         sureCancel.setOnDismissListener {
@@ -136,8 +144,12 @@ class AddItemActivity : AppCompatActivity(), View.OnClickListener {
 
     @RequiresApi(Build.VERSION_CODES.M)
     fun checkCameraPermission() {
-        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE)
+        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+            || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+            || checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(Manifest.permission.CAMERA,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE), CAMERA_PERMISSION_CODE)
         } else {
             takeNewImage()
         }
@@ -163,11 +175,15 @@ class AddItemActivity : AppCompatActivity(), View.OnClickListener {
         startActivityForResult(intent, PICK_IMAGE_MULTI)
     }
 
+
+    private lateinit var imageUri: Uri
     private fun takeNewImage() {
-        startActivityForResult(
-                Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE),
-                CAMERA_REQUEST
-        )
+        val values = ContentValues()
+        values.put(MediaStore.Images.Media.TITLE, "Main Image")
+        values.put(MediaStore.Images.Media.DESCRIPTION, "from Camera")
+        imageUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)!!
+        startActivityForResult(Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                .putExtra(MediaStore.EXTRA_OUTPUT, imageUri), CAMERA_REQUEST)
     }
 
     fun getMainImage() {
@@ -195,7 +211,10 @@ class AddItemActivity : AppCompatActivity(), View.OnClickListener {
                             800
                     ))
 
-                    CAMERA_REQUEST -> setMainImage(data?.extras?.get("data") as Bitmap)
+                    CAMERA_REQUEST -> setMainImage(StaticInformation()
+                            .getResizedBitmap(MediaStore.Images.Media.getBitmap(contentResolver,
+                                    imageUri),
+                            800))
 
                     PICK_IMAGE_MULTI -> {
                         try {
@@ -315,8 +334,8 @@ class AddItemActivity : AppCompatActivity(), View.OnClickListener {
         val queue = Volley.newRequestQueue(this)
         val request = object : StringRequest(Request.Method.POST, APIsURL().ADD_NEW_ITEM, {
             queue.cancelAll("add")
-            Toast.makeText(this, lang.getString("added"), Toast.LENGTH_SHORT).show()
             finish()
+            Toast.makeText(this, lang.getString("added"), Toast.LENGTH_SHORT).show()
         }, {
             queue.cancelAll("add")
             addPB.visibility = View.GONE

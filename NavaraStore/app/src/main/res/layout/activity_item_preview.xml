@@ -346,6 +346,91 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/itemHintRL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:visibility="gone"
+        android:background="@color/hide_gray"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/itemHintCartIV"
+            android:layout_width="@dimen/main_texts"
+            android:layout_height="@dimen/main_texts"
+            android:layout_marginEnd="@dimen/fab_margin"
+            app:srcCompat="@drawable/ic_add_shopping_cart"
+            android:background="@drawable/ic_circle_white_border"
+            android:padding="@dimen/list_padding"
+            android:layout_marginTop="145dp"
+            android:layout_alignParentEnd="true"/>
+
+        <TextView
+            android:id="@+id/itemHintTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Find Items Easily"
+            android:textSize="@dimen/main_icons_padding"
+            android:textColor="@color/primary_list_item"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:background="@drawable/white_edit_text_background"
+            android:paddingTop="@dimen/list_margin"
+            android:paddingBottom="@dimen/list_margin"
+            android:paddingLeft="@dimen/point_top"
+            android:paddingRight="@dimen/point_top"
+            tools:ignore="RtlHardcoded" />
+
+        <LinearLayout
+            android:id="@+id/itemHintCashLL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/list_margin"
+            android:background="@drawable/background_cash_back">
+
+            <ImageView
+                android:layout_width="@dimen/main_buttons"
+                android:layout_height="@dimen/main_buttons"
+                app:srcCompat="@drawable/ic_cash_back"
+                android:layout_marginLeft="@dimen/list_padding"
+                android:layout_marginRight="@dimen/list_padding"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/itemHintCashTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/list_padding"
+                android:text="1000 S.P"
+                android:textColor="@color/whiteItem"
+                android:layout_gravity="center"
+                android:textSize="@dimen/action_text"
+                tools:ignore="HardcodedText,SpUsage" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/itemHintBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:background="@drawable/primary_button_background"
+            android:textAllCaps="false"
+            android:text="Done"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/whiteItem"
+            android:textSize="@dimen/margin_fab_appoi"
+            android:paddingRight="@dimen/fab_margin"
+            android:paddingLeft="@dimen/fab_margin"/>
+
+    </RelativeLayout>
+
     <include layout="@layout/fragment_loading" />
 
     <FrameLayout

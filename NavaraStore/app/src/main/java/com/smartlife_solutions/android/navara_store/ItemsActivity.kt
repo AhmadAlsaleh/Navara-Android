@@ -3,9 +3,11 @@ package com.smartlife_solutions.android.navara_store
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.support.annotation.RequiresApi
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.View
@@ -27,6 +29,7 @@ class ItemsActivity : AppCompatActivity() {
     private var fromCart = false
     private lateinit var lang: JSONObject
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_items)
@@ -37,6 +40,10 @@ class ItemsActivity : AppCompatActivity() {
             val conf = resources.configuration
             conf.setLayoutDirection(Locale("fa"))
             resources.updateConfiguration(conf, resources.displayMetrics)
+
+            itemHintCashPreviewLL.setBackgroundResource(R.drawable.background_cash_back_right_rtl)
+            itemHintCashLL.setBackgroundResource(R.drawable.background_cash_back_right_rtl)
+
         } else {
             val conf = resources.configuration
             conf.setLayoutDirection(Locale("en"))
@@ -72,12 +79,11 @@ class ItemsActivity : AppCompatActivity() {
             } catch (err: Exception) {}
         } else {
             setupFragment(CategoryFragment())
+            setHints()
         }
 
         checkConnection()
         checkTimer()
-
-        setHints()
 
     }
 
@@ -97,8 +103,6 @@ class ItemsActivity : AppCompatActivity() {
         }
 
         val font = StaticInformation().myFont(this)
-        searchHintTitle.typeface = font
-        searchHintTV.typeface = font
         itemsCatHintTV.typeface = font
         itemsHintTV.typeface = font
         itemsNextBTN.typeface = font
@@ -145,6 +149,7 @@ class ItemsActivity : AppCompatActivity() {
             dbHelper.clearTable(ItemBasicModel::class.java)
             dbHelper.itemBasicModelIntegerRuntimeException.create(listBasicItems)
             setupFragment(CategoryFragment())
+            setHints()
         } catch (err: Exception) {}
     }
 
@@ -198,6 +203,51 @@ class ItemsActivity : AppCompatActivity() {
         startActivity(Intent(this, MainActivity::class.java)
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         super.onBackPressed()
+    }
+
+    fun showItemHints() {
+        val myFont = StaticInformation().myFont(this)
+        itemHintTV.typeface = myFont
+        itemHintBTN.typeface = myFont
+        itemHintTitleTV.typeface = myFont
+        itemHintPriceTV.typeface = myFont
+        itemHintCashBackTV.typeface = myFont
+        itemHintCashPreviewTV.typeface = myFont
+
+        itemHintRL.visibility = View.VISIBLE
+        itemHintCashPreviewLL.visibility = View.GONE
+        itemHintCartPreviewIV.visibility = View.VISIBLE
+
+        itemHintCV.startAnimation(StaticInformation().slideHint(this))
+        itemHintTV.startAnimation(StaticInformation().fadeInAnim(this))
+        itemHintCartPreviewIV.startAnimation(StaticInformation().fadeInAnim(this))
+
+        val lang = Statics.getLanguageJSONObject(this).getJSONObject("hints").getJSONObject("itemsList")
+        itemHintTitleTV.text = lang.getString("title")
+        itemHintPriceTV.text = lang.getString("price")
+        itemHintCashBackTV.text = lang.getString("cashBack")
+        itemHintCashPreviewTV.text = lang.getString("cashBack")
+        itemHintTV.text = lang.getString("cartText")
+
+        itemHintBTN.text = lang.getString("next")
+        var clickTime = true
+        itemHintBTN.setOnClickListener {
+            if (clickTime) {
+                itemHintBTN.text = lang.getString("done")
+                itemHintTV.text = lang.getString("cashText")
+
+                itemHintCashPreviewLL.visibility = View.VISIBLE
+                itemHintCartPreviewIV.visibility = View.GONE
+
+                itemHintTV.startAnimation(StaticInformation().fadeInAnim(this))
+                itemHintCashPreviewLL.startAnimation(StaticInformation().fadeInAnim(this))
+
+                clickTime = false
+                return@setOnClickListener
+            }
+            itemHintRL.visibility = View.GONE
+        }
+
     }
 
 }
