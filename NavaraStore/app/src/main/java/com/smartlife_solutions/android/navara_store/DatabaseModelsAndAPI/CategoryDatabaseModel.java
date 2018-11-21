@@ -2,6 +2,7 @@ package com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.smartlife_solutions.android.navara_store.Statics;
 
 @DatabaseTable(tableName = "category")
 public class CategoryDatabaseModel {
@@ -11,6 +12,9 @@ public class CategoryDatabaseModel {
 
     @DatabaseField(columnName = "name")
     private String name;
+
+    @DatabaseField(columnName = "name2")
+    private String name2;
 
     @DatabaseField(columnName = "description")
     private String description;
@@ -38,7 +42,14 @@ public class CategoryDatabaseModel {
     }
 
     public String getName() {
-        return name;
+        try {
+            if (Statics.getCurrentLanguageName(null).equals(Statics.arabic) && name2.length() > 0) {
+                return name2;
+            }
+            return name;
+        } catch (Exception e) {
+            return name;
+        }
     }
 
     public void setName(String name) {

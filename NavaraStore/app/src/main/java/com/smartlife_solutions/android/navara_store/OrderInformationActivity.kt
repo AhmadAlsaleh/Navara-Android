@@ -2,8 +2,10 @@ package com.smartlife_solutions.android.navara_store
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.util.Log
 import android.view.View
 import com.android.volley.AuthFailureError
@@ -32,6 +34,7 @@ class OrderInformationActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var lang: JSONObject
     private lateinit var langC: JSONObject
+    private var orderCode = ""
 
     override fun onMapReady(p0: GoogleMap?) {
         gMap = p0!!
@@ -46,6 +49,7 @@ class OrderInformationActivity : AppCompatActivity(), OnMapReadyCallback {
         ft.commit()
     }
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +86,7 @@ class OrderInformationActivity : AppCompatActivity(), OnMapReadyCallback {
         orderContactUsIV.setOnClickListener {
             val s = StaticInformation()
             s.clickAnim(this)
-            s.openWhatsApp(this, "Order Code: ${orderCodeTV.text}\n${orderStatusTV.text}")
+            s.openWhatsApp(this, orderCode)
         }
 
         // region font
@@ -207,7 +211,8 @@ class OrderInformationActivity : AppCompatActivity(), OnMapReadyCallback {
         selectedPhoneTV.text = it.getString("mobile")
         selectedRemarkTV.text = it.getString("remark")
 
-        orderTotalInfoTV.text = "Total: "+ StaticInformation().formatPrice(it.getInt("netTotalPrices")) + " ${lang.getString("currencyCode")}"
+        orderTotalInfoTV.text = langC.getString("total") + " " + StaticInformation().formatPrice(it.getInt("netTotalPrices")) +
+                " ${lang.getString("currencyCode")}"
         if (it.getBoolean("useWallet")) {
             orderUseWalletTV.visibility = View.VISIBLE
             try {
@@ -252,6 +257,8 @@ class OrderInformationActivity : AppCompatActivity(), OnMapReadyCallback {
         } else {
             orderStatusTV.text = status
         }
+
+        orderCode = it.getString("code")
         orderCodeTV.text = "${langC.getString("code")} ${it.getString("code")}"
 
         var days = it.get("daysToDeliver").toString()
