@@ -52,10 +52,6 @@ class CategoryItemsFragment(private var categoryID: String) : Fragment() {
         if (!perfs.getBoolean("itemHint", true)) {
             return
         }
-        val editPerfs = perfs.edit()
-        editPerfs.putBoolean("itemHint", false)
-        editPerfs.apply()
-
         itemsActivity.showItemHints()
     }
 

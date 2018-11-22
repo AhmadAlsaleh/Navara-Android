@@ -92,9 +92,6 @@ class ItemsActivity : AppCompatActivity() {
         val perf = getSharedPreferences("Navara", Context.MODE_PRIVATE)
         val isFirstCategory = perf?.getBoolean("search", true)
         if (isFirstCategory!!) {
-            val editShared = perf.edit()
-            editShared.putBoolean("search", false)
-            editShared.apply()
             itemsHintLL.visibility = View.VISIBLE
 
         } else {
@@ -121,7 +118,12 @@ class ItemsActivity : AppCompatActivity() {
                     itemsAllCatsRL.visibility = View.VISIBLE
                     itemsAllCatsRL.startAnimation(StaticInformation().fadeInAnim(this))
                 }
-                1 -> itemsHintLL.visibility = View.GONE
+                1 -> {
+                    val editShared = perf.edit()
+                    editShared.putBoolean("search", false)
+                    editShared.apply()
+                    itemsHintLL.visibility = View.GONE
+                }
             }
             currentHint++
         }
@@ -245,6 +247,10 @@ class ItemsActivity : AppCompatActivity() {
                 clickTime = false
                 return@setOnClickListener
             }
+            val perfs = getSharedPreferences("Navara", Context.MODE_PRIVATE)
+            val editPerfs = perfs.edit()
+            editPerfs.putBoolean("itemHint", false)
+            editPerfs.apply()
             itemHintRL.visibility = View.GONE
         }
 

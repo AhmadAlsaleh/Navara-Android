@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.AutoCompleteTextView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.maps.*
@@ -29,13 +30,16 @@ class OrderChooseLocationFragment(var activity: OrdersActivity) : Fragment(), On
     lateinit var searchET: AutoCompleteTextView
     private lateinit var mapView: MapView
     private lateinit var googleMap: GoogleMap
+    private lateinit var chooseLocationPBRL: RelativeLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_order_choose_location, container, false)
 
+        chooseLocationPBRL = view.findViewById(R.id.chooseLocationPBRL)
         searchET = view.findViewById(R.id.searchET)
+
         val locationHintsTV = view.findViewById<TextView>(R.id.locationHintsTV)
         locationHintsTV.typeface = StaticInformation().myFont(context)
         searchET.typeface = StaticInformation().myFont(context)
@@ -104,6 +108,7 @@ class OrderChooseLocationFragment(var activity: OrdersActivity) : Fragment(), On
             val geoCoder = Geocoder(context)
             val address = geoCoder.getFromLocation(activity.latLng?.latitude!!, activity.latLng?.longitude!!, 1)[0]
             searchET.setText(address.getAddressLine(0))
+            chooseLocationPBRL.visibility = View.GONE
         } catch (err: Exception) {}
     }
 
@@ -119,6 +124,7 @@ class OrderChooseLocationFragment(var activity: OrdersActivity) : Fragment(), On
                     setupMap()
                 } else {
                     Toast.makeText(context, "Not found", Toast.LENGTH_LONG).show()
+                    chooseLocationPBRL.visibility = View.GONE
                 }
             } catch (err: Exception) {
             }

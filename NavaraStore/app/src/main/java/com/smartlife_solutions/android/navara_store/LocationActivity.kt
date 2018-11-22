@@ -135,11 +135,11 @@ class LocationActivity : AppCompatActivity() {
         workTimeTV.typeface = myFont
         workTimeTV.text = langC.getString("workingHoursLine")
         sendTV.typeface = myFont
-        sendTV.text = langC.getString("contactUs")
+        sendTV.text = langC.getString("contactUs").replace(" ", "\n", true)
         callTV.typeface = myFont
-        callTV.text = langC.getString("makeCall")
+        callTV.text = langC.getString("makeCall").replace(" ", "\n", true)
         webTV.typeface = myFont
-        webTV.text = langC.getString("visitWebsite")
+        webTV.text = langC.getString("visitWebsite").replace(" ", "\n", true)
         // endregion
 
         getUserInfo()

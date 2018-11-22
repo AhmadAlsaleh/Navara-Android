@@ -74,28 +74,33 @@ class LauncherActivity : AppCompatActivity() {
         val queue = Volley.newRequestQueue(this)
         val arabicRequest = JsonObjectRequest(Request.Method.GET, APIsURL().ARABIC_FILE, null, {
             Log.e(Statics.arabic, it.toString())
-            saveFile(Statics.arabic, it.toString())
+            try {
+                saveFile(Statics.arabic, it.toString())
 
-            if (perfs.getBoolean("isFirst", true)) {
-                val selectLanguage = ChangeLanguageDialog(this,
-                        lang = Statics.getLanguageJSONObject(this).getJSONObject("dialogs")
-                                .getJSONObject("changeLanguage"),
-                        activity = this, fromMain = false)
-                selectLanguage.show()
-                selectLanguage.setOnDismissListener {
+                if (perfs.getBoolean("isFirst", true)) {
+                    val selectLanguage = ChangeLanguageDialog(this,
+                            lang = Statics.getLanguageJSONObject(this).getJSONObject("dialogs")
+                                    .getJSONObject("changeLanguage"),
+                            activity = this, fromMain = false)
+                    selectLanguage.show()
+                    selectLanguage.setOnDismissListener {
+                        startRun()
+                    }
+                    val e = perfs.edit()
+                    e.putBoolean("isFirst", false)
+                    e.apply()
+                } else {
                     startRun()
                 }
-                val e = perfs.edit()
-                e.putBoolean("isFirst", false)
-                e.apply()
-            } else {
+            } catch (err: Exception) {
                 startRun()
             }
 
             queue.cancelAll(Statics.arabic)
         }, {
             Log.e(Statics.arabic, it.toString())
-            getArabicFile()
+//            getArabicFile()
+            startRun()
             queue.cancelAll(Statics.arabic)
         })
         arabicRequest.tag = Statics.arabic
@@ -105,13 +110,18 @@ class LauncherActivity : AppCompatActivity() {
     private fun getEnglishFile() {
         val queue = Volley.newRequestQueue(this)
         val englishRequest = object : StringRequest(Request.Method.GET, APIsURL().ENGLISH_FILE, {
-            Log.e(Statics.english, it)
-            saveFile(Statics.english, it)
+            try {
+                Log.e(Statics.english, it)
+                saveFile(Statics.english, it)
+            } catch (err: Exception) {
+                startRun()
+            }
             getArabicFile()
             queue.cancelAll(Statics.english)
         }, {
             Log.e(Statics.english, it.toString())
-            getEnglishFile()
+//            getEnglishFile()
+            startRun()
             queue.cancelAll(Statics.english)
         }) {
             override fun getBodyContentType(): String {

@@ -12,7 +12,8 @@ import com.smartlife_solutions.android.navara_store.*
 import kotlinx.android.synthetic.main.dialog_change_language.*
 import org.json.JSONObject
 
-class ChangeLanguageDialog(context: Context, var current: String = Statics.english, var lang: JSONObject, var activity: Activity, var fromMain: Boolean = false) : Dialog(context), View.OnClickListener {
+class ChangeLanguageDialog(context: Context, var current: String = Statics.english,
+                           var lang: JSONObject, var activity: Activity, var fromMain: Boolean = false) : Dialog(context), View.OnClickListener {
 
     lateinit var myFont: Typeface
     var isDone = false
@@ -21,6 +22,9 @@ class ChangeLanguageDialog(context: Context, var current: String = Statics.engli
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_change_language)
+
+        setCanceledOnTouchOutside(false)
+
         myFont = StaticInformation().myFont(context)!!
         newLanguage = current
         // region font
@@ -29,7 +33,11 @@ class ChangeLanguageDialog(context: Context, var current: String = Statics.engli
         // endregion
 
         changeLanguageTitle.text = lang.getString("title")
-        changeLanguageBTN.text = lang.getString("button")
+        if (fromMain) {
+            changeLanguageBTN.text = lang.getString("button")
+        } else {
+            changeLanguageBTN.text = "Set Language"
+        }
 
         // region set current language
         if (current == Statics.arabic) {

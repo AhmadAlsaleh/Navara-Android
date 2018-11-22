@@ -136,9 +136,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val perf = getSharedPreferences("Navara", Context.MODE_PRIVATE)
         val isFirstMain = perf.getBoolean("main", true)
         if (isFirstMain) {
-            val editShared = perf.edit()
-            editShared.putBoolean("main", false)
-            editShared.apply()
             mainHintRL.visibility = View.VISIBLE
         } else {
             mainHintRL.visibility = View.GONE
@@ -171,7 +168,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     mainHintMenuIV.visibility = View.VISIBLE
                     mainHintOrderRL.visibility = View.VISIBLE
                 }
-                6 -> mainHintRL.visibility = View.GONE
+                6 -> {
+                    val editShared = perf.edit()
+                    editShared.putBoolean("main", false)
+                    editShared.apply()
+                    mainHintRL.visibility = View.GONE
+                }
             }
             currentHint++
             mainHintTV.startAnimation(StaticInformation().fadeInAnim(this))

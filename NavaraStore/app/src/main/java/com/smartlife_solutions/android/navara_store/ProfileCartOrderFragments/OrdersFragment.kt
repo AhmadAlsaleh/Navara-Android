@@ -64,14 +64,14 @@ class OrdersFragment : Fragment() {
 
             val dateString = orderJson.getString("date").split('T')[0].split('-')
             val currentOrder = OrderModal("", orderJson.getString("name"), "",
-                    "${dateString[2]}/${dateString[1]}/${dateString[0]}", "", "", 0.0, 0.0,
+                    "${dateString[2].replace("0", "")}/${dateString[1]}/${dateString[0]}", "", "", 0.0, 0.0,
                     orderJson.getString("status"), orderJson.getInt("netTotalPrices").toFloat(), remark = "",
                     code = orderJson.getString("code")!!,
                     id = orderJson.getString("id"))
             orders.add(currentOrder)
         }
 
-        val ordersList = orders.sortedWith(compareBy {it.date}).reversed()
+        val ordersList = orders.sortedWith(compareBy {it.date.reversed()}).reversed()
         orders.clear()
         for (order in ordersList) {
             orders.add(order)
