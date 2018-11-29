@@ -16,6 +16,7 @@ import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.*
 import com.smartlife_solutions.android.navara_store.Dialogs.ChangeLanguageDialog
 import com.smartlife_solutions.android.navara_store.Notifications.TimerServiceNotification
 import com.smartlife_solutions.android.navara_store.StaticInformation
+import kotlinx.android.synthetic.main.activity_launcher.*
 import java.io.FileOutputStream
 import java.io.UnsupportedEncodingException
 import java.nio.charset.Charset
@@ -34,11 +35,13 @@ class LauncherActivity : AppCompatActivity() {
         dbHelper = DatabaseHelper(this)
         requestQueue = Volley.newRequestQueue(this)
 
+        smartLifeTV.typeface = StaticInformation().myFont(this)
+
         perfs = getSharedPreferences("Navara", Context.MODE_PRIVATE)
         isFirst = perfs.getBoolean("isFirst", true)
         if (isFirst) {
             if (StaticInformation().isConnected(this)) {
-                Toast.makeText(this, "Preparing Navara Language and Data, Please wait ...", Toast.LENGTH_LONG).show()
+//                Toast.makeText(this, "Preparing Navara Language and Data, Please wait ...", Toast.LENGTH_LONG).show()
                 getEnglishFile()
             } else {
                 Toast.makeText(this, "Navara Can\'t start without internet at First Time\nCheck Your Connection and Try Again", Toast.LENGTH_LONG).show()
@@ -47,11 +50,13 @@ class LauncherActivity : AppCompatActivity() {
         } else {
             getEnglishFile()
         }
+
     }
 
     private fun startRun() {
         if (StaticInformation().isConnected(this)) {
-            getBasicItems()
+            // getBasicItems()
+            getCategories()
         } else {
             waitAndGo()
         }
@@ -95,12 +100,10 @@ class LauncherActivity : AppCompatActivity() {
             } catch (err: Exception) {
                 startRun()
             }
-
             queue.cancelAll(Statics.arabic)
         }, {
             Log.e(Statics.arabic, it.toString())
-//            getArabicFile()
-            startRun()
+            getArabicFile()
             queue.cancelAll(Statics.arabic)
         })
         arabicRequest.tag = Statics.arabic
@@ -110,18 +113,15 @@ class LauncherActivity : AppCompatActivity() {
     private fun getEnglishFile() {
         val queue = Volley.newRequestQueue(this)
         val englishRequest = object : StringRequest(Request.Method.GET, APIsURL().ENGLISH_FILE, {
+            queue.cancelAll(Statics.english)
             try {
                 Log.e(Statics.english, it)
                 saveFile(Statics.english, it)
-            } catch (err: Exception) {
-                startRun()
-            }
+            } catch (err: Exception) {}
             getArabicFile()
-            queue.cancelAll(Statics.english)
         }, {
             Log.e(Statics.english, it.toString())
-//            getEnglishFile()
-            startRun()
+            getEnglishFile()
             queue.cancelAll(Statics.english)
         }) {
             override fun getBodyContentType(): String {

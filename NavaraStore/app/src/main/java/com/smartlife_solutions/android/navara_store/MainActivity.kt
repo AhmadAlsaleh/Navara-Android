@@ -1,30 +1,81 @@
 package com.smartlife_solutions.android.navara_store
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
+import android.support.annotation.RequiresApi
 import android.support.v4.view.ViewPager
 import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
 import com.smartlife_solutions.android.navara_store.Adapters.MainPagerAdapter
 import com.smartlife_solutions.android.navara_store.Dialogs.*
+import com.smartlife_solutions.android.navara_store.MainBackFragments.*
 import kotlinx.android.synthetic.main.activity_main.*
-import com.smartlife_solutions.android.navara_store.MainBackFragments.MainBack2
-import com.smartlife_solutions.android.navara_store.MainBackFragments.MainBack3
-import com.smartlife_solutions.android.navara_store.MainBackFragments.MainBack4
-import com.smartlife_solutions.android.navara_store.MainBackFragments.MainBack1
+import java.io.File
+import java.io.FileOutputStream
 import java.util.*
-
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var allDoneMain: AllDoneDialog
+    private val permissionCode = 11
     private var isActivityVisible = false
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun checkSavePermission() {
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+            || checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE), permissionCode)
+
+        } else {
+            takeScreenShot()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == permissionCode) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                takeScreenShot()
+            } else {
+                checkSavePermission()
+            }
+        }
+    }
+
+    private fun takeScreenShot() {
+        val nowDate = Date()
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", nowDate)
+        try {
+            val mPath = Environment.getExternalStorageDirectory().path + "/" + nowDate + ".jpg"
+            val v1 = window.decorView.rootView
+            v1.isDrawingCacheEnabled = true
+            val bitmap =Bitmap.createBitmap(v1.getDrawingCache())
+            v1.isDrawingCacheEnabled = false
+            val imageFile = File(mPath)
+            val outputStream = FileOutputStream(imageFile)
+            val quality = 100
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream)
+            outputStream.flush()
+            outputStream.close()
+
+            mainHintBlurIV.setImageBitmap(bitmap)
+
+        } catch (err: Throwable) {}
+    }
 
     override fun onResume() {
         super.onResume()
@@ -139,6 +190,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             mainHintRL.visibility = View.VISIBLE
         } else {
             mainHintRL.visibility = View.GONE
+            return
         }
 
         val font = StaticInformation().myFont(this)
@@ -217,9 +269,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.menuMyCartTV -> {
                 if (Statics.myToken.isNotEmpty()) {
                     startActivity(
-                            Intent(this, ProfileCartOrders::class.java)
-                                    .putExtra("currentPage", 1)
-                                    .putExtra(StaticInformation().FINITSH_ON_BACK, true)
+                            Intent(this, MyCartActivity::class.java)
+//                                    .putExtra("currentPage", 1)
+//                                    .putExtra(StaticInformation().FINITSH_ON_BACK, true)
                     )
                 } else {
                     finish()
@@ -247,7 +299,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.menuLastOffersTV -> {
                 finish()
-                startActivity(Intent(this, OffersActivity::class.java))
+                startActivity(Intent(this, MoreFeaturesActivity::class.java))
             }
             R.id.menuLocationsTV -> {
                 finish()
@@ -301,7 +353,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.offersIV -> {
                 finish()
-                startActivity(Intent(this, OffersActivity::class.java))
+                startActivity(Intent(this, MoreFeaturesActivity::class.java))
             }
             R.id.orderIV -> {
                 finish()
@@ -339,12 +391,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             adapter.addFragment(MainBack1(), "One")
             adapter.addFragment(MainBack2(), "Tow")
             adapter.addFragment(MainBack3(), "Three")
+            adapter.addFragment(MainBackEG(), "EG")
             adapter.addFragment(MainBack4(), "Four")
         } else {
             mainViewPager.rotationY = 180F
             adapter.addFragment(MainBack1(true), "One")
             adapter.addFragment(MainBack2(true), "Tow")
             adapter.addFragment(MainBack3(true), "Three")
+            adapter.addFragment(MainBackEG(true), "EG")
             adapter.addFragment(MainBack4(true), "Four")
         }
 
@@ -362,6 +416,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     1 -> point2.setBackgroundResource(R.drawable.primary_button_background)
                     2 -> point3.setBackgroundResource(R.drawable.primary_button_background)
                     3 -> point4.setBackgroundResource(R.drawable.primary_button_background)
+                    4 -> point5.setBackgroundResource(R.drawable.primary_button_background)
                 }
             }
         })
@@ -391,6 +446,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         point2.setBackgroundResource(R.drawable.white_button_background)
         point3.setBackgroundResource(R.drawable.white_button_background)
         point4.setBackgroundResource(R.drawable.white_button_background)
+        point5.setBackgroundResource(R.drawable.white_button_background)
     }
 
     @SuppressLint("PrivateResource")

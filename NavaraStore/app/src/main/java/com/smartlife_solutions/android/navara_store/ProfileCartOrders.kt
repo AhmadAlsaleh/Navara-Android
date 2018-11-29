@@ -15,24 +15,25 @@ import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.smartlife_solutions.android.navara_store.Adapters.AccountPagerAdapter
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
-import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.DatabaseHelper
 import com.smartlife_solutions.android.navara_store.Dialogs.SureToDoDialog
-import com.smartlife_solutions.android.navara_store.ProfileCartOrderFragments.CartFragment
+import com.smartlife_solutions.android.navara_store.ProfileCartOrderFragments.MyUsedItemsFragment
 import com.smartlife_solutions.android.navara_store.ProfileCartOrderFragments.OrdersFragment
 import com.smartlife_solutions.android.navara_store.ProfileCartOrderFragments.ProfileFragment
 import kotlinx.android.synthetic.main.activity_profile_cart_orders.*
+import org.json.JSONArray
 import java.util.*
 
 class ProfileCartOrders : AppCompatActivity() {
 
     private var finishOnBack = false
     private var isInProfile = true
-    private var profileFragment = ProfileFragment(this)
-    private var cartFragment = CartFragment()
+    var profileFragment = ProfileFragment(this)
     private var ordersFragment = OrdersFragment()
+    private var myUsedItemsFragment = MyUsedItemsFragment(this)
     private var currentPage = 0
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -54,7 +55,7 @@ class ProfileCartOrders : AppCompatActivity() {
 
             profileCartOrderVP.rotationY = 180F
             profileFragment.isRTL = true
-            cartFragment.isRTL = true
+            myUsedItemsFragment.isRTL = true
             ordersFragment.isRTL = true
 
         } else {
@@ -74,7 +75,9 @@ class ProfileCartOrders : AppCompatActivity() {
         profileTabBTN.typeface = myFont
         profileTabBTN.text = lang.getString("profile")
         cartTabBTN.typeface = myFont
-        cartTabBTN.text = lang.getString("myCart")
+
+        cartTabBTN.text = lang.getString("items")
+
         orderTabBTN.typeface = myFont
         orderTabBTN.text = lang.getString("myOrders")
         // endregion
@@ -98,7 +101,7 @@ class ProfileCartOrders : AppCompatActivity() {
             profileFragment.cashString = it.getString("wallet")
             profileFragment.uniqueCode = if (it.getString("uniqueCode") == null) { "" } else { it.getString("uniqueCode") }
 
-            getCartItems()
+            loadMyUsedItems()
 
             queue.cancelAll("info")
 
@@ -123,34 +126,31 @@ class ProfileCartOrders : AppCompatActivity() {
         queue.add(request)
     }
 
-    private fun getCartItems() {
 
+    private fun loadMyUsedItems() {
         val queue = Volley.newRequestQueue(this)
-        val jsonObjectRequest = object : JsonObjectRequest(Request.Method.GET, APIsURL().GET_CART, null, {
-            Log.e("cart", it.toString())
-            cartFragment.itJSONArray = it.getJSONArray("items")
-            getOrders()
-        }, {
+        val request = object : StringRequest(Request.Method.GET, APIsURL().GET_OWN_ITEMS, {
             try {
-                Log.e("error", it.networkResponse.statusCode.toString())
+                Log.e("own", it)
+                myUsedItemsFragment.myUsedArrayJSON = JSONArray(it)
+                myUsedItemsFragment.setupMyUsedItems(myUsedItemsFragment.myUsedArrayJSON)
+                getOrders()
+
             } catch (err: Exception) {}
-            queue.cancelAll("cart")
+            queue.cancelAll("own")
+        }, {
+            Log.e("own error", it.toString())
+            queue.cancelAll("own")
         }) {
-            @Throws(AuthFailureError::class)
             override fun getHeaders(): Map<String, String> {
                 val params = HashMap<String, String>()
                 params["Content-Type"] = "application/json; charset=UTF-8"
                 params["Authorization"] = "Bearer ${Statics.myToken}"
                 return params
             }
-
-            override fun getBodyContentType(): String {
-                return "application/json; charset=utf-8"
-            }
-
         }
-        jsonObjectRequest.tag = "cart"
-        queue.add(jsonObjectRequest)
+        request.tag = "own"
+        queue.add(request)
     }
 
     private fun getOrders() {
@@ -278,7 +278,7 @@ class ProfileCartOrders : AppCompatActivity() {
     private fun setupViewPager() {
         val adapter = AccountPagerAdapter(supportFragmentManager)
         adapter.addFragment(profileFragment, "Profile")
-        adapter.addFragment(cartFragment, "My Cart")
+        adapter.addFragment(myUsedItemsFragment, "My Cart")
         adapter.addFragment(ordersFragment, "My Order")
 
         profileCartOrderVP.adapter = adapter

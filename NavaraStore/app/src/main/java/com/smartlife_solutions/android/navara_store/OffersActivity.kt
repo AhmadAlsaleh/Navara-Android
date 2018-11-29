@@ -1,6 +1,5 @@
 package com.smartlife_solutions.android.navara_store
 
-import android.content.Intent
 import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -70,10 +69,5 @@ class OffersActivity : AppCompatActivity() {
             }
             checkTimer()
         } catch (err: Exception) {}
-    }
-
-    override fun onBackPressed() {
-        startActivity(Intent(this, MainActivity::class.java))
-        super.onBackPressed()
     }
 }

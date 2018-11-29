@@ -23,6 +23,7 @@ import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.Databas
 import com.smartlife_solutions.android.navara_store.ItemPreviewActivity;
 import com.smartlife_solutions.android.navara_store.ItemsActivity;
 import com.smartlife_solutions.android.navara_store.MainActivity;
+import com.smartlife_solutions.android.navara_store.MyCartActivity;
 import com.smartlife_solutions.android.navara_store.OfferPreviewActivity;
 import com.smartlife_solutions.android.navara_store.OffersActivity;
 import com.smartlife_solutions.android.navara_store.OrderInformationActivity;
@@ -123,8 +124,8 @@ public class TimerServiceNotification extends IntentService {
                                                 .putExtra("id_order", notificationModel.getRelatedID());
                                     }
                                 } else if (notificationModel.getRelatedTo().toLowerCase().contentEquals("cart")) {
-                                    intent = new Intent(TimerServiceNotification.this, ProfileCartOrders.class)
-                                            .putExtra("currentPage", 1);
+                                    intent = new Intent(TimerServiceNotification.this, MyCartActivity.class);
+//                                            .putExtra("currentPage", 1);
                                 } else if (notificationModel.getRelatedTo().toLowerCase().contentEquals("profile")) {
                                     intent = new Intent(TimerServiceNotification.this, ProfileCartOrders.class)
                                             .putExtra("currentPage", 0);

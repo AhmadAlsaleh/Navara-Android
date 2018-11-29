@@ -51,6 +51,13 @@
             android:background="@drawable/white_button_background"
             android:layout_margin="@dimen/padding_point"/>
 
+        <RelativeLayout
+            android:id="@+id/point5"
+            android:layout_width="@dimen/point_top"
+            android:layout_height="@dimen/point_top"
+            android:background="@drawable/white_button_background"
+            android:layout_margin="@dimen/padding_point"/>
+
     </LinearLayout>
 
     <ImageView
@@ -508,6 +515,11 @@
         android:layout_height="match_parent"
         android:focusable="true">
 
+        <ImageView
+            android:id="@+id/mainHintBlurIV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -751,7 +763,6 @@
                 android:background="@drawable/ic_circle_white_border_hide"/>
 
         </RelativeLayout>
-
 
     </RelativeLayout>
 

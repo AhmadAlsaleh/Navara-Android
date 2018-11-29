@@ -15,17 +15,21 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:largeHeap="true">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".LauncherActivity"
             android:screenOrientation="portrait">
@@ -94,7 +98,6 @@
             android:name=".ItemPreviewActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".SearchItemActivity"
             android:screenOrientation="portrait" />
@@ -113,19 +116,28 @@
         <activity
             android:name=".OrderInformationActivity"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:targetApi="jelly_bean" />
         <activity
             android:name=".SliderImagesActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".TipsActivity" />
         <activity android:name=".AddItemActivity" />
-        <activity android:name=".MyUsedItemsActivity" />
         <activity android:name=".AboutUsActivity" />
 
-        <service android:name=".Notifications.TimerServiceNotification"
+        <service
+            android:name=".Notifications.TimerServiceNotification"
             android:exported="false"
             tools:ignore="InnerclassSeparator" />
 
+        <activity android:name=".MoreFeaturesActivity" />
+        <activity android:name=".UsedItemsActivity" />
+        <activity android:name=".CoursesActivity" />
+        <activity android:name=".ProjectsActivity" />
+        <activity android:name=".EventsActivity" />
+        <activity android:name=".CoursePreview" />
+        <activity android:name=".EventPreview" />
+        <activity android:name=".MyCartActivity" />
     </application>
 
 </manifest>

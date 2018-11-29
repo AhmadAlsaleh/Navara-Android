@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EventsActivity"
+    android:background="@drawable/primary_background">
+
+    <LinearLayout
+        android:id="@+id/eventsLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/eventsBackIV"
+            android:layout_width="@dimen/toolbar_layout"
+            android:layout_height="@dimen/toolbar_layout"
+            app:srcCompat="@drawable/ic_back_arrow_white"
+            android:padding="@dimen/padding_action_buttons" />
+
+        <TextView
+            android:id="@+id/eventsTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Events"
+            android:textStyle="bold"
+            android:textSize="@dimen/main_toolbar_title"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center_vertical|left"
+            android:textColor="@color/whiteItem"
+            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/eventsRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/eventsLL"
+        android:scrollbars="vertical"/>
+
+    <TextView
+        android:id="@+id/noEventsTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_fab_appoi"
+        android:text="No Events"
+        android:textSize="@dimen/action_text"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:textColor="@color/blackItem"
+        tools:ignore="SpUsage" />
+
+    <FrameLayout
+        android:id="@+id/eventsFL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

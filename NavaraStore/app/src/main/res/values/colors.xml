@@ -23,7 +23,7 @@
 
     <color name="primary_list_item">#000</color>
     <color name="divider_color">#AFAEAF</color>
-    <color name="hide_gray">#a0000000</color>
+    <color name="hide_gray">#af000000</color>
 
     <color name="navaraPrimary">@color/colorPrimary</color>
     <color name="navaraPrimaryDark">@color/colorPrimaryDark</color>

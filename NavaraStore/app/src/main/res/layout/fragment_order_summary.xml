@@ -309,6 +309,31 @@
 
             </LinearLayout>
 
+            <CheckBox
+                android:id="@+id/summaryPromoCodeCB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I have a Promo Code"
+                android:layout_marginTop="@dimen/point_top"
+                android:textColor="@color/primary_list_item"
+                android:textSize="@dimen/list_item_text"
+                tools:ignore="HardcodedText,SpUsage" />
+
+            <EditText
+                android:id="@+id/summaryPromoCodeET"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_layout"
+                android:visibility="gone"
+                android:inputType="textPersonName"
+                android:hint="Promo Code"
+                android:paddingLeft="@dimen/point_top"
+                android:paddingRight="@dimen/padding_linear"
+                android:textSize="@dimen/list_item_text"
+                android:background="@drawable/edit_text_background"
+                tools:ignore="SpUsage,TextFields"
+                android:paddingStart="@dimen/point_top"
+                android:paddingEnd="@dimen/padding_linear" />
+
             <Button
                 android:id="@+id/submitOrderBTN"
                 android:layout_width="match_parent"

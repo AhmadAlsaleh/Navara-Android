@@ -19,7 +19,6 @@ import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.MarkerOptions
 import com.smartlife_solutions.android.navara_store.*
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
-import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.DatabaseHelper
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.ItemBasicModel
 import com.smartlife_solutions.android.navara_store.R
 import org.json.JSONArray
@@ -34,6 +33,8 @@ class OrderSummaryFragment(var activity: OrdersActivity) : Fragment(), OnMapRead
     lateinit var orderTotalInfoTV: TextView
     lateinit var useWalletCB: CheckBox
     lateinit var walletPB: ProgressBar
+    lateinit var promoCodeCB: CheckBox
+    lateinit var promoCodeET: EditText
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -102,16 +103,26 @@ class OrderSummaryFragment(var activity: OrdersActivity) : Fragment(), OnMapRead
         useWalletCB = view.findViewById(R.id.summaryUserWalletCB)
         useWalletCB.typeface = myFont
         walletPB = view.findViewById(R.id.summaryWalletPB)
+
+        promoCodeCB = view.findViewById(R.id.summaryPromoCodeCB)
+        promoCodeCB.typeface = myFont
+        promoCodeCB.text = lang.getString("havePromoCode")
+        promoCodeET = view.findViewById(R.id.summaryPromoCodeET)
+        promoCodeET.typeface = myFont
+        promoCodeET.hint = lang.getString("promoCode")
+
         val submitBTN = view.findViewById<Button>(R.id.submitOrderBTN)
         submitBTN.typeface = myFont
         submitBTN.text = lang.getString("submit")
         // endregion
+
         val chosenItemsLL = view.findViewById<LinearLayout>(R.id.chosenItemsLL)
 
         if (activity.finalSelectedItems.size > 1) {
             activity.finalSelectedItems = activity.finalSelectedItems
                     .sortedWith(compareBy({ it.offerID }, { it.price })).reversed() as ArrayList<ItemBasicModel>
         }
+
         for (item in activity.finalSelectedItems) {
             if (activity.finalSelectedItems.indexOf(item) == activity.finalSelectedItems.size - 1) {
                 chosenItemsLL.addView(SelectedItem(context!!, item, true, lang = Statics.getLanguageJSONObject(activity)).view)
@@ -119,6 +130,7 @@ class OrderSummaryFragment(var activity: OrdersActivity) : Fragment(), OnMapRead
                 chosenItemsLL.addView(SelectedItem(context!!, item, false, lang = Statics.getLanguageJSONObject(activity)).view)
             }
         }
+
         var total = 0
         for (itemOrder in activity.finalSelectedItems) {
             total += itemOrder.quantity * itemOrder.price
@@ -169,6 +181,11 @@ class OrderSummaryFragment(var activity: OrdersActivity) : Fragment(), OnMapRead
         orderObject.put("Remark", activity.personRemark)
         orderObject.put("Name", activity.personName)
         orderObject.put("UseWallet", useWalletCB.isChecked)
+        if (promoCodeCB.isChecked) {
+            orderObject.put("PromoCode", promoCodeET.text.toString().trim())
+        } else {
+            orderObject.put("PromoCode", "")
+        }
 
         Log.e("order information", orderObject.toString())
 
@@ -218,6 +235,8 @@ class OrderSummaryFragment(var activity: OrdersActivity) : Fragment(), OnMapRead
     }
 
     private fun getUserWallet() {
+
+        useWalletCB.text = lang.getString("yourWallet")
 
         val queue = Volley.newRequestQueue(context)
         val getWallet = @SuppressLint("SetTextI18n")

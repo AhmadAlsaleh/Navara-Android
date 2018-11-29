@@ -67,6 +67,10 @@ class APIsURL {
     val EXCEPTION_URL = OPERATIONS_URL + "Exception/"
     val GET_NOTIFICATIONS = OPERATIONS_URL + "GetNotifications/"
 
+    val COURSES = OPERATIONS_URL + "GetCourses/"
+    val EVENTS = OPERATIONS_URL + "GetEvents/"
+    val ORGANIZATIONS = OPERATIONS_URL + "GetOrganizations/"
+
     // endregion
 
     // region cart

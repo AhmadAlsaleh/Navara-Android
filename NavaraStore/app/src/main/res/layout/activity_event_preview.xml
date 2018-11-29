@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EventPreview">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/transparent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/offer_service_header"
+            android:padding="0dp">
+
+            <ImageView
+                android:id="@+id/eventHeadIV"
+                android:src="@drawable/background_eg"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:background="@drawable/gradient_background"/>
+
+            <ImageView
+                android:id="@+id/eventBackIV"
+                android:layout_width="@dimen/toolbar_layout"
+                android:layout_height="@dimen/toolbar_layout"
+                android:layout_alignParentStart="true"
+                app:srcCompat="@drawable/ic_back_arrow_white"
+                tools:ignore="RtlCompat" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/list_padding"
+                android:clickable="false"
+                android:gravity="bottom">
+
+                <TextView
+                    android:id="@+id/eventTitleTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Arduino"
+                    android:textColor="@color/whiteItem"
+                    android:textStyle="bold"
+                    android:gravity="start"
+                    android:textSize="@dimen/main_buttons"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/point_top"
+                android:paddingRight="@dimen/point_top"
+                android:paddingBottom="@dimen/point_top">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/eventStartDateTV"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primary_list_item"
+                        android:textSize="@dimen/main_toolbar_title"
+                        android:gravity="center"
+                        android:text="15-11-2018"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/padding2"
+                        android:layout_height="match_parent"
+                        android:background="@color/divider_color"/>
+
+                    <TextView
+                        android:id="@+id/eventSessionsTV"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primary_list_item"
+                        android:textSize="@dimen/main_toolbar_title"
+                        android:gravity="center"
+                        android:text="10 Sessions"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/eventDescriptionTitleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description:"
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:layout_marginBottom="@dimen/padding_point"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/main_toolbar_title"/>
+
+                <TextView
+                    android:id="@+id/eventDescriptionTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary_list_item"
+                    android:textSize="@dimen/action_text"
+                    android:gravity="left"
+                    android:text="Test Test Test Test Test Test Test Test Test Test Test "
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                <LinearLayout
+                    android:id="@+id/eventContactUsLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/eventContactUsTextTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contact Information"
+                        android:layout_marginTop="@dimen/fab_margin"
+                        android:layout_marginBottom="@dimen/padding_point"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/main_toolbar_title"
+                        tools:ignore="HardcodedText,SpUsage" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/eventNameTitleTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_list_item"
+                            android:textSize="@dimen/action_text"
+                            android:gravity="start"
+                            android:text="Name:"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText,SpUsage" />
+
+                        <TextView
+                            android:id="@+id/eventNameTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_list_item"
+                            android:textSize="@dimen/action_text"
+                            android:layout_marginLeft="@dimen/action_main_small"
+                            android:layout_marginRight="@dimen/action_main_small"
+                            android:gravity="start"
+                            android:text="Ahmad"
+                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/eventMobileTitleTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_list_item"
+                            android:textSize="@dimen/action_text"
+                            android:gravity="start"
+                            android:text="Mobile:"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText,SpUsage" />
+
+                        <TextView
+                            android:id="@+id/eventMobileTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_list_item"
+                            android:textSize="@dimen/action_text"
+                            android:gravity="start"
+                            android:layout_marginLeft="@dimen/action_main_small"
+                            android:layout_marginRight="@dimen/action_main_small"
+                            android:text="0951784957"
+                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        tools:ignore="RtlHardcoded"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/eventContactUsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green_background"
+            android:textSize="@dimen/action_main_small"
+            android:background="@drawable/white_edit_text_background"
+            android:padding="5dp"
+            android:text="Contact Us"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/eventContactUsFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="@dimen/point_top"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            app:fabSize="normal"
+            app:srcCompat="@mipmap/ic_whatsapp_logo"
+            android:focusable="true" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/eventFL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

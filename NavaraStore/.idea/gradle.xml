@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/blurry-2.1.1" />
             <option value="$PROJECT_DIR$/circleimageview-2.1.0" />
             <option value="$PROJECT_DIR$/converter-gson-2.4.0" />
             <option value="$PROJECT_DIR$/facebook-login" />

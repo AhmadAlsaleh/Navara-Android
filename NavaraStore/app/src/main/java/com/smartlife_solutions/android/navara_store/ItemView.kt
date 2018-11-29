@@ -17,11 +17,9 @@ import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
-import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.DatabaseHelper
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.ItemBasicModel
 import com.smartlife_solutions.android.navara_store.Dialogs.SureToDoDialog
 import com.smartlife_solutions.android.navara_store.OrderFragments.OrderSelectItemsFragment
-import com.smartlife_solutions.android.navara_store.ProfileCartOrderFragments.CartFragment
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import org.json.JSONObject
@@ -30,7 +28,7 @@ import java.nio.charset.Charset
 import java.util.*
 
 @SuppressLint("SetTextI18n", "ViewConstructor")
-class ItemView(var fragment: Fragment, context: Context, var item: ItemBasicModel, var fromCart: Boolean, var lang: JSONObject)
+class ItemView(var fragment: Fragment?, context: Context, var item: ItemBasicModel, var fromCart: Boolean, var lang: JSONObject)
     : View(context) {
 
     val view = inflate(context, R.layout.item_items_card, null)!!

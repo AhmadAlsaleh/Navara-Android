@@ -197,10 +197,11 @@ class ItemsActivity : AppCompatActivity() {
         }
         if (fromCart) {
             startActivity(
-                    Intent(this, ProfileCartOrders::class.java)
-                            .putExtra("currentPage", 1)
-                            .putExtra(StaticInformation().FINITSH_ON_BACK, true)
+                    Intent(this, MyCartActivity::class.java)
+//                            .putExtra("currentPage", 1)
+//                            .putExtra(StaticInformation().FINITSH_ON_BACK, true
             )
+            return
         }
         startActivity(Intent(this, MainActivity::class.java)
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))

@@ -5,19 +5,14 @@ import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.android.volley.AuthFailureError
-import com.android.volley.NetworkResponse
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.toolbox.HttpHeaderParser
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.rilixtech.CountryCodePicker
@@ -28,7 +23,6 @@ import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.UserMod
 import com.smartlife_solutions.android.navara_store.Dialogs.ChangePasswordDialog
 import com.smartlife_solutions.android.navara_store.Dialogs.ConfirmAccountDialog
 
-import kotlinx.android.synthetic.main.fragment_profile.*
 import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 import java.nio.charset.Charset
@@ -119,6 +113,11 @@ class ProfileFragment (var activity: ProfileCartOrders) : Fragment() {
         val profileUsedItem = view.findViewById<Button>(R.id.profileUsedItemBTN)
         profileUsedItem.typeface = myFont
         profileUsedItem.text = lang.getString("myUsedItems")
+
+        val profileCartBTN = view.findViewById<Button>(R.id.profileCartBTN)
+        profileCartBTN.typeface = myFont
+        profileCartBTN.text = lang.getString("myCart")
+
         // endregion
 
         profilePromoCodeCopyTV.paintFlags = Paint.UNDERLINE_TEXT_FLAG
@@ -159,10 +158,14 @@ class ProfileFragment (var activity: ProfileCartOrders) : Fragment() {
         }
 
         profileUsedItem.setOnClickListener {
-            startActivity(Intent(context, MyUsedItemsActivity::class.java)
+            startActivity(Intent(context, MyUsedItemsFragment::class.java)
                     .putExtra("name", nameString)
                     .putExtra("countryCode", countryCode)
                     .putExtra("mobile", phoneString))
+        }
+
+        profileCartBTN.setOnClickListener {
+            startActivity(Intent(context, MyCartActivity::class.java))
         }
 
         changePassword.setOnClickListener {

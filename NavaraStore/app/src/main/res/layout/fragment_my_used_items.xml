@@ -6,34 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MyUsedItemsActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
-
-        <ImageView
-            android:id="@+id/myUsedItemsBackIV"
-            android:layout_width="@dimen/toolbar_layout"
-            android:layout_height="@dimen/toolbar_layout"
-            app:srcCompat="@drawable/ic_back_arrow_white"
-            android:padding="@dimen/padding_action_buttons" />
-
-        <TextView
-            android:id="@+id/myUsedItemsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/my_used_items"
-            android:textStyle="bold"
-            android:textSize="@dimen/main_toolbar_title"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:gravity="center_vertical|left"
-            android:textColor="@color/whiteItem"
-            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
-
-    </LinearLayout>
+    tools:context=".ProfileCartOrderFragments.MyUsedItemsFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

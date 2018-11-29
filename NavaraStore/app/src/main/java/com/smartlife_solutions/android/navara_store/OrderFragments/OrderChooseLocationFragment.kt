@@ -98,6 +98,7 @@ class OrderChooseLocationFragment(var activity: OrdersActivity) : Fragment(), On
         googleMap.setOnMapClickListener {
             activity.latLng = it
             setupMap(true)
+            chooseLocationPBRL.visibility = View.GONE
         }
 
     }
@@ -121,12 +122,14 @@ class OrderChooseLocationFragment(var activity: OrdersActivity) : Fragment(), On
                 addressList = geoCoder.getFromLocationName(searchET.text.toString(), 1)
                 if (addressList.isNotEmpty()) {
                     activity.latLng = LatLng(addressList[0].latitude, addressList[0].longitude)
+                    chooseLocationPBRL.visibility = View.GONE
                     setupMap()
                 } else {
                     Toast.makeText(context, "Not found", Toast.LENGTH_LONG).show()
                     chooseLocationPBRL.visibility = View.GONE
                 }
             } catch (err: Exception) {
+                chooseLocationPBRL.visibility = View.GONE
             }
         } catch (err: Exception) {}
     }

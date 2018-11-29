@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.smartlife_solutions.android.navara_store.MyCartActivity
 import com.smartlife_solutions.android.navara_store.ProfileCartOrders
 import com.smartlife_solutions.android.navara_store.R
 import com.smartlife_solutions.android.navara_store.StaticInformation
@@ -59,9 +60,10 @@ class AllDoneDialog(context: Context, private var toCart: Boolean, private var i
         allDoneMainIV.setImageResource(R.drawable.ic_cart_green)
         okDoneBTN.setOnClickListener {
             dismiss()
-            context.startActivity(Intent(context, ProfileCartOrders::class.java)
-                    .putExtra("currentPage", 1)
-                    .putExtra("finishOnBack", true))
+            context.startActivity(Intent(context, MyCartActivity::class.java)
+//                    .putExtra("currentPage", 1)
+//                    .putExtra("finishOnBack", true)
+            )
         }
         returnBTN.setOnClickListener {
             dismiss()

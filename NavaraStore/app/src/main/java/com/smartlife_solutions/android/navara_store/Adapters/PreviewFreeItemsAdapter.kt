@@ -27,7 +27,6 @@ import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.ItemBasicModel
 import com.smartlife_solutions.android.navara_store.ItemPreviewActivity
 import com.smartlife_solutions.android.navara_store.LoginRegisterActivity
-import com.smartlife_solutions.android.navara_store.ProfileCartOrderFragments.CartFragment
 import com.smartlife_solutions.android.navara_store.StaticInformation
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
@@ -35,7 +34,7 @@ import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 import java.nio.charset.Charset
 
-class PreviewFreeItemsAdapter(var fragment: CartFragment? = null, var context: Context,
+class PreviewFreeItemsAdapter(var context: Context,
                               private var itemsArrayList: ArrayList<ItemBasicModel>,
                               private var isAll: Boolean, private var isForCart: Boolean = false,
                               private var isMyUsedItems: Boolean = false,

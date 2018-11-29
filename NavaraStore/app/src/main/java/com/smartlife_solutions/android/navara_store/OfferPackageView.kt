@@ -29,7 +29,7 @@ import java.io.UnsupportedEncodingException
 import java.nio.charset.Charset
 
 @SuppressLint("ViewConstructor, SetTextI18n")
-class OfferPackageView(var fragment: Fragment, context: Context, private var items: ArrayList<ItemBasicModel>, offers: ArrayList<ItemBasicModel>,
+class OfferPackageView(var fragment: Fragment?, context: Context, private var items: ArrayList<ItemBasicModel>, offers: ArrayList<ItemBasicModel>,
                        var fromCart: Boolean, disOffer: Boolean = false,
                        var lang: JSONObject) : View(context) {
 

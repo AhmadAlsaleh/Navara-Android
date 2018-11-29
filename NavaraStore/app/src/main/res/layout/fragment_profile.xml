@@ -255,6 +255,7 @@
                 </LinearLayout>
 
                 <Button
+                    android:visibility="gone"
                     android:id="@+id/profileUsedItemBTN"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -266,6 +267,24 @@
                     android:textColor="@color/whiteItem"
                     android:background="@drawable/primary_button_background"
                     tools:ignore="HardcodedText,SpUsage" />
+
+                <Button
+                    android:id="@+id/profileCartBTN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Cart"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:paddingStart="@dimen/margin_fab_appoi"
+                    android:paddingEnd="@dimen/margin_fab_appoi"
+                    android:drawableStart="@drawable/cart_white"
+                    android:drawablePadding="@dimen/action_main_small"
+                    android:background="@drawable/primary_button_background"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/list_item_text"
+                    android:textColor="@color/whiteItem"
+                    tools:ignore="HardcodedText,SpUsage" />
+
 
             </LinearLayout>
 
