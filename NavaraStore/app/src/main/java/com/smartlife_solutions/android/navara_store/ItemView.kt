@@ -18,6 +18,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.ItemBasicModel
+import com.smartlife_solutions.android.navara_store.Dialogs.ChooseQuantityDialog
 import com.smartlife_solutions.android.navara_store.Dialogs.SureToDoDialog
 import com.smartlife_solutions.android.navara_store.OrderFragments.OrderSelectItemsFragment
 import com.squareup.picasso.Picasso
@@ -28,8 +29,8 @@ import java.nio.charset.Charset
 import java.util.*
 
 @SuppressLint("SetTextI18n", "ViewConstructor")
-class ItemView(var fragment: Fragment?, context: Context, var item: ItemBasicModel, var fromCart: Boolean, var lang: JSONObject)
-    : View(context) {
+class ItemView(var fragment: Fragment?, context: Context, var item: ItemBasicModel, var fromCart: Boolean,
+               var lang: JSONObject, var isProjectList: Boolean = false): View(context) {
 
     val view = inflate(context, R.layout.item_items_card, null)!!
     init {
@@ -73,14 +74,36 @@ class ItemView(var fragment: Fragment?, context: Context, var item: ItemBasicMod
             (fragment as OrderSelectItemsFragment).activity.items[i].isChecked = isChecked
         }
 
-        itemCartIV.setOnClickListener {
-            it.startAnimation(StaticInformation().clickAnim(context))
-            val sureRemove = SureToDoDialog(context, lang.getJSONObject("dialogs").getJSONObject("sure").getString("removeFromCart"))
-            sureRemove.show()
-            sureRemove.setOnDismissListener {
-                if (sureRemove.isTrue) {
-                    removeFromCart(itemLL, item.id)
+        if (!isProjectList) {
+            itemCartIV.setOnClickListener {
+                it.startAnimation(StaticInformation().clickAnim(context))
+                val sureRemove = SureToDoDialog(context, lang.getJSONObject("dialogs").getJSONObject("sure").getString("removeFromCart"))
+                sureRemove.show()
+                sureRemove.setOnDismissListener {
+                    if (sureRemove.isTrue) {
+                        removeFromCart(itemLL, item.id)
+                    }
                 }
+            }
+        } else {
+            itemCartIV.setOnClickListener {
+                itemCartIV.setImageResource(R.drawable.ic_add_shopping_cart)
+                it.startAnimation(StaticInformation().clickAnim(context))
+                try {
+                    if (Statics.myToken.isNotEmpty()) {
+                        if (item.quantity > 0) {
+                            ChooseQuantityDialog(context, item, false, lang = lang).show()
+                        } else {
+                            ChooseQuantityDialog(context, item, false, lang = lang).show()
+                            Toast.makeText(context, lang.getJSONObject("itemsList").getString("outStock"), Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        context.startActivity(Intent(context, LoginRegisterActivity::class.java).putExtra("main", false))
+                    }
+                } catch (err: Exception) {
+                    context.startActivity(Intent(context, LoginRegisterActivity::class.java).putExtra("main", false))
+                }
+
             }
         }
 

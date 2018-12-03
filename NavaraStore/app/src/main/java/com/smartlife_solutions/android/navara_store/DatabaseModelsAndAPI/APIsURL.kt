@@ -41,6 +41,7 @@ class APIsURL {
     val BASIC_ITEMS = ITEMS_URL + "GetBasic/"
     val GET_ITEM = ITEMS_URL + "Get/"
     val ADD_NEW_ITEM = ITEMS_URL + "AddNew/"
+    val GET_USED_ITEMS = ITEMS_URL + "GetUsedItems/"
 
     // endregion
 
@@ -70,6 +71,7 @@ class APIsURL {
     val COURSES = OPERATIONS_URL + "GetCourses/"
     val EVENTS = OPERATIONS_URL + "GetEvents/"
     val ORGANIZATIONS = OPERATIONS_URL + "GetOrganizations/"
+    val PROJECTS = OPERATIONS_URL + "GetProjects/"
 
     // endregion
 

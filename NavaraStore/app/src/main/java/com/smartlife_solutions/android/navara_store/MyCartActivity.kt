@@ -40,7 +40,6 @@ class MyCartActivity : AppCompatActivity() {
         cartTitleTV.text = Statics.getLanguageJSONObject(this).getJSONObject("profileCartOrdersActivity").getString("myCart")
 
         orderCategoryIV.setOnClickListener {
-            finish()
             startActivity(Intent(this, ItemsActivity::class.java)
                     .putExtra("fromCart", true))
         }
@@ -64,12 +63,20 @@ class MyCartActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.cartFL, LoadingFragment())
-        ft.commit()
+    }
 
-        getCart()
-
+    override fun onResume() {
+        super.onResume()
+        if (StaticInformation().isConnected(this)) {
+            val ft = supportFragmentManager.beginTransaction()
+            ft.replace(R.id.cartFL, LoadingFragment())
+            ft.commit()
+            getCart()
+        } else {
+            val ft = supportFragmentManager.beginTransaction()
+            ft.replace(R.id.cartFL, NoInternetFragment())
+            ft.commit()
+        }
     }
 
     private fun getCart() {

@@ -15,8 +15,10 @@ import com.smartlife_solutions.android.navara_store.EventPreview
 import com.smartlife_solutions.android.navara_store.R
 import com.smartlife_solutions.android.navara_store.StaticInformation
 import com.squareup.picasso.Picasso
+import org.json.JSONObject
 
-class EventsAdapter(private val context: Context, private val events: ArrayList<EventsBasicModel>)
+class EventsAdapter(private val context: Context, private val events: ArrayList<EventsBasicModel>,
+                    private val lang: JSONObject)
     : RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int)
             = ViewHolder(LayoutInflater.from(p0.context)
@@ -29,6 +31,8 @@ class EventsAdapter(private val context: Context, private val events: ArrayList<
         holder.eventTitleTV.typeface = myFont
         holder.eventDateTV.typeface = myFont
         holder.eventDateTitle.typeface = myFont
+        holder.eventDateTitle.text = lang.getJSONObject("moreFeaturesActivity")
+                .getJSONObject("eventsActivity").getString("date")
 
         val event = events[position]
         holder.eventTitleTV.text = event.title

@@ -66,11 +66,16 @@ class CoursePreview : AppCompatActivity() {
         DescriptionTitleTV.typeface = myFont
         DescriptionTitleTV.text = langC.getString("description")
         courseDescriptionTV.typeface = myFont
+        courseNameTitleTV.typeface = myFont
+        courseNameTitleTV.text = langC.getString("name")
         courseContactUsTextTV.typeface = myFont
+        courseContactUsTextTV.text = langC.getString("contactInformation")
         courseNameTV.typeface = myFont
         courseMobileTitleTV.typeface = myFont
+        courseMobileTitleTV.text = langC.getString("mobile")
         courseMobileTV.typeface = myFont
         courseContactUsTV.typeface = myFont
+        courseContactUsTV.text = langC.getString("contactUs")
         // endregion
 
 //        getCourse(intent.getStringExtra("id"))
@@ -79,6 +84,11 @@ class CoursePreview : AppCompatActivity() {
         courseBackIV.setOnClickListener {
             onBackPressed()
         }
+
+        courseContactUsFAB.setOnClickListener {
+            StaticInformation().openWhatsApp(this, whatsAppNumber = course.mobile)
+        }
+
         Picasso.with(this)
                 .load(APIsURL().BASE_URL + course.image)
                 .placeholder(R.drawable.navara_logo)
@@ -86,9 +96,10 @@ class CoursePreview : AppCompatActivity() {
         courseTitleTV.text = course.title
         courseCostTV.text = StaticInformation().formatPrice(course.cost) + " " + lang.getString("currencyCode")
         courseStartDateTV.text = course.startDate
-        courseSessionsTV.text = course.sessionsCount
+        courseSessionsTV.text = course.sessionsCount + " " + langC.getString("session")
         courseDescriptionTV.text = course.description
         courseNameTV.text = course.contact
+        courseMobileTV.text = course.mobile
 
         courseFL.visibility = View.GONE
 

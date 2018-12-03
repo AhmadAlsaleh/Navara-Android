@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 @SuppressLint("ValidFragment")
-class NoInternetFragment(var noNet: String) : Fragment() {
+class NoInternetFragment(var noNet: String = "") : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -18,7 +18,8 @@ class NoInternetFragment(var noNet: String) : Fragment() {
 
         val myFont = StaticInformation().myFont(context)!!
         view.findViewById<TextView>(R.id.loadingNoNetTV).typeface = myFont
-        view.findViewById<TextView>(R.id.loadingNoNetTV).text = noNet
+        view.findViewById<TextView>(R.id.loadingNoNetTV).text =
+                Statics.getLanguageJSONObject(activity).getString("noConnection")
 
         return view
     }

@@ -36,15 +36,24 @@ class CoursesActivity : AppCompatActivity() {
         coursesTitleTV.typeface = myFont
         noCoursesTV.typeface = myFont
 
+        val lang = Statics.getLanguageJSONObject(this).getJSONObject("moreFeaturesActivity")
+        coursesTitleTV.text = lang.getString("courses")
+        noCoursesTV.text = lang.getJSONObject("coursesActivity").getString("noCourses")
+
         coursesBackIV.setOnClickListener {
             onBackPressed()
         }
 
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.coursesFL, LoadingFragment())
-        ft.commit()
-
-        getCourses()
+        if (StaticInformation().isConnected(this)) {
+            val ft = supportFragmentManager.beginTransaction()
+            ft.replace(R.id.coursesFL, LoadingFragment())
+            ft.commit()
+            getCourses()
+        } else {
+            val ft = supportFragmentManager.beginTransaction()
+            ft.replace(R.id.coursesFL, NoInternetFragment(Statics.getLanguageJSONObject(this).getString("noConnection")))
+            ft.commit()
+        }
 
     }
 
@@ -58,9 +67,10 @@ class CoursesActivity : AppCompatActivity() {
                 val courseObject = CoursesBasicModel("", courseJSON.getString("title"),
                         courseJSON.getString("description"), (courseJSON.get("cost") as Double).toFloat(),
                         courseJSON.getString("startDate"),
-                        "",
+                        courseJSON.getString("imagePath"),
                         courseJSON.getString("sessionsNumber"),
-                        courseJSON.getString("contactName"))
+                        courseJSON.getString("contactName"),
+                        courseJSON.getString("contactNumber"))
                 courses.add(courseObject)
             }
 

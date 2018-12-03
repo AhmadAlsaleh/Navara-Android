@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import com.smartlife_solutions.android.navara_store.CoursePreview
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.CoursesBasicModel
@@ -34,6 +33,8 @@ class CoursesAdapter(private val context: Context,
         holder.courseTitleTV.typeface = myFont
         holder.courseCostTV.typeface = myFont
         holder.courseCostTitle.typeface = myFont
+        holder.courseCostTitle.text = lang.getJSONObject("moreFeaturesActivity")
+                .getJSONObject("coursesActivity").getString("cost")
 
         val course = courses[position]
         holder.courseTitleTV.text = course.title

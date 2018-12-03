@@ -54,4 +54,9 @@
         android:textColor="@color/blackItem"
         tools:ignore="SpUsage" />
 
+    <FrameLayout
+        android:id="@+id/usedItemsFL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </RelativeLayout>

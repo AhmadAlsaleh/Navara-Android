@@ -31,6 +31,14 @@ class MoreFeaturesActivity : AppCompatActivity(), View.OnClickListener {
         coursesCV.setOnClickListener(this)
         projectsCV.setOnClickListener(this)
 
+        val lang = Statics.getLanguageJSONObject(this).getJSONObject("moreFeaturesActivity")
+        moreTitleTV.text = lang.getString("title")
+        eventTV.text = lang.getString("events")
+        coursesTV.text = lang.getString("courses")
+        usedItemsTV.text = lang.getString("usedItems")
+        projectsTV.text = lang.getString("projects")
+        offersTV.text = lang.getString("offers")
+
     }
 
     override fun onClick(v: View?) {

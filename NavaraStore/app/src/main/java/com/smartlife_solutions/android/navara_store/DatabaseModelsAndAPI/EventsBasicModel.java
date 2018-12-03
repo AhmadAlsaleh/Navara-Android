@@ -32,12 +32,16 @@ public class EventsBasicModel implements Serializable {
     @DatabaseField(columnName = "contact")
     private String contact;
 
+    @DatabaseField(columnName = "mobile")
+    private String mobile;
+
     public EventsBasicModel() {
 
     }
 
     public EventsBasicModel(String id, String title, String description, String organizationName,
-                            String startDate, String image, String sessionsCount, String contact) {
+                            String startDate, String image, String sessionsCount,
+                            String contact, String mobile) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -46,6 +50,15 @@ public class EventsBasicModel implements Serializable {
         this.image = image;
         this.sessionsCount = sessionsCount;
         this.contact = contact;
+        this.mobile = mobile;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getId() {
@@ -81,7 +94,10 @@ public class EventsBasicModel implements Serializable {
     }
 
     public String getStartDate() {
-        return startDate;
+        String date = startDate.split("T")[0];
+        String timeHour = startDate.split("T")[1].split(":")[0];
+        String timeMin = startDate.split("T")[1].split(":")[1];
+        return date + " " + timeHour + ":" + timeMin;
     }
 
     public void setStartDate(String startDate) {

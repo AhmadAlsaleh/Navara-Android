@@ -32,12 +32,16 @@ public class CoursesBasicModel implements Serializable {
     @DatabaseField(columnName = "contact")
     private String contact;
 
+    @DatabaseField(columnName = "mobile")
+    private String mobile;
+
     public CoursesBasicModel() {
 
     }
 
     public CoursesBasicModel(String id, String title, String description, float cost,
-                             String startDate, String image, String sessionsCount, String contact) {
+                             String startDate, String image, String sessionsCount,
+                             String contact, String mobile) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -46,6 +50,15 @@ public class CoursesBasicModel implements Serializable {
         this.image = image;
         this.sessionsCount = sessionsCount;
         this.contact = contact;
+        this.mobile = mobile;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public int getCost() {

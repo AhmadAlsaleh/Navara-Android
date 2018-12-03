@@ -130,7 +130,9 @@ class OfferPreviewActivity : AppCompatActivity() {
                 offerOldCostTV.text = "${StaticInformation().formatPrice(it.getInt("unitPrice"))} ${lang.getString("currencyCode")}"
                 offerNewCostTV.text = "${StaticInformation().formatPrice(it.getInt("unitNetPrice"))} ${lang.getString("currencyCode")}"
                 offerDescriptionTextTV.text = it.getString("description")
-                offerDescriptionTextTV2.text = it.getString("description2")
+                try {
+                    offerDescriptionTextTV2.text = it.getString("description2")
+                } catch (err: Exception) {}
                 val images = it.getJSONArray("offerImages")
                 val imagesList = ArrayList<String>()
                 for (i in 0 until images.length()) {

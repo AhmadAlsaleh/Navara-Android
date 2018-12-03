@@ -28,15 +28,24 @@ class EventsActivity : AppCompatActivity() {
         eventsTitleTV.typeface = myFont
         noEventsTV.typeface = myFont
 
+        val lang = Statics.getLanguageJSONObject(this).getJSONObject("moreFeaturesActivity")
+        eventsTitleTV.text = lang.getString("events")
+        noEventsTV.text = lang.getJSONObject("eventsActivity").getString("noEvents")
+
         eventsBackIV.setOnClickListener {
             onBackPressed()
         }
 
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.eventsFL, LoadingFragment())
-        ft.commit()
-
-        getEvents()
+        if (StaticInformation().isConnected(this)) {
+            val ft = supportFragmentManager.beginTransaction()
+            ft.replace(R.id.eventsFL, LoadingFragment())
+            ft.commit()
+            getEvents()
+        } else {
+            val ft = supportFragmentManager.beginTransaction()
+            ft.replace(R.id.eventsFL, NoInternetFragment(Statics.getLanguageJSONObject(this).getString("noConnection")))
+            ft.commit()
+        }
 
     }
 
@@ -51,9 +60,10 @@ class EventsActivity : AppCompatActivity() {
                 val eventObject = EventsBasicModel("", eventJSON.getString("title"),
                         eventJSON.getString("description"), eventJSON.getString("organiztaionName"),
                         eventJSON.getString("startDate"),
-                        "",
+                        eventJSON.getString("imagePath"),
                         eventJSON.getString("sessionsNumber"),
-                        eventJSON.getString("contactName"))
+                        eventJSON.getString("contactName"),
+                        eventJSON.getString("contactNumber"))
                 events.add(eventObject)
             }
 
@@ -77,7 +87,7 @@ class EventsActivity : AppCompatActivity() {
             noEventsTV.visibility = View.GONE
             eventsRV.setHasFixedSize(true)
             eventsRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-            eventsRV.adapter = EventsAdapter(this, events)
+            eventsRV.adapter = EventsAdapter(this, events, Statics.getLanguageJSONObject(this))
         } else {
             noEventsTV.visibility = View.VISIBLE
         }

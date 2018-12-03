@@ -12,6 +12,8 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.util.Log;
 
+import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.ProjectBasicModel;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +30,16 @@ public class Statics {
     public static final String arabic = "arabic.json";
     public static final String english = "english.json";
     public static String currentLanguage = english;
+
+    public static ProjectBasicModel projectBasicModel;
+
+    public static ProjectBasicModel getProjectBasicModel() {
+        return projectBasicModel;
+    }
+
+    public static void setProjectBasicModel(ProjectBasicModel projectBasicModel) {
+        Statics.projectBasicModel = projectBasicModel;
+    }
 
     public static JSONObject getLanguageJSONObject(Activity activity) throws JSONException {
         SharedPreferences preferences = activity.getSharedPreferences("Navara", Context.MODE_PRIVATE);

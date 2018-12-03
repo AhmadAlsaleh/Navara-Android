@@ -48,7 +48,11 @@ class LauncherActivity : AppCompatActivity() {
                 return
             }
         } else {
-            getEnglishFile()
+            if (StaticInformation().isConnected(this)) {
+                getEnglishFile()
+            } else {
+                waitAndGo()
+            }
         }
 
     }

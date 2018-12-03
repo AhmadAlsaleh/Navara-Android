@@ -57,8 +57,7 @@ class StaticInformation {
         clickResendTimer = 0
     }
 
-    fun openWhatsApp(activity: Activity, message: String = "") {
-        val whatsAppNumber = "+963967926970"
+    fun openWhatsApp(activity: Activity, message: String = "", whatsAppNumber: String = "+963967926970") {
         activity.startActivity(Intent(Intent.ACTION_VIEW,
                 Uri.parse("https://api.whatsapp.com/send?phone=$whatsAppNumber&text=$message\n")))
 

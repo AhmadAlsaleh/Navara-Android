@@ -93,7 +93,11 @@ class ItemPreviewActivity : AppCompatActivity() {
         }
 
         itemContactUsFAB.setOnClickListener {
-            StaticInformation().openWhatsApp(this, item.name)
+            if (item.accountID.isNotEmpty()) {
+                StaticInformation().openWhatsApp(this, message = item.name, whatsAppNumber = itemPhoneTV.text.toString())
+            } else {
+                StaticInformation().openWhatsApp(this, message = item.name)
+            }
         }
 
         // region font
@@ -163,8 +167,10 @@ class ItemPreviewActivity : AppCompatActivity() {
             }
             itemCostTV.text = "${StaticInformation().formatPrice(it.getInt("price"))} ${lang.getString("currencyCode")}"
             itemDescriptionTV.text = it.getString("description")
-            itemDescriptionTV2.text = it.getString("description2")
 
+            try {
+                itemDescriptionTV2.text = it.getString("description2")!!
+            } catch (err: Exception) {}
 
             if (it.getString("cashBack") == "null" ||
                     it.getString("cashBack").toFloat().toInt() == 0) {

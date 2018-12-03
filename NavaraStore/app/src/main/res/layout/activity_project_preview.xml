@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProjectPreview">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/transparent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/offer_service_header"
+            android:padding="0dp">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/projectImagesVP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:id="@+id/projectCirclesNumberLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/point_top"
+                android:paddingRight="@dimen/padding_linear"
+                android:paddingLeft="@dimen/padding_linear"
+                android:background="@drawable/white_button_background"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:background="@drawable/gradient_background"/>
+
+            <ImageView
+                android:id="@+id/projectBackIV"
+                android:layout_width="@dimen/toolbar_layout"
+                android:layout_height="@dimen/toolbar_layout"
+                android:layout_alignParentStart="true"
+                app:srcCompat="@drawable/ic_back_arrow_white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/list_padding"
+                android:clickable="false"
+                android:gravity="bottom">
+
+                <TextView
+                    android:id="@+id/projectTitleTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Arduino Arduino Arduino Arduino"
+                    android:textColor="@color/whiteItem"
+                    android:textStyle="bold"
+                    android:gravity="start"
+                    android:textSize="@dimen/main_buttons"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/point_top"
+                android:paddingRight="@dimen/point_top"
+                android:paddingBottom="@dimen/point_top">
+
+                <TextView
+                    android:id="@+id/projectDescriptionTextTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/description"
+                    android:layout_marginBottom="@dimen/padding_point"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/main_toolbar_title"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                    android:id="@+id/projectDescriptionTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary_list_item"
+                    android:textSize="@dimen/action_text"
+                    android:layout_marginBottom="@dimen/fab_margin"
+                    android:gravity="left"
+                    android:text="Test Test Test Test Test Test Test Test Test Test Test "
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                <TextView
+                    android:id="@+id/projectItemsTextTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Project Items:"
+                    android:layout_marginBottom="@dimen/padding_point"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/main_toolbar_title"
+                    tools:ignore="SpUsage" />
+
+                <LinearLayout
+                    android:id="@+id/projectItemsLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/projectFL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

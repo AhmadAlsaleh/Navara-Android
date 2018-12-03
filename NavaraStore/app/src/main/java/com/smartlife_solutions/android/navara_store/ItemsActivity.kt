@@ -196,11 +196,7 @@ class ItemsActivity : AppCompatActivity() {
             return
         }
         if (fromCart) {
-            startActivity(
-                    Intent(this, MyCartActivity::class.java)
-//                            .putExtra("currentPage", 1)
-//                            .putExtra(StaticInformation().FINITSH_ON_BACK, true
-            )
+            super.onBackPressed()
             return
         }
         startActivity(Intent(this, MainActivity::class.java)

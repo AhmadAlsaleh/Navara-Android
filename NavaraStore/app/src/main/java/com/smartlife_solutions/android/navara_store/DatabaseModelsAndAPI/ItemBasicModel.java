@@ -4,8 +4,10 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.smartlife_solutions.android.navara_store.Statics;
 
+import java.io.Serializable;
+
 @DatabaseTable(tableName = "items")
-public class ItemBasicModel {
+public class ItemBasicModel implements Serializable {
 
     @DatabaseField(columnName = "id")
     private String id;
