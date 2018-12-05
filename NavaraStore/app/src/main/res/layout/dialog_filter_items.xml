@@ -20,6 +20,7 @@
                 android:layout_height="@dimen/toolbar_layout"
                 android:gravity="center"
                 android:textStyle="bold"
+                android:text="Filter"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/dialogs_title"
                 tools:ignore="SpUsage" />
@@ -91,8 +92,38 @@
                     android:paddingLeft="@dimen/padding_linear"
                     android:paddingRight="@dimen/padding_linear"
                     android:textSize="@dimen/action_text"
+                    android:layout_marginBottom="@dimen/action_main_small"
                     android:background="@drawable/edit_text_background"
                     tools:ignore="SpUsage,TextFields" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/toolbar_layout"
+                    android:layout_gravity="center">
+
+                    <Spinner
+                        android:id="@+id/filterSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/point_top"/>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Select Categories"
+                        android:textStyle="bold"
+                        android:paddingLeft="@dimen/action_main_small"
+                        android:paddingRight="@dimen/action_main_small"
+                        android:textColor="@color/colorPrimary"
+                        android:textAllCaps="false"
+                        android:drawableStart="@drawable/items_colored"
+                        android:drawablePadding="@dimen/action_main_small"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:textSize="@dimen/list_item_text"
+                        android:background="@drawable/white_button_background"/>
+
+                </FrameLayout>
 
                 <Button
                     android:id="@+id/filterBtn"

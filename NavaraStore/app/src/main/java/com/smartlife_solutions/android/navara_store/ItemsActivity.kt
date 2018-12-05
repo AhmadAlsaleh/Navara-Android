@@ -15,8 +15,10 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.APIsURL
+import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.CategoryDatabaseModel
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.DatabaseHelper
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.ItemBasicModel
+import com.smartlife_solutions.android.navara_store.Dialogs.FilterItemsDialog
 import com.smartlife_solutions.android.navara_store.ItemsActivityFragments.CategoryFragment
 import kotlinx.android.synthetic.main.activity_items.*
 import org.json.JSONObject
@@ -66,6 +68,11 @@ class ItemsActivity : AppCompatActivity() {
         searchLL.setOnClickListener {
             it.startAnimation(StaticInformation().clickAnim(this))
             startActivity(Intent(this, SearchItemActivity::class.java))
+        }
+
+        filterFAB.setOnClickListener {
+            Statics.setCategoryDatabaseModelArrayList(DatabaseHelper(this).categoryModelIntegerRuntimeException.queryForAll() as ArrayList<CategoryDatabaseModel>?)
+            FilterItemsDialog(this).show()
         }
 
         itemsTitleLayoutTV.typeface = StaticInformation().myFont(this)

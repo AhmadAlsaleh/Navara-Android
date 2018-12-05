@@ -22,6 +22,8 @@ public class CategoryDatabaseModel {
     @DatabaseField(columnName = "image_path")
     private String imagePath;
 
+    private boolean isSelected = false;
+
     public CategoryDatabaseModel() {
 
     }
@@ -31,6 +33,15 @@ public class CategoryDatabaseModel {
         this.name = name;
         this.description = description;
         this.imagePath = imagePath;
+        this.isSelected = false;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
     public String getName2() {

@@ -12,6 +12,7 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.util.Log;
 
+import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.CategoryDatabaseModel;
 import com.smartlife_solutions.android.navara_store.DatabaseModelsAndAPI.ProjectBasicModel;
 
 import org.json.JSONException;
@@ -21,6 +22,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Statics {
 
@@ -32,6 +34,15 @@ public class Statics {
     public static String currentLanguage = english;
 
     public static ProjectBasicModel projectBasicModel;
+    public static ArrayList<CategoryDatabaseModel> categoryDatabaseModelArrayList;
+
+    public static ArrayList<CategoryDatabaseModel> getCategoryDatabaseModelArrayList() {
+        return categoryDatabaseModelArrayList;
+    }
+
+    public static void setCategoryDatabaseModelArrayList(ArrayList<CategoryDatabaseModel> categoryDatabaseModelArrayList) {
+        Statics.categoryDatabaseModelArrayList = categoryDatabaseModelArrayList;
+    }
 
     public static ProjectBasicModel getProjectBasicModel() {
         return projectBasicModel;
